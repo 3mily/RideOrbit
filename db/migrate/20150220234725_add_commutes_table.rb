@@ -3,8 +3,8 @@ class AddCommutesTable < ActiveRecord::Migration
     create_table :drivercommutes do |t|
       t.references :users, index: true
       t.string :car_type
-      t.string :driver_origin
-      t.string :driver_destination
+      t.point :driver_origin
+      t.point :driver_destination
       t.time :driver_arrival_time
       t.json :days
       t.integer :seats_available
