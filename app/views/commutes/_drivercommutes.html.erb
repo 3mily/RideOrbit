@@ -1,0 +1,17 @@
+<%= form_for @driver_commute do |f| %>
+
+<div>
+  <%= f.label "car_type", "Car Type" %>
+  <%= f.text_field "car_type"%>
+</div>
+
+<div>
+  <%= f.label "seats_available", "Seats Available"%>
+  <%= f.text_field "seats_available"%>
+</div>
+
+<div>
+  <%= f.submit "Submit" %> 
+</div>
+
+<% end %>
