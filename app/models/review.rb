@@ -1,3 +1,3 @@
 class Review < ActiveRecord::Base
-  belongs_to :commute
+  belongs_to :drivercommute
 end

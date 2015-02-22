@@ -9,6 +9,7 @@ class AddUsersTable < ActiveRecord::Migration
       t.boolean :is_driver
       t.string :linkedin
       t.float :rating
+      t.string :picture
 
       t.timestamps
     end
