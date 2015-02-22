@@ -1,0 +1,19 @@
+<header>
+  <div>
+    <ul><li><%= link_to "RideOrbit", root_path, class: "navbar-brand" %></li></ul>
+  </div>
+  
+  <div>
+    <ul>
+<!-- if current user -->
+      <li><%= link_to "Profile", user_path %></li>
+      <li><%= link_to "Places", places_path %></li> 
+      <li><%= link_to "Commutes", commutes_path %></li> 
+      <li><%= link_to "Sign out", session_path("current"), method: :delete %></li>
+<!-- else -->
+      <li><%= link_to "Sign up", new_user_path %></li>
+      <li><%= link_to "Log in", new_session_path %></li>
+<!-- end -->
+    </ul>
+  </div>
+</header>

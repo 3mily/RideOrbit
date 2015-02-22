@@ -1,0 +1,27 @@
+$bg-color: #eff;
+$navbar-color: #cdd;
+
+
+body {
+  background-color: $bg-color;
+  padding: 5px;
+  margin: 10px;
+}
+
+header {
+  background-color: $navbar-color;
+  height: 50px;
+  padding: 10px;
+  ul li {
+    list-style-type: none;
+    display: inline; }
+  }
+  div:nth-child(1) {
+   float: left; }
+  }
+  div:nth-child(2) {
+   float: right; }
+  }
+}
+
+
