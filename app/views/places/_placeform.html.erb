@@ -1,0 +1,14 @@
+ <%= form_for @place, url: {action: 'create'} do |f| %>
+
+<div>
+  <%= f.label "name", "Name" %> <br>
+  <%= f.text_field :name %>
+</div>
+<div>
+  <%= f.label "cross_street", "Cross Streets" %><br>
+  <%= f.text_field :cross_street %>
+</div>
+
+<%= f.submit "Submit" %>
+<% end %>
+
