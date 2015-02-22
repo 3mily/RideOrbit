@@ -7,6 +7,7 @@ class AddCommutesTable < ActiveRecord::Migration
       t.string :driver_destination
       t.time :driver_arrival_time
       t.json :days
+      t.integer :seats_available
 
       t.timestamps
     end

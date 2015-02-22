@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150220234810) do
     t.string   "driver_destination"
     t.time     "driver_arrival_time"
     t.json     "days"
+    t.integer  "seats_available"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
