@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :users do
-    resource :places, only: [:create, :new, :destroy]
-    resource :map 
-    resource :commute, only: [:create, :new, :destroy]
+    resource :places, only: [:create, :destroy, :show]
+    resources :commutes, only: [:create, :new, :destroy, :show] do
+      resource :reviews, only: [:create, :destroy]
+      resource :requests, only: [:create, :destroy]
+    end
+    get "/map", to: "users#map", as: "map"
   end
 
 end
