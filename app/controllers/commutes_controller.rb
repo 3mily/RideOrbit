@@ -1,0 +1,2 @@
+class CommutesController < ApplicationController
+end
