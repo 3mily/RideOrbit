@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150220234810) do
     t.integer  "users_id"
     t.string   "cross_street"
     t.point    "cross_street_point"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
