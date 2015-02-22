@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :commutes
+  get "/drivercommute", to: "commutes#new", as: "drivercommutes"
+  get "/passengercommute", to: "commutes#new", as: "passengercommutes"
   resources :places, only: [:create, :destroy, :show, :index]
   resource :reviews, only: [:create, :destroy]
   resource :requests, only: [:create, :destroy]
