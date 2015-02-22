@@ -4,6 +4,7 @@ class AddPlacesTable < ActiveRecord::Migration
       t.references :users, index: true
       t.string :cross_street
       t.point :cross_street_point
+      t.string :name #ex: home or work
 
       t.timestamps
     end

@@ -16,36 +16,39 @@ ActiveRecord::Schema.define(version: 20150220234810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "commutes", force: :cascade do |t|
+  create_table "drivercommutes", force: :cascade do |t|
     t.integer  "users_id"
     t.string   "car_type"
-    t.string   "driver_origin"
-    t.string   "driver_destination"
+    t.point    "driver_origin"
+    t.point    "driver_destination"
     t.time     "driver_arrival_time"
+    t.json     "days"
+    t.integer  "seats_available"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "drivercommutes", ["users_id"], name: "index_drivercommutes_on_users_id", using: :btree
+
+  create_table "passengercommutes", force: :cascade do |t|
+    t.integer  "users_id"
+    t.integer  "commutes_id"
+    t.point    "passenger_origin"
+    t.point    "passenger_destination"
+    t.time     "passenger_arrival_time"
     t.json     "days"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "commutes", ["users_id"], name: "index_commutes_on_users_id", using: :btree
-
-  create_table "passengers", force: :cascade do |t|
-    t.integer  "users_id"
-    t.integer  "commutes_id"
-    t.point    "pickup"
-    t.point    "dropoff"
-    t.time     "passenger_arrival_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "passengers", ["commutes_id"], name: "index_passengers_on_commutes_id", using: :btree
-  add_index "passengers", ["users_id"], name: "index_passengers_on_users_id", using: :btree
+  add_index "passengercommutes", ["commutes_id"], name: "index_passengercommutes_on_commutes_id", using: :btree
+  add_index "passengercommutes", ["users_id"], name: "index_passengercommutes_on_users_id", using: :btree
 
   create_table "places", force: :cascade do |t|
     t.integer  "users_id"
     t.string   "cross_street"
     t.point    "cross_street_point"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150220234810) do
     t.boolean  "is_driver"
     t.string   "linkedin"
     t.float    "rating"
+    t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
