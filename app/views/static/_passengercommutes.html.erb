@@ -1,0 +1,23 @@
+<hr>
+<h1>Passenger Commute</h1>
+<%= form_for @passenger_commute do |f| %>
+
+ <div>
+  <%= f.label "passenger_origin", "Origin:"%> 
+  <%= f.collection_select :origin, @current_user.places,:id,:name %>
+  </div>
+
+  <div>
+    <%= f.label "passenger_destination", "Destination:"%>
+    <%= f.collection_select :destination, @current_user.places,:id,:name %>
+  </div>
+
+  <div>
+    <%= f.label "passenger_arrival_time", "Arrive by:"%><%= f.time_select :arrival_time, {minute_step: 15, ampm: true, prompt: true} %>
+  </div>
+
+  <div>
+    <%= f.submit "Submit" %> 
+  </div>
+
+<% end %>

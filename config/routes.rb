@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
 
-  root to: 'welcome#index'
+  root to: 'static#index'
+
+  get "/newcommute", to: "static#newcommute", as: "newcommute"
+  get "/commuteslist", to: "static#commuteslist", as: "commuteslist"
 
   resource :session, only: [:new, :create, :destroy]
 
   resources :users
-  resources :commutes
-    get "/drivercommute", to: "commutes#new", as: "drivercommutes"
-    post "/drivercommute", to: "commutes#create", as: "new_drivercommutes"
-    get "/passengercommute", to: "commutes#new", as: "passengercommutes"
-    post "/passengercommute", to: "commutes#create", as: "new_passengercommutes"
+
+  resources :drivercommutes, only: [:create, :destroy]
+  resources :passengercommutes, only: [:create, :destroy]
   resources :places, only: [:create, :destroy, :show, :index]
   resource :reviews, only: [:create, :destroy]
   resource :requests, only: [:create, :destroy]
 
   get "/map", to: "users#map", as: "map"
-
 
 end

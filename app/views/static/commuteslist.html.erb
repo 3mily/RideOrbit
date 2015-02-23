@@ -1,0 +1,30 @@
+Where your existing commutes will be.
+<h1>Your Commutes:</h1>
+
+<% if !@driver_commutes && !@passenger_commutes %>
+  <h2>You have no commutes!<br>
+    Please make a commute <%= link_to "here", newcommute_path %>!</h2>
+
+<% else %>
+  why this no appear?
+  <% if @driver_commutes %>
+  driver commute:
+    <% @driver_commutes.each do |commute| %>
+      <div>
+      From <%= commute.origin %> to <%= commute.destination %>.
+      <%= commute.days %> - <%= commute.arrival_time %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if @passenger_commutes %>
+  passenger comute:
+    <% @passenger_commutes.each do |commute| %>
+      <div>
+      <%= commute.origin %> - <%= commute.destination %>
+      <%= commute.days %> - <%= commute.arrival_time %>
+      </div>
+    <% end %>
+  <% end %>
+
+<% end %>
