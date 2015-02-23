@@ -1,3 +1,4 @@
+ <h1>Place</h1>
  <%= form_for @place, url: {action: 'create'} do |f| %>
 
 <div>
@@ -12,3 +13,12 @@
 <%= f.submit "Submit" %>
 <% end %>
 
+
+<% if @places != nil %>
+  <% @places.each do |place| %>
+    <div>
+    <%= place.name %> - <%= place.cross_street %>
+    </div>
+  <% end %>
+  <%= link_to "Make a Commute", new_commute_path %>
+<% end %>
