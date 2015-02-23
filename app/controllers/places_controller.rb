@@ -3,15 +3,16 @@ require 'pry'
 class PlacesController < ApplicationController
   def index
     @place = Place.new
+    @places = Place.where(user_id: current_user.id)
   end
 
   def create
     @place = Place.new(place_params)
     @place.user_id = current_user.id
     if @place.save
-      flash[:notice] = "Now create a commute!"
+      flash[:notice] = "New place added!"
       # binding.pry
-      render :index
+      redirect_to places_path
     else
       render :index
     end
