@@ -14,11 +14,11 @@
 <% end %>
 
 
-<% if @places != nil %>
+<% if @places %>
   <% @places.each do |place| %>
     <div>
     <%= place.name %> - <%= place.cross_street %>
     </div>
   <% end %>
-  <%= link_to "Make a Commute", new_commute_path %>
+  <%= link_to "Make a Commute", newcommute_path %>
 <% end %>
