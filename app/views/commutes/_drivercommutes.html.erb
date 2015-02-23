@@ -1,3 +1,5 @@
+<hr>
+<h1>Driver Commute</h1>
 <%= form_for @driver_commute do |f| %>
 
 <div>
@@ -6,8 +8,22 @@
 </div>
 
 <div>
-  <%= f.label "seats_available", "Seats Available"%>
-  <%= f.text_field "seats_available"%>
+  <%= f.label "seats_available", "Number of Seats" %>
+  <%= f.select :seats_available, options_for_select([1,2,3,4,5]) %>
+</div>
+
+<div>
+  <%= f.label "driver_origin", "Origin:"%> 
+  <%= f.collection_select :driver_origin, @current_user.places,:id,:name %>
+</div>
+
+<div>
+  <%= f.label "driver_destination", "Destination:"%>
+  <%= f.collection_select :driver_destination, @current_user.places,:id,:name %>
+</div>
+
+<div>
+  <%= f.label "driver_arrival_time", "Arrive by:"%><%= f.time_select :driver_arrival_time, {minute_step: 15, ampm: true, prompt: true} %>
 </div>
 
 <div>
