@@ -18,13 +18,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  def places_select_tag(places, options = {})
-    select_options = places.map do |place|
-      [place.name, place.cross_street]
-    end
-    select_tag options_for_select(select_options), options
-  end
-
 
 
   # helper method
