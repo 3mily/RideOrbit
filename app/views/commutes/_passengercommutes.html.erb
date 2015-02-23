@@ -1,25 +1,23 @@
+<hr>
+<h1>Passenger Commute</h1>
 <%= form_for @passenger_commute do |f| %>
 
-passengercommutes.... what form even goes here?! lol ok so there's gonna be a drop down for passenger origin, passenger destination and some kinda thing where they can enter their arrival time and they havet o know what days they gonna do..
-
-
-  <div>
-    origin: <%= f.collection_select :passenger_origin, @current_user.places,:id,:name %>
+ <div>
+  <%= f.label "passenger_origin", "Origin:"%> 
+  <%= f.collection_select :passenger_origin, @current_user.places,:id,:name %>
   </div>
+
   <div>
-    destination: <%= f.collection_select :passenger_origin, @current_user.places,:id,:name %>
+    <%= f.label "passenger_destination", "Destination:"%>
+    <%= f.collection_select :passenger_destination, @current_user.places,:id,:name %>
   </div>
+
   <div>
-<%= f.time_select :passenger_arrival_time,
-  :combined => true,
-  :default => Time.now.change(:hour => 11, :min => 30),
-  :minute_interval => 15,
-  :time_separator => "",
-  :start_hour => 10,
-  :start_minute => 30,
-  :end_hour => 14,
-  :end_minute => 30
-%>
+    <%= f.label "passenger_arrival_time", "Arrive by:"%><%= f.time_select :passenger_arrival_time, {minute_step: 15, ampm: true, prompt: true} %>
+  </div>
+
+  <div>
+    <%= f.submit "Submit" %> 
   </div>
 
 <% end %>
