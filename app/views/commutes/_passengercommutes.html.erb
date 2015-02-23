@@ -1,4 +1,12 @@
+require 'pry'
+    
 <%= form_for @passenger_commute do |f| %>
 
 passengercommutes.... what form even goes here?! lol ok so there's gonna be a drop down for passenger origin, passenger destination and some kinda thing where they can enter their arrival time and they havet o know what days they gonna do..
+
+  <div>
+    <%= places_select_tag @current_user.places %>
+  </div>
+
+
 <% end %>

@@ -1,7 +1,7 @@
 class AddReviewsTable < ActiveRecord::Migration
   def change
     create_table :reviews do |t|
-      t.references :commutes, index: true
+      t.references :commute, index: true
       t.integer :reviewee_id #
       t.integer :reviewer_id #
       t.integer :rating

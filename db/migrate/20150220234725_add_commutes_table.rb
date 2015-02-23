@@ -1,7 +1,7 @@
 class AddCommutesTable < ActiveRecord::Migration
   def change
     create_table :drivercommutes do |t|
-      t.references :users, index: true
+      t.references :user, index: true
       t.string :car_type
       t.point :driver_origin
       t.point :driver_destination
