@@ -3,4 +3,7 @@ class CommutesController < ApplicationController
     @driver_commute = Drivercommute.new
     @passenger_commute = Passengercommute.new
   end
+
+  def create
+  end
 end
