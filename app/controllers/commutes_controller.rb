@@ -10,6 +10,13 @@ class CommutesController < ApplicationController
     @passenger_commute.user_id = current_user.id
   end
 
+  def create
+    @driver_commute = Drivercommute.new
+    @driver_commute.user_id = current_user.id
+    
+    @passenger_commute = Passengercommute.new
+    @passenger_commute.user_id = current_user.id
+  end
 
 
 

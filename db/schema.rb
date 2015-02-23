@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150222221017) do
 
   create_table "passengercommutes", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "commute_id"
+    t.integer  "drivercommute_id"
     t.point    "passenger_origin"
     t.point    "passenger_destination"
     t.time     "passenger_arrival_time"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150222221017) do
     t.datetime "updated_at"
   end
 
-  add_index "passengercommutes", ["commute_id"], name: "index_passengercommutes_on_commute_id", using: :btree
+  add_index "passengercommutes", ["drivercommute_id"], name: "index_passengercommutes_on_drivercommute_id", using: :btree
   add_index "passengercommutes", ["user_id"], name: "index_passengercommutes_on_user_id", using: :btree
 
   create_table "places", force: :cascade do |t|
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150222221017) do
   add_index "requests", ["commute_id"], name: "index_requests_on_commute_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "commute_id"
+    t.integer  "drivercommute_id"
     t.integer  "reviewee_id"
     t.integer  "reviewer_id"
     t.integer  "rating"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20150222221017) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["commute_id"], name: "index_reviews_on_commute_id", using: :btree
+  add_index "reviews", ["drivercommute_id"], name: "index_reviews_on_drivercommute_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname"
