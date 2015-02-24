@@ -8,3 +8,9 @@ module PlacesHelper
     result
   end
 end
+
+
+  def places_names(places)
+    name = ""
+    places.each 
+  end
