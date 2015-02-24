@@ -2,14 +2,18 @@
 <h1>Passenger Commute</h1>
 <%= form_for @passenger_commute do |f| %>
 
- <div>
-  <%= f.label "passenger_origin", "Origin:"%> 
-  <%= f.collection_select :origin, @current_user.places,:cross_street_point,:name %>
+  <div>
+    <%= f.label "passenger_origin", "Origin:"%> 
+    <%= f.select :origin do %> 
+      <%= options_for_select(places_options(@current_user.places)) %>
+    <% end %>
   </div>
 
   <div>
     <%= f.label "passenger_destination", "Destination:"%>
-    <%= f.collection_select :destination, @current_user.places,:cross_street_point,:name %>
+    <%= f.select :origin do %> 
+      <%= options_for_select(places_options(@current_user.places)) %>
+    <% end %>
   </div>
 
   <div>

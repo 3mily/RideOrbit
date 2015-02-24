@@ -7,10 +7,12 @@ Where your existing commutes will be.
 
 <% else %>
   why this no appear?
+
   <% if @driver_commutes %>
   driver commute:
     <% @driver_commutes.each do |commute| %>
       <div>
+        <%= @places.where(cross_street_point: commute.origin) %>
       From <%= commute.origin %> to <%= commute.destination %>.
       <%= commute.days %> - <%= commute.arrival_time %>
       </div>
