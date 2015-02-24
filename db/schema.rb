@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150222221017) do
   create_table "places", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "cross_street"
-    t.point    "cross_street_point"
+    t.json     "cross_street_point"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

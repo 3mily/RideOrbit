@@ -5,15 +5,16 @@
   
   <div>
     <ul>
-<!-- if current user -->
-      <li><%= link_to "Profile", users_path %></li>
-      <li><%= link_to "Places", places_path %></li> 
-      <li><%= link_to "Commutes", commuteslist_path %></li> 
-      <li><%= link_to "Sign out", session_path("current"), method: :delete %></li>
-<!-- else -->
-      <li><%= link_to "Sign up", new_user_path %></li>
-      <li><%= link_to "Log in", new_session_path %></li>
-<!-- end -->
+      <% if current_user %>
+        <li><%= link_to "Profile", users_path %></li>
+        <li><%= link_to "Places", places_path %></li> 
+        <li><%= link_to "Commutes", commuteslist_path %></li> 
+
+        <li><%= link_to "Log out", session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign up", new_user_path %></li>
+        <li><%= link_to "Log in", new_session_path %></li>
+      <% end %>
     </ul>
   </div>
 </header>
