@@ -12,8 +12,7 @@ Where your existing commutes will be.
   driver commute:
     <% @driver_commutes.each do |commute| %>
       <div>
-        <%= @places.where(cross_street_point: commute.origin) %>
-      From <%= commute.origin %> to <%= commute.destination %>.
+      From <%= commute.origin["name"] %> to <%= commute.destination["name"] %>.
       <%= commute.days %> - <%= commute.arrival_time %>
       </div>
     <% end %>
