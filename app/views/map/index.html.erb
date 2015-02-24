@@ -1,1 +1,24 @@
-DIZ IZ WHERE DA MAP GOZ
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzTWOeiWNOSZ611vVI1ogdOHh02Q46rug">
+</script>
+
+<h1>Map Page</h1>
+<h1>Hello, <%= @test.lastname %></h1>
+
+<script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: { lat: 49.282043, lng: -123.108162},
+          zoom: 13
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+        console.log("hello");
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+
+
+<div id="map-canvas"></div>
