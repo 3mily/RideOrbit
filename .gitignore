@@ -21,3 +21,7 @@
 #ignore environment variables
 
 .env
+
+#ignore HJ's notes
+
+notes.txt

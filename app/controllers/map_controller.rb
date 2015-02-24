@@ -1,5 +1,5 @@
 class MapController < ApplicationController
   def index
-    @test = current_user;
+    @user = current_user;
   end
 end
