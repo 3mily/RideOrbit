@@ -10,7 +10,6 @@ class DrivercommutesController < ApplicationController
     # @driver_commute.origin = nil
     # @driver_commute.destination = nil
     @driver_commute.save
-# binding.pry
     redirect_to commuteslist_path
   end
 

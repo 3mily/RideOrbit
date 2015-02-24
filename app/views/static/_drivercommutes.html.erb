@@ -14,12 +14,16 @@
 
 <div>
   <%= f.label "driver_origin", "Origin:"%> 
-  <%= f.collection_select :origin, @current_user.places,:cross_street_point,:cross_street %>
+  <%= f.select :origin do %> 
+    <%= options_for_select(places_options(@current_user.places)) %>
+  <% end %>
 </div>
 
 <div>
   <%= f.label "driver_destination", "Destination:"%>
-  <%= f.collection_select :destination, @current_user.places,:cross_street_point,:cross_street %>
+  <%= f.select :origin do %>
+    <%= options_for_select(places_options(@current_user.places)) %>
+  <% end %>
 </div>
 
 <div>
