@@ -15,6 +15,7 @@ class StaticController < ApplicationController
 
 
   def commuteslist #page that shows all commutes
+    @places = Place.where(user_id: current_user.id)
     @driver_commutes = Drivercommute.where(user_id: current_user.id)
     @passenger_commutes = Passengercommute.where(user_id: current_user.id)
     # binding.pry  
