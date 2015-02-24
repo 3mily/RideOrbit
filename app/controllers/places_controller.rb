@@ -8,6 +8,7 @@ class PlacesController < ApplicationController
 
   def create
     @place = Place.new(place_params)
+    binding.pry
     @place.user_id = current_user.id
     if @place.save
       flash[:notice] = "New place added!"
