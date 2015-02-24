@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20150222221017) do
   create_table "drivercommutes", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "car_type"
-    t.point    "origin"
-    t.point    "destination"
+    t.json     "origin"
+    t.json     "destination"
     t.time     "arrival_time"
     t.json     "days"
     t.integer  "seats_available"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20150222221017) do
   create_table "passengercommutes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "drivercommute_id"
-    t.point    "origin"
-    t.point    "destination"
+    t.json     "origin"
+    t.json     "destination"
     t.time     "arrival_time"
     t.json     "days"
     t.datetime "created_at"

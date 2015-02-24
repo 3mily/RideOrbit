@@ -14,12 +14,12 @@
 
 <div>
   <%= f.label "driver_origin", "Origin:"%> 
-  <%= f.collection_select :origin, @current_user.places,:id,:name %>
+  <%= f.collection_select :origin, @current_user.places,:cross_street_point,:cross_street %>
 </div>
 
 <div>
   <%= f.label "driver_destination", "Destination:"%>
-  <%= f.collection_select :destination, @current_user.places,:id,:name %>
+  <%= f.collection_select :destination, @current_user.places,:cross_street_point,:cross_street %>
 </div>
 
 <div>
