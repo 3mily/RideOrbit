@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    
+  end
+
 
   # helper method
   def user_params
