@@ -4,12 +4,12 @@
 
  <div>
   <%= f.label "passenger_origin", "Origin:"%> 
-  <%= f.collection_select :origin, @current_user.places,:id,:name %>
+  <%= f.collection_select :origin, @current_user.places,:cross_street_point,:name %>
   </div>
 
   <div>
     <%= f.label "passenger_destination", "Destination:"%>
-    <%= f.collection_select :destination, @current_user.places,:id,:name %>
+    <%= f.collection_select :destination, @current_user.places,:cross_street_point,:name %>
   </div>
 
   <div>

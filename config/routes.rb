@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :places, only: [:create, :destroy, :show, :index]
   resource :reviews, only: [:create, :destroy]
   resource :requests, only: [:create, :destroy]
-
-  get "/map", to: "users#map", as: "map"
+  resource :map, only: [:index]
 
 end
