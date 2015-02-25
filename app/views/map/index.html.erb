@@ -12,6 +12,14 @@
 <% end %>
 </select>
 
+<h3>Select A Commute (Passenger)</h3>
+<select id="commute2" onchange=calcRoutee()>
+<option disabled selected> -- select a commute -- </option>
+<% @user.passengercommutes.each_with_index do |commute,index| %>
+  <option value="<%=index%>"><%=index%> <%= commute.origin["name"]%> to <%= commute.destination["name"]%></option>
+<% end %>
+</select>
+
 <script type="text/javascript">
       var map;
       var directionsService = new google.maps.DirectionsService();
@@ -49,6 +57,23 @@
           }
         });
       }
+
+      function calcRoutee() {
+        var commute = document.getElementById('commute2').value;
+        var start = new google.maps.LatLng(drivercommutesOriginsArray[commute].lat, drivercommutesOriginsArray[commute].long); 
+        var end = new google.maps.LatLng(drivercommutesDestinationsArray[commute].lat, drivercommutesDestinationsArray[commute].long);
+        var request = {
+            origin:start,
+            destination:end,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+        });
+      }
+
       google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
