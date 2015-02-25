@@ -7,7 +7,9 @@
 </div>
 <div>
   <%= f.label "cross_street", "Cross Streets" %><br>
-  <%= f.text_field :cross_street %>
+  <%= text_field_tag :street1 %> and <%= text_field_tag :street2 %>
+  <% f.hidden_field :cross_street %>
+  <% f.hidden_field :cross_street_point %>
 </div>
 
 <%= f.submit "Submit" %>
@@ -22,3 +24,47 @@
   <% end %>
   <%= link_to "Make a Commute", newcommute_path %>
 <% end %>
+
+
+<script type="text/javascript">
+function initialize(search) {
+  var input = document.getElementById(search);
+  if (input) {
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        console.log(place);
+        console.log("name: " + place.name);
+        console.log("lat: " + place.geometry.location.lat());
+        console.log("lng: " + place.geometry.location.lng());
+    });
+  };
+}
+google.maps.event.addDomListener(window, 'load', function() {
+  initialize('street1');
+  initialize('street2');
+});
+
+//right now, it doesn't throw an error even if the input fields are empty.
+$("#xst_form").on("submit", function(e){
+  e.preventDefault();
+  var query = $("#street1").val() + " and " + $("#street2").val();
+  $("")
+  console.log('testing query: ' + query)
+  $.ajax({
+    url: "http://maps.googleapis.com/maps/api/geocode/json?address="+query+"&sensor=false",
+    type: "POST",
+    error: function(xhr, status, thrownError){
+      console.log("oh noes!", thrownError);
+    },
+    success: function(data){
+      console.log(data);
+      console.log(data.results[0].geometry.location.lat);
+      console.log(data.results[0].geometry.location.lng);
+    }
+  });
+});
+</script>
+
+
+

@@ -23,7 +23,7 @@ class PlacesController < ApplicationController
 
   # helper method
   def place_params
-    params.require(:place).permit(:cross_street, :name)
+    params.require(:place).permit(:name)
   end
 
 end
