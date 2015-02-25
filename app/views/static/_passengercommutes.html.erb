@@ -11,7 +11,7 @@
 
   <div>
     <%= f.label "passenger_destination", "Destination:"%>
-    <%= f.select :origin do %> 
+    <%= f.select :destination do %> 
       <%= options_for_select(places_options(@current_user.places)) %>
     <% end %>
   </div>

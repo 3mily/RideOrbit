@@ -6,24 +6,22 @@ Where your existing commutes will be.
     Please make a commute <%= link_to "here", newcommute_path %>!</h2>
 
 <% else %>
-  why this no appear?
 
   <% if @driver_commutes %>
-  driver commute:
+  Driver Commutes:
     <% @driver_commutes.each do |commute| %>
       <div>
-        <%= @places.where(cross_street_point: commute.origin).name %>
-      From <%= commute.origin %> to <%= commute.destination %>.
+      From <%= commute.origin["name"] %> to <%= commute.destination["name"] %>.
       <%= commute.days %> - <%= commute.arrival_time %>
       </div>
     <% end %>
   <% end %>
 
   <% if @passenger_commutes %>
-  passenger comute:
+  Passenger Commutes:
     <% @passenger_commutes.each do |commute| %>
       <div>
-      <%= commute.origin %> - <%= commute.destination %>
+      <%= commute.origin["name"] %> - <%= commute.destination["name"] %>
       <%= commute.days %> - <%= commute.arrival_time %>
       </div>
     <% end %>
