@@ -3,8 +3,10 @@ class AddPassengersTable < ActiveRecord::Migration
     create_table :passengercommutes do |t|
       t.references :user, index: true #passenger
       t.references :drivercommute, index: true
-      t.json :origin
-      t.json :destination
+      t.point :origin
+      t.string :origin_name
+      t.point :destination
+      t.string :destination_name
       t.time :arrival_time
       t.json :days
 
