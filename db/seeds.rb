@@ -202,7 +202,7 @@ Passengercommute.create(
 Passengercommute.create(
   user_id: 5,
   origin: {"name": "Work - Wesbrook Mall and Thunderbird Blvd (UBC)","lat": 49.261669, "long": -123.241450},
-  destination: {"name": "Work 2 - Seymour and Smithe (Downtown)","lat": 49.279679, "long": -123.120421}
+  destination: {"name": "Work 2 - Seymour and Smithe (Downtown)","lat": 49.279679, "long": -123.120421},
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"]
   )
@@ -229,7 +229,7 @@ Passengercommute.create(
   )
 Passengercommute.create(
   user_id: 9,
-  origin: {"name": "Home - Cornish and 68th Ave (Vancouver)","lat": 49.210531, "long": -123.142071}
+  origin: {"name": "Home - Cornish and 68th Ave (Vancouver)","lat": 49.210531, "long": -123.142071},
   destination: {"name": "Work - E Mall and Thunderbird Blvd","lat": 49.260103, "long": -123.245706},
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"]
@@ -289,7 +289,7 @@ Drivercommute.create(
   user_id: 5,
   car_type: "sports car thing",
   origin: {"name": "Work - Wesbrook Mall and Thunderbird Blvd (UBC)","lat": 49.261669, "long": -123.241450},
-  destination: {"name": "Work 2 - Seymour and Smithe (Downtown)","lat": 49.279679, "long": -123.120421}
+  destination: {"name": "Work 2 - Seymour and Smithe (Downtown)","lat": 49.279679, "long": -123.120421},
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 3,
   days: ["Mon","Tues","Wed"]
@@ -324,7 +324,7 @@ Drivercommute.create(
 Drivercommute.create(
   user_id: 9,
   car_type: "4 wheels",
-  origin: {"name": "Home - Cornish and 68th Ave (Vancouver)","lat": 49.210531, "long": -123.142071}
+  origin: {"name": "Home - Cornish and 68th Ave (Vancouver)","lat": 49.210531, "long": -123.142071},
   destination: {"name": "Work - E Mall and Thunderbird Blvd","lat": 49.260103, "long": -123.245706},
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 5,
