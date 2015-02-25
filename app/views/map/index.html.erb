@@ -36,8 +36,9 @@
 
         google.maps.event.addListener(map, 'idle', function() {
           bounds = map.getBounds();
-          startPoints = getPassengerCommuteStartPoints(bounds.lat, bounds.long)
-          renderPoints(startPoints) //console.log(bounds);
+          console.log(bounds);
+          // startPoints = getPassengerCommuteStartPoints(bounds.lat, bounds.long);
+          // renderPoints(startPoints);
         });
       }
 
