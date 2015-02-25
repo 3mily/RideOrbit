@@ -8,7 +8,6 @@
 <div>
   <%= f.label "cross_street", "Cross Streets" %><br>
   <%= text_field_tag :street1 %> and <%= text_field_tag :street2 %>
-  <% f.hidden_field :cross_street %>
   <% f.hidden_field :cross_street_point %>
 </div>
 
@@ -24,7 +23,6 @@
   <% end %>
   <%= link_to "Make a Commute", newcommute_path %>
 <% end %>
-
 
 <script type="text/javascript">
 function initialize(search) {
@@ -46,11 +44,10 @@ google.maps.event.addDomListener(window, 'load', function() {
 });
 
 //right now, it doesn't throw an error even if the input fields are empty.
-$("#xst_form").on("submit", function(e){
+$("#new_place").on("submit", function(e){
   e.preventDefault();
   var query = $("#street1").val() + " and " + $("#street2").val();
-  $("")
-  console.log('testing query: ' + query)
+  console.log('testing query: ' + query);
   $.ajax({
     url: "http://maps.googleapis.com/maps/api/geocode/json?address="+query+"&sensor=false",
     type: "POST",
@@ -59,8 +56,9 @@ $("#xst_form").on("submit", function(e){
     },
     success: function(data){
       console.log(data);
-      console.log(data.results[0].geometry.location.lat);
-      console.log(data.results[0].geometry.location.lng);
+      var lat = data.results[0].geometry.location.lat;
+      var lng = data.results[0].geometry.location.lng;
+      $("#cross_street_point").val('{"lat":#{lat}, "lng":#{lng}, "intersection": #{query}}')
     }
   });
 });
