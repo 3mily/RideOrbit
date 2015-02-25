@@ -6,10 +6,10 @@
 <h1>Hello, <%= @user.lastname %></h1>
 <h3>Select A Commute (Driver)</h3>
 <select id="commute" onchange="calcRoute()">
-<% @user.drivercommutes.each do |commute| %>
   <option disabled selected> -- select a commute -- </option>
-  <option value="<%= commute.id %>"><%= commute.id %></option>
-<% end %>
+  <% @user.drivercommutes.each_with_index do |commute,index| %>
+    <option value="<%=index%>"><%=index%> <%= commute.origin["name"]%> to <%= commute.destination["name"]%></option>
+  <% end %>
 </select>
 
 <script type="text/javascript">
@@ -18,6 +18,7 @@
       var directionsDisplay;
       var drivercommutesOriginsArray = [];
       var drivercommutesDestinationsArray = [];
+      var bounds;
 
       function initialize() {
         directionsDisplay = new google.maps.DirectionsRenderer();
@@ -32,10 +33,16 @@
           drivercommutesOriginsArray.push(<%=raw commute.origin.to_json %>);
           drivercommutesDestinationsArray.push(<%=raw commute.destination.to_json %>);
         <% end %>
+
+        google.maps.event.addListener(map, 'idle', function() {
+          bounds = map.getBounds();
+          startPoints = getPassengerCommuteStartPoints(bounds.lat, bounds.long)
+          renderPoints(startPoints) //console.log(bounds);
+        });
       }
 
       function calcRoute() {
-        var commute = document.getElementById('commute').value-1;
+        var commute = document.getElementById('commute').value;
         var start = new google.maps.LatLng(drivercommutesOriginsArray[commute].lat, drivercommutesOriginsArray[commute].long); 
         var end = new google.maps.LatLng(drivercommutesDestinationsArray[commute].lat, drivercommutesDestinationsArray[commute].long);
         var request = {
@@ -49,7 +56,13 @@
           }
         });
       }
+
+      function getPassengerCommuteStartPoints() {
+
+      }
+
       google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 
 <div id="map-canvas"></div>
