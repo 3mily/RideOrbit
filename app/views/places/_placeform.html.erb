@@ -47,18 +47,37 @@ google.maps.event.addDomListener(window, 'load', function() {
 $("#new_place").on("submit", function(e){
   e.preventDefault();
   var query = $("#street1").val() + " and " + $("#street2").val();
-  console.log('testing query: ' + query);
+  console.log('testing query(xst): ' + query);
+  var xstData;
+  var name = $("#place_name").val();
+
   $.ajax({
     url: "http://maps.googleapis.com/maps/api/geocode/json?address="+query+"&sensor=false",
     type: "POST",
     error: function(xhr, status, thrownError){
       console.log("oh noes!", thrownError);
     },
-    success: function(data){
-      console.log(data);
+    success: function(data){ //cross-street data from gmaps api
+      console.log("data: ", data);
       var lat = data.results[0].geometry.location.lat;
       var lng = data.results[0].geometry.location.lng;
-      $("#cross_street_point").val('{"lat":#{lat}, "lng":#{lng}, "intersection": #{query}}')
+      xstData = data;
+      var params = {
+        "name": name,
+      }
+
+      $.ajax({
+        url: "/places",
+        type: "POST",
+        data: params,
+        error: function(xhr, status, thrownError){
+          console.log('oh noesssss....', thrownError);
+        },
+        success: function(response) {
+          console.log('success!');
+        }
+      });
+
     }
   });
 });
