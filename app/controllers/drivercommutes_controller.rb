@@ -7,11 +7,10 @@ class DrivercommutesController < ApplicationController
     binding.pry
     @driver_commute = Drivercommute.new(driver_commute_params)
     @driver_commute.user_id = current_user.id
+
     driver_origin_params
     driver_destination_params
     binding.pry
-    # @driver_commute.origin = nil
-    # @driver_commute.destination = nil
     @driver_commute.save
     redirect_to commuteslist_path
   end
