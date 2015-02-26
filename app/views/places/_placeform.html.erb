@@ -3,11 +3,11 @@
 
   <div>
     <%= f.label "name", "Name" %> <br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: "eg. Home..." %>
   </div>
   <div>
     <%= f.label "cross_street", "Cross Streets" %><br>
-    <%= text_field_tag :street1 %> and <%= text_field_tag :street2 %>
+    <%= text_field_tag :street1, nil, placeholder: "W Hastings..." %> and <%= text_field_tag :street2, nil, placeholder: "Abbott..." %>
     <% f.hidden_field :cross_street_point %>
   </div>
 

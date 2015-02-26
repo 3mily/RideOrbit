@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150222221017) do
     t.string   "destination_name"
     t.time     "arrival_time"
     t.json     "days"
+    t.json     "user_info"
     t.integer  "seats_available"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150222221017) do
     t.string   "destination_name"
     t.time     "arrival_time"
     t.json     "days"
+    t.json     "user_info"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
