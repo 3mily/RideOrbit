@@ -4,6 +4,7 @@ class DrivercommutesController < ApplicationController
 
 
   def create
+    binding.pry
     @driver_commute = Drivercommute.new(driver_commute_params)
     @driver_commute.user_id = current_user.id
     # binding.pry
