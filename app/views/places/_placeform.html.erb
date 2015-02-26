@@ -8,22 +8,22 @@
 <div>
   <%= f.label "cross_street", "Cross Streets" %><br>
   <%= text_field_tag :street1 %> and <%= text_field_tag :street2 %>
-  <% f.hidden_field :cross_street %>
   <% f.hidden_field :cross_street_point %>
 </div>
 
 <%= f.submit "Submit" %>
 <% end %>
 
-
-<% if @places %>
-  <% @places.each do |place| %>
-    <div>
-    <%= place.name %> - <%= place.cross_street %>
-    </div>
+<div id="places">
+  <% if @places %>
+    <% @places.each do |place| %>
+      <div>
+      <%= place.name %> - <%= place.cross_street %>
+      </div>
+    <% end %>
   <% end %>
-  <%= link_to "Make a Commute", newcommute_path %>
-<% end %>
+</div>
+<%= link_to "Make a Commute", newcommute_path %>
 
 
 <script type="text/javascript">
@@ -46,21 +46,46 @@ google.maps.event.addDomListener(window, 'load', function() {
 });
 
 //right now, it doesn't throw an error even if the input fields are empty.
-$("#xst_form").on("submit", function(e){
+$("#new_place").on("submit", function(e){
   e.preventDefault();
   var query = $("#street1").val() + " and " + $("#street2").val();
-  $("")
-  console.log('testing query: ' + query)
+  console.log('testing query(xst): ' + query);
+  var xstData;
+  var name = $("#place_name").val();
+
   $.ajax({
     url: "http://maps.googleapis.com/maps/api/geocode/json?address="+query+"&sensor=false",
     type: "POST",
     error: function(xhr, status, thrownError){
       console.log("oh noes!", thrownError);
     },
-    success: function(data){
-      console.log(data);
-      console.log(data.results[0].geometry.location.lat);
-      console.log(data.results[0].geometry.location.lng);
+    success: function(data){ //cross-street data from gmaps api
+      console.log("data: ", data);
+      var lat = data.results[0].geometry.location.lat;
+      var lng = data.results[0].geometry.location.lng;
+      xstData = data;
+      var params = {
+        "name": name,
+        "results": data["results"],
+      }
+
+      $.ajax({
+        url: "/places",
+        type: "POST",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: params,
+        error: function(xhr, status, thrownError){
+          console.log('oh noesssss....', thrownError);
+        },
+        success: function(response) {
+          console.log('success!');
+          console.log(response);
+          $("<div>" + response.name + " - " + response.cross_street + "</div>").appendTo("#places");
+          $(".flash").empty();
+          $("<div>New place added!</div>").appendTo(".flash");
+        }
+      });
+
     }
   });
 });
