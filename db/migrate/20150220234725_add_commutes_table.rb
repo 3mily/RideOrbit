@@ -9,6 +9,7 @@ class AddCommutesTable < ActiveRecord::Migration
       t.string :destination_name
       t.time :arrival_time
       t.json :days
+      t.json :user_info
       t.integer :seats_available
 
       t.timestamps
