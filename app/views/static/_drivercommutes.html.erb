@@ -1,4 +1,4 @@
-<hr>
+  <hr>
 <h1>Driver Commute</h1>
 <%= form_for @driver_commute do |f| %>
 
@@ -13,17 +13,14 @@
 </div>
 
 <div>
-  <%= f.label "driver_origin", "Origin:"%> 
-  <%= f.select :origin do %> 
-    <%= options_for_select(places_options(@current_user.places)) %>
-  <% end %>
+  <%= label_tag "driver_origin", "Origin:"%> 
+    <%= select_tag "driver_origin", options_for_select(places_options(@current_user.places)) %>
+
 </div>
 
 <div>
-  <%= f.label "driver_destination", "Destination:"%>
-  <%= f.select :destination do %>
-    <%= options_for_select(places_options(@current_user.places)) %>
-  <% end %>
+  <%= label_tag "driver_destination", "Destination:"%>
+    <%= select_tag "driver_destination", options_for_select(places_options(@current_user.places)) %>
 </div>
 
 <div>

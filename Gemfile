@@ -37,7 +37,11 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'sass'
 
+gem 'responders'
 
+#for geometric migrations
+# gem 'activerecord-postgis-adapter', '3.0.0.beta2'
+# gem 'rgeo'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

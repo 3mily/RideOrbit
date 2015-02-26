@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "/newcommute", to: "static#newcommute", as: "newcommute"
   get "/commuteslist", to: "static#commuteslist", as: "commuteslist"
 
+  get "/api/passengercommutes", to: "api_passenger_commutes#retrieve", as: "APIPassengerCommutes"
+
   resources :map, only: [:index]
   resource :session, only: [:new, :create, :destroy]
 
