@@ -1,6 +1,6 @@
 class ApiPassengerCommutesController < ApplicationController
   def retrieve
-    @users = User.all
-    render json: @users
+    @passengercommutes = Passengercommute.all
+    render json: @passengercommutes
   end
 end
