@@ -3,22 +3,25 @@
 <%= form_for @passenger_commute do |f| %>
 
   <div>
-    <%= f.label "passenger_origin", "Origin:"%> 
-    <%= f.select :origin do %> 
-      <%= options_for_select(places_options(@current_user.places)) %>
-    <% end %>
+    <%= label_tag "passenger_origin", "Origin:"%> 
+    <%= select_tag "passenger_origin", options_for_select(places_options(@current_user.places)) %>
   </div>
 
   <div>
-    <%= f.label "passenger_destination", "Destination:"%>
-    <%= f.select :destination do %> 
-      <%= options_for_select(places_options(@current_user.places)) %>
-    <% end %>
+    <%= label_tag "passenger_destination", "Destination:"%>
+    <%= select_tag "passenger_destination", options_for_select(places_options(@current_user.places)) %>
   </div>
 
   <div>
     <%= f.label "passenger_arrival_time", "Arrive by:"%><%= f.time_select :arrival_time, {minute_step: 15, ampm: true, prompt: true} %>
   </div>
+  <button>M</button>
+  <button>T</button>
+  <button>W</button>
+  <%= check_box_tag(:pet_dog) %>
+<%= label_tag(:pet_dog, "I own a dog") %>
+<%= check_box_tag(:pet_cat) %>
+<%= label_tag(:pet_cat, "I own a cat") %>
 
   <div>
     <%= f.submit "Submit" %> 

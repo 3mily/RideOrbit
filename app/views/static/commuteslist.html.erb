@@ -1,5 +1,5 @@
 Where your existing commutes will be.
-<h1>Your Commutes:</h1>
+<h1>Current Commutes</h1>
 
 <% if !@driver_commutes && !@passenger_commutes %>
   <h2>You have no commutes!<br>
@@ -8,27 +8,32 @@ Where your existing commutes will be.
 <% else %>
 
   <% if @driver_commutes %>
-  Driver Commutes:
-    <% @driver_commutes.each_with_index do |commute,index| %>
-      <div>
-      <p> Commute Number : <%= index += 1 %></p>
-      <p> Car Type : <%= commute.car_type%> </p>
-      <p> From : <%= commute.origin_name %> </p>
-      <p> To: <%= commute.destination_name %> </p>
-      <p> Days of Commute: <%= commute.days %> at <%= commute.arrival_time %></p>
-      <p> --------------------------------------------------------------------------------------------------------</p>
-      </div>
-    <% end %>
+    <div class="commute">
+      <h2>Your commutes as a Driver:</h2>
+      <% @driver_commutes.each_with_index do |commute,index| %>
+        <div>
+        <p> Commute Number : <%= index += 1 %></p>
+        <p> Car Type : <%= commute.car_type%> </p>
+        <p> From : <%= commute.origin_name %> </p>
+        <p> To: <%= commute.destination_name %> </p>
+        <p> Days of Commute: <%= commute.days %> at <%= commute.arrival_time %></p>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-
+  <hr>
   <% if @passenger_commutes %>
-  Passenger Commutes:
-    <% @passenger_commutes.each do |commute| %>
-      <div>
-      <%= commute.origin_name %> - <%= commute.destination_name %>
-      <%= commute.days %> - <%= commute.arrival_time %>
-      </div>
-    <% end %>
+    <div class="commute">
+      <h2>Your commutes as a Passenger:</h2>
+      <% @driver_commutes.each_with_index do |commute,index| %>
+        <div>
+        <p> Commute Number : <%= index += 1 %></p>
+        <p> From : <%= commute.origin_name %> </p>
+        <p> To: <%= commute.destination_name %> </p>
+        <p> Days of Commute: <%= commute.days %> at <%= commute.arrival_time %></p>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 
 <% end %>
