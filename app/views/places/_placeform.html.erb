@@ -14,15 +14,17 @@
 <%= f.submit "Submit" %>
 <% end %>
 
-
-<% if @places %>
-  <% @places.each do |place| %>
-    <div>
-    <%= place.name %> - <%= place.cross_street %>
-    </div>
+<div id="places">
+  <% if @places %>
+    <% @places.each do |place| %>
+      <div>
+      <%= place.name %> - <%= place.cross_street %>
+      </div>
+    <% end %>
   <% end %>
-  <%= link_to "Make a Commute", newcommute_path %>
-<% end %>
+</div>
+<%= link_to "Make a Commute", newcommute_path %>
+
 
 <script type="text/javascript">
 function initialize(search) {
@@ -64,17 +66,23 @@ $("#new_place").on("submit", function(e){
       xstData = data;
       var params = {
         "name": name,
+        "results": data["results"],
       }
 
       $.ajax({
         url: "/places",
         type: "POST",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data: params,
         error: function(xhr, status, thrownError){
           console.log('oh noesssss....', thrownError);
         },
         success: function(response) {
           console.log('success!');
+          console.log(response);
+          $("<div>" + response.name + " - " + response.cross_street + "</div>").appendTo("#places");
+          $(".flash").empty();
+          $("<div>New place added!</div>").appendTo(".flash");
         }
       });
 
