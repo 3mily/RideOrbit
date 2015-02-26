@@ -4,7 +4,7 @@
 <select id="commute" onchange="calcRoute()">
   <option disabled selected> -- select a commute -- </option>
   <% @user.drivercommutes.each_with_index do |commute,index| %>
-    <option value="<%=index%>"><%=index%> <%= commute.origin["name"]%> to <%= commute.destination["name"]%></option>
+    <option value="<%=index%>"><%=index%> <%= commute.origin_name%> to <%= commute.destination_name%></option>
   <% end %>
 </select>
 
