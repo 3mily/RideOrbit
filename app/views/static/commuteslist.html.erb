@@ -9,10 +9,14 @@ Where your existing commutes will be.
 
   <% if @driver_commutes %>
   Driver Commutes:
-    <% @driver_commutes.each do |commute| %>
+    <% @driver_commutes.each_with_index do |commute,index| %>
       <div>
-      From <%= commute.origin["name"] %> to <%= commute.destination["name"] %>.
-      <%= commute.days %> - <%= commute.arrival_time %>
+      <p> Commute Number : <%= index += 1 %></p>
+      <p> Car Type : <%= commute.car_type%> </p>
+      <p> From : <%= commute.origin_name %> </p>
+      <p> To: <%= commute.destination_name %> </p>
+      <p> Days of Commute: <%= commute.days %> at <%= commute.arrival_time %></p>
+      <p> --------------------------------------------------------------------------------------------------------</p>
       </div>
     <% end %>
   <% end %>
@@ -21,7 +25,7 @@ Where your existing commutes will be.
   Passenger Commutes:
     <% @passenger_commutes.each do |commute| %>
       <div>
-      <%= commute.origin["name"] %> - <%= commute.destination["name"] %>
+      <%= commute.origin_name %> - <%= commute.destination_name %>
       <%= commute.days %> - <%= commute.arrival_time %>
       </div>
     <% end %>
