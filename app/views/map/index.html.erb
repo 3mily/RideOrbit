@@ -28,7 +28,8 @@
       function initialize() {
         initMap();
         directionsDisplay.setMap(map);
-        
+        directionsDisplay.setPanel(document.getElementById('directions-panel'));
+
         <% @user.drivercommutes.each do |commute| %>
           drivercommutesOriginsArray.push(<%=raw commute.origin.to_json %>);
           drivercommutesDestinationsArray.push(<%=raw commute.destination.to_json %>);
@@ -139,4 +140,5 @@
       google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
+<div id="directions-panel"></div>
 <div id="map-canvas"></div>

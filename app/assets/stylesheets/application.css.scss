@@ -37,5 +37,12 @@ header {
    width: 75%;
    border-radius: 10px;
    margin-top: 10px;
+   float: left;
+ }
+
+ #directions-panel {
+  float: right;
+  width: 230px;
+  max-height: 400px;
  }
 
