@@ -1,5 +1,13 @@
 <h1>Map Page</h1>
 <h1>Hello, <%= @user.firstname %></h1>
+
+<div class="input-control switch">
+    <label>
+        <input type="checkbox" />
+        <span class="check"></span>
+    </label>
+</div>
+
 <h3>Select A Commute (Driver)</h3>
 <select id="commute" onchange="calcInitRoute()">
   <option disabled selected> -- select a commute -- </option>

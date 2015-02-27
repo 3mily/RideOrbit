@@ -24,7 +24,11 @@ ActiveRecord::Schema.define(version: 20150222221017) do
     t.point    "destination"
     t.string   "destination_name"
     t.time     "arrival_time"
+<<<<<<< HEAD
+    t.text     "days",             default: [], array: true
+=======
     t.json     "days"
+>>>>>>> 1063ef012d2a9507d4d61292e4b4215e2765358e
     t.json     "user_info"
     t.integer  "seats_available"
     t.datetime "created_at"
@@ -41,7 +45,11 @@ ActiveRecord::Schema.define(version: 20150222221017) do
     t.point    "destination"
     t.string   "destination_name"
     t.time     "arrival_time"
+<<<<<<< HEAD
+    t.text     "days",             default: [], array: true
+=======
     t.json     "days"
+>>>>>>> 1063ef012d2a9507d4d61292e4b4215e2765358e
     t.json     "user_info"
     t.datetime "created_at"
     t.datetime "updated_at"

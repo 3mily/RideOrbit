@@ -1,5 +1,7 @@
 $bg-color: #eff;
 $navbar-color: #cdd;
+$button-active: #911;
+$button-inactive: #EFEFEF;
 
 
 body {
@@ -30,12 +32,51 @@ header {
   margin: 10px
 }
 
-// 
+.commute div {
+  background-color: #ddd;
+  padding: 5px;
+  margin: 10px
+}
 
- #map-canvas {
-   height: 400px;
-   width: 75%;
-   border-radius: 10px;
-   margin-top: 10px;
- }
 
+// google maps 
+#map-canvas {
+ height: 400px;
+ width: 75%;
+ border-radius: 10px;
+ margin-top: 10px;
+}
+
+
+// button-like check boxes for the days of week
+.day {
+  background-color: $button-inactive;
+  overflow:auto;
+  display: inline-block;
+  margin: -2px;
+  -webkit-user-select: none;
+    span {
+      text-align:center;
+      padding: 2px 5px;
+      display: inline-block;
+      width: 30px
+    }
+    input {
+      position:absolute;
+      top:-20px;
+      width: 30px
+    }
+  input:checked + span {
+    background-color: $button-active;
+    color:white;
+  }
+}
+
+.display-day {
+  background-color: $button-active;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 4px;
+  width: 30px
+}
