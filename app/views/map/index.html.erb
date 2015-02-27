@@ -58,14 +58,14 @@
 
         google.maps.event.addListener(map, 'idle', function() {
           bounds = map.getBounds();
-          var commute_hash = {
-            "commute_id": commute_id
+          var commuteHash = {
+            "commute_id": commuteId
           };
           $.ajax({
                     url: '/api/passengercommutes',
                     method: 'get',
                     dataType: 'json',
-                    data: commute_hash,
+                    data: commuteHash,
                     success: function(response) {
                         responseCommutes = response;
                         initCommutes();
@@ -117,10 +117,10 @@
       }
 
       function grabStartEnd() {
-        commute_info = document.getElementById('commute').value;
-        commute_info_array = commute_info.split(',');
-        commute = commute_info_array[0];
-        commute_id = commute_info_array[1];
+        var commuteInfo = document.getElementById('commute').value;
+        var commuteInfoArray = commuteInfo.split(',');
+        commute = commuteInfoArray[0];
+        commuteId = commuteInfoArray[1];
         start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
         end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]);
       }
