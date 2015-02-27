@@ -1,5 +1,8 @@
 $bg-color: #eff;
 $navbar-color: #cdd;
+$button-inactive: #911;
+$button-active: #EFEFEF;
+$dark-grey: #D0D0D0;
 
 
 body {
@@ -35,12 +38,42 @@ header {
   padding: 5px;
   margin: 10px
 }
+
+
 // 
 
- #map-canvas {
-   height: 400px;
-   width: 75%;
-   border-radius: 10px;
-   margin-top: 10px;
- }
+#map-canvas {
+ height: 400px;
+ width: 75%;
+ border-radius: 10px;
+ margin-top: 10px;
+}
+
+
+
+.day {
+  margin:0.5px;
+  background-color: $button-active;
+  border:1px solid $dark-grey;
+  overflow:auto;
+  display: inline-block;
+  label {
+    float:left;
+    width:4.0em;
+    span {
+      text-align:center;
+      padding:3px 0px;
+      display:block;
+    }
+    input {
+      position:absolute;
+      top:-20px;
+    }
+  }
+  input:checked + span {
+    background-color: $button-inactive;
+    color:white;
+  }
+}
+
 

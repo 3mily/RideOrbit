@@ -18,13 +18,28 @@
   <button>M</button>
   <button>T</button>
   <button>W</button>
-  <%= check_box_tag(:pet_dog) %>
-<%= label_tag(:pet_dog, "I own a dog") %>
-<%= check_box_tag(:pet_cat) %>
-<%= label_tag(:pet_cat, "I own a cat") %>
+
+  <hr>
+
+  <div class="day"><%= check_box_tag "monday" %><label><span>
+    <%= label_tag "monday" %></label></span></div>
+  <div class="day"><%= check_box_tag "tuesday" %><label><span>
+    <%= label_tag "tuesday" %></label></span></div>
+
 
   <div>
     <%= f.submit "Submit" %> 
   </div>
 
 <% end %>
+<hr>
+
+  <div class="day"><label>
+    <input type="checkbox" value="sun"><span>sun</span>
+  </label></div>
+  <div class="day"><label>
+    <input type="checkbox" value="mon"><span>mon</span>
+  </label></div>
+  <div class="day"><label>
+    <input type="checkbox" value="tues"><span>tues</span>
+  </label></div>
