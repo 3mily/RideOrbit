@@ -1,34 +1,32 @@
 Where your existing commutes will be.
-<h1>Your Commutes:</h1>
+<h1>Current Commutes</h1>
 
-<% if !@driver_commutes && !@passenger_commutes %>
-  <h2>You have no commutes!<br>
-    Please make a commute <%= link_to "here", newcommute_path %>!</h2>
+<label class="switch-light well" onclick="">
+  <input type="checkbox" id="commutes-type-toggle">
+  <span>
+    <span>Passenger</span>
+    <span>Driver</span>
+  </span>
 
-<% else %>
+  <a class="btn btn-primary"></a>
+</label>
 
-  <% if @driver_commutes %>
-  Driver Commutes:
-    <% @driver_commutes.each_with_index do |commute,index| %>
-      <div>
-      <p> Commute Number : <%= index += 1 %></p>
-      <p> Car Type : <%= commute.car_type%> </p>
-      <p> From : <%= commute.origin_name %> </p>
-      <p> To: <%= commute.destination_name %> </p>
-      <p> Days of Commute: <%= commute.days %> at <%= commute.arrival_time %></p>
-      <p> --------------------------------------------------------------------------------------------------------</p>
-      </div>
-    <% end %>
-  <% end %>
+<div id="passengers-commutes-list">
+  <%= render 'passengercommutes_list' %>
+</div>
+<div id="drivers-commutes-list" style="display:none">
+  <%= render 'drivercommutes_list' %>
+</div>
 
-  <% if @passenger_commutes %>
-  Passenger Commutes:
-    <% @passenger_commutes.each do |commute| %>
-      <div>
-      <%= commute.origin_name %> - <%= commute.destination_name %>
-      <%= commute.days %> - <%= commute.arrival_time %>
-      </div>
-    <% end %>
-  <% end %>
 
-<% end %>
+
+
+<script type="text/javascript">
+
+$("#commutes-type-toggle").on("click", function(){
+  $("#passengers-commutes-list").toggle();
+  $("#drivers-commutes-list").toggle();
+})
+
+
+</script>

@@ -1,24 +1,35 @@
-<hr>
 <h1>Passenger Commute</h1>
 <%= form_for @passenger_commute do |f| %>
 
   <div>
-    <%= f.label "passenger_origin", "Origin:"%> 
-    <%= f.select :origin do %> 
-      <%= options_for_select(places_options(@current_user.places)) %>
-    <% end %>
+    <%= label_tag "passenger_origin", "Origin:"%> 
+    <%= select_tag "passenger_origin", options_for_select(places_options(@current_user.places)) %>
   </div>
 
   <div>
-    <%= f.label "passenger_destination", "Destination:"%>
-    <%= f.select :destination do %> 
-      <%= options_for_select(places_options(@current_user.places)) %>
-    <% end %>
+    <%= label_tag "passenger_destination", "Destination:"%>
+    <%= select_tag "passenger_destination", options_for_select(places_options(@current_user.places)) %>
   </div>
 
   <div>
     <%= f.label "passenger_arrival_time", "Arrive by:"%><%= f.time_select :arrival_time, {minute_step: 15, ampm: true, prompt: true} %>
   </div>
+
+  Days of the week: <br>
+  <div class="day"><%= check_box_tag "p-sun" %><span>
+    <%= label_tag "p-sun", "sun" %></span></div>
+  <div class="day"><%= check_box_tag "p-mon" %><span>
+    <%= label_tag "p-mon", "mon" %></span></div>
+  <div class="day"><%= check_box_tag "p-tue" %><span>
+    <%= label_tag "p-tue", "tue" %></span></div>
+  <div class="day"><%= check_box_tag "p-wed" %><span>
+    <%= label_tag "p-wed", "wed" %></span></div>
+  <div class="day"><%= check_box_tag "p-thu" %><span>
+    <%= label_tag "p-thu", "thu" %></span></div>
+  <div class="day"><%= check_box_tag "p-fri" %><span>
+    <%= label_tag "p-fri", "fri" %></span></div>
+  <div class="day"><%= check_box_tag "p-sat" %><span>
+    <%= label_tag "p-sat", "sat" %></span></div>
 
   <div>
     <%= f.submit "Submit" %> 
