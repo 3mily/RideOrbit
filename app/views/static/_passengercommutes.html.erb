@@ -1,4 +1,3 @@
-<hr>
 <h1>Passenger Commute</h1>
 <%= form_for @passenger_commute do |f| %>
 
@@ -15,31 +14,25 @@
   <div>
     <%= f.label "passenger_arrival_time", "Arrive by:"%><%= f.time_select :arrival_time, {minute_step: 15, ampm: true, prompt: true} %>
   </div>
-  <button>M</button>
-  <button>T</button>
-  <button>W</button>
 
-  <hr>
-
-  <div class="day"><%= check_box_tag "monday" %><label><span>
-    <%= label_tag "monday" %></label></span></div>
-  <div class="day"><%= check_box_tag "tuesday" %><label><span>
-    <%= label_tag "tuesday" %></label></span></div>
-
+  Days of the week: <br>
+  <div class="day"><%= check_box_tag "p-sun" %><span>
+    <%= label_tag "p-sun", "sun" %></span></div>
+  <div class="day"><%= check_box_tag "p-mon" %><span>
+    <%= label_tag "p-mon", "mon" %></span></div>
+  <div class="day"><%= check_box_tag "p-tue" %><span>
+    <%= label_tag "p-tue", "tue" %></span></div>
+  <div class="day"><%= check_box_tag "p-wed" %><span>
+    <%= label_tag "p-wed", "wed" %></span></div>
+  <div class="day"><%= check_box_tag "p-thu" %><span>
+    <%= label_tag "p-thu", "thu" %></span></div>
+  <div class="day"><%= check_box_tag "p-fri" %><span>
+    <%= label_tag "p-fri", "fri" %></span></div>
+  <div class="day"><%= check_box_tag "p-sat" %><span>
+    <%= label_tag "p-sat", "sat" %></span></div>
 
   <div>
     <%= f.submit "Submit" %> 
   </div>
 
 <% end %>
-<hr>
-
-  <div class="day"><label>
-    <input type="checkbox" value="sun"><span>sun</span>
-  </label></div>
-  <div class="day"><label>
-    <input type="checkbox" value="mon"><span>mon</span>
-  </label></div>
-  <div class="day"><label>
-    <input type="checkbox" value="tues"><span>tues</span>
-  </label></div>

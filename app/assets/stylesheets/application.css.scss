@@ -2,7 +2,6 @@ $bg-color: #eff;
 $navbar-color: #cdd;
 $button-inactive: #911;
 $button-active: #EFEFEF;
-$dark-grey: #D0D0D0;
 
 
 body {
@@ -40,8 +39,7 @@ header {
 }
 
 
-// 
-
+// google maps 
 #map-canvas {
  height: 400px;
  width: 75%;
@@ -50,30 +48,26 @@ header {
 }
 
 
-
+// button-like check boxes for the days of week
 .day {
-  margin:0.5px;
   background-color: $button-active;
-  border:1px solid $dark-grey;
   overflow:auto;
   display: inline-block;
-  label {
-    float:left;
-    width:4.0em;
+  margin: -2px;
+  -webkit-user-select: none;
     span {
       text-align:center;
-      padding:3px 0px;
-      display:block;
+      padding: 2px 5px;
+      display: inline-block;
+      width: 30px
     }
     input {
       position:absolute;
       top:-20px;
+      width: 30px
     }
-  }
   input:checked + span {
     background-color: $button-inactive;
     color:white;
   }
 }
-
-

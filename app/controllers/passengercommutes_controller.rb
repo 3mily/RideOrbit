@@ -8,7 +8,7 @@ class PassengercommutesController < ApplicationController
     @passenger_commute.user_info = current_user
     passenger_origin_params
     passenger_destination_params
-    passenger_days
+    passenger_days_params
     @passenger_commute.save
 
     redirect_to commuteslist_path
@@ -43,10 +43,14 @@ class PassengercommutesController < ApplicationController
     @passenger_commute.destination = passenger_destination_point
   end
 
-  def passenger_days
-    # @passenger_commute.days = []
-    binding.pry
-    @passenger_commute.days << "monday" if params["monday"]
+  def passenger_days_params
+    @passenger_commute.days << "sun" if params["p-sun"]
+    @passenger_commute.days << "mon" if params["p-mon"]
+    @passenger_commute.days << "tue" if params["p-tue"]
+    @passenger_commute.days << "wed" if params["p-wed"]
+    @passenger_commute.days << "thu" if params["p-thu"]
+    @passenger_commute.days << "fri" if params["p-fri"]
+    @passenger_commute.days << "sat" if params["p-sat"]
   end
 
 end
