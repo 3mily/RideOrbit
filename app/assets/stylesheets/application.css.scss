@@ -59,12 +59,12 @@ header {
       text-align:center;
       padding: 2px 5px;
       display: inline-block;
-      width: 30px
+      width: 40px
     }
     input {
       position:absolute;
       top:-20px;
-      width: 30px
+      width: 40px
     }
   input:checked + span {
     background-color: $button-active;
@@ -78,5 +78,78 @@ header {
   text-align: center;
   display: inline-block;
   padding: 2px 4px;
-  width: 30px
+  width: 40px
 }
+
+
+
+
+
+
+
+
+
+
+// 
+@media only screen {
+  .switch-light {
+    display: block;
+    min-height: 1.875em;
+    position: relative;
+    overflow: visible;
+    padding: 0;
+    margin-left: 6.25em;
+}
+    .switch-light * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+    .switch-light a {
+      display: block;
+      -webkit-transition: all 0.2s ease-out;
+      -moz-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out; }
+    .switch-light label, .switch-light > span {
+      line-height: 1.875em;
+      vertical-align: middle; }
+    .switch-light input:focus ~ a, .switch-light input:focus + label {
+      outline: 1px dotted #888; }
+    .switch-light label {
+      position: relative;
+      z-index: 3;
+      display: block;
+      width: 100%; }
+    .switch-light input {
+      position: absolute;
+      opacity: 0;
+      z-index: 5; }
+      .switch-light input:checked ~ a {
+        right: 0%; }
+    .switch-light > span {
+      position: absolute;
+      left: -6.25em;
+      width: 100%;
+      margin: 0;
+      padding-right: 6.25em;
+      text-align: left; }
+      .switch-light > span span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        display: block;
+        width: 50%;
+        margin-left: 6.25em;
+        text-align: center; }
+        .switch-light > span span:last-child {
+          left: 50%; }
+    .switch-light a {
+      position: absolute;
+      right: 50%;
+      top: 0;
+      z-index: 4;
+      display: block;
+      width: 50%;
+      height: 100%;
+      padding: 0; }
+ }

@@ -1,51 +1,32 @@
 Where your existing commutes will be.
 <h1>Current Commutes</h1>
 
-<% if !@driver_commutes && !@passenger_commutes %>
-  <h2>You have no commutes!<br>
-    Please make a commute <%= link_to "here", newcommute_path %>!</h2>
+<label class="switch-light well" onclick="">
+  <input type="checkbox" id="commutes-type-toggle">
+  <span>
+    <span>Passenger</span>
+    <span>Driver</span>
+  </span>
 
-<% else %>
+  <a class="btn btn-primary"></a>
+</label>
 
-  <% if @driver_commutes %>
-    <div class="commute">
-      <h2>Your commutes as a Driver:</h2>
-      <% @driver_commutes.each_with_index do |commute,index| %>
-        <div>
-        <p> Commute Number : <%= index += 1 %></p>
-        <p> Car Type : <%= commute.car_type%> </p>
-        <p> From : <%= commute.origin_name %> </p>
-        <p> To: <%= commute.destination_name %> </p>
-        <p> Days of Commute: 
-          <% commute.days.each do |day| %>
-            <span class="display-day"><%= day %></span>
-          <% end %>
-        </p>
-        <p> Arrival time: <%= commute.arrival_time %></p>
-      </div>
-      <% end %>
-    </div>
-  <% end %>
+<div id="passengers-commutes-list">
+  <%= render 'passengercommutes_list' %>
+</div>
+<div id="drivers-commutes-list" style="display:none">
+  <%= render 'drivercommutes_list' %>
+</div>
 
-  <hr>
-  
-  <% if @passenger_commutes %>
-    <div class="commute">
-      <h2>Your commutes as a Passenger:</h2>
-      <% @driver_commutes.each_with_index do |commute,index| %>
-        <div>
-        <p> Commute Number : <%= index += 1 %></p>
-        <p> From : <%= commute.origin_name %> </p>
-        <p> To: <%= commute.destination_name %> </p>
-        <p> Days of Commute: 
-          <% commute.days.each do |day| %>
-            <span class="display-day"><%= day %></span>
-          <% end %>
-        </p>
-        <p> Arrival time: <%= commute.arrival_time %></p>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
 
-<% end %>
+
+
+<script type="text/javascript">
+
+$("#commutes-type-toggle").on("click", function(){
+  $("#passengers-commutes-list").toggle();
+  $("#drivers-commutes-list").toggle();
+})
+
+
+</script>

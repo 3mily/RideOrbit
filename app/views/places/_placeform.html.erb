@@ -9,11 +9,6 @@
     <%= f.label "cross_street", "Cross Streets" %><br>
     <%= text_field_tag :street1, nil, placeholder: "W Hastings..." %> and <%= text_field_tag :street2, nil, placeholder: "Abbott..." %>
     <% f.hidden_field :cross_street_point %>
-
-    <%= check_box_tag(:pet_dog) %>
-<%= label_tag(:pet_dog, "I own a dog") %>
-<%= check_box_tag(:pet_cat) %>
-<%= label_tag(:pet_cat, "I own a cat") %>
   </div>
 
 <%= f.submit "Submit" %>
