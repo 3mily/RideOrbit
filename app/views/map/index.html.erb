@@ -12,9 +12,14 @@
 <select id="commute" onchange="calcInitRoute()">
   <option disabled selected> -- select a commute -- </option>
   <% @user.drivercommutes.each_with_index do |commute,index| %>
-    <option value="<%=index%>"><%=index%> <%= commute.origin_name%> to <%= commute.destination_name%></option>
+    <option value="<%=index%>,<%=commute.id%>"><%=index%> <%= commute.origin_name%> to <%= commute.destination_name%></option>
   <% end %>
 </select>
+
+<div>
+  <label for="search_radius">Radius in kilometres</label>
+  <input type="text" id="search_radius" name="search_radius">
+</div>
 
 <script type="text/javascript">
       var map;
@@ -33,6 +38,13 @@
       var end;
       var waypoints = [];
       var allOverlays = [];
+      searchRadius = 1000;
+
+
+      $('#search_radius').on('keyup', function(){
+        searchRadius = $('#search_radius').val()*1000;
+        calcInitRoute()
+      });
 
       function initialize() {
         initMap();
@@ -46,11 +58,14 @@
 
         google.maps.event.addListener(map, 'idle', function() {
           bounds = map.getBounds();
+          var commute_hash = {
+            "commute_id": commute_id
+          };
           $.ajax({
                     url: '/api/passengercommutes',
                     method: 'get',
                     dataType: 'json',
-                    data: bounds.toString(),
+                    data: commute_hash,
                     success: function(response) {
                         responseCommutes = response;
                         initCommutes();
@@ -86,7 +101,7 @@
           fillOpacity: 0.2,
           map: map,
           center: place,
-          radius: 1000
+          radius: searchRadius
         };
         circles = new google.maps.Circle(searchOptions);
         allOverlays.push(circles);
@@ -102,7 +117,10 @@
       }
 
       function grabStartEnd() {
-        commute = document.getElementById('commute').value;
+        commute_info = document.getElementById('commute').value;
+        commute_info_array = commute_info.split(',');
+        commute = commute_info_array[0];
+        commute_id = commute_info_array[1];
         start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
         end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]);
       }
