@@ -1,7 +1,7 @@
 $bg-color: #eff;
 $navbar-color: #cdd;
-$button-inactive: #911;
-$button-active: #EFEFEF;
+$button-active: #911;
+$button-inactive: #EFEFEF;
 
 
 body {
@@ -50,7 +50,7 @@ header {
 
 // button-like check boxes for the days of week
 .day {
-  background-color: $button-active;
+  background-color: $button-inactive;
   overflow:auto;
   display: inline-block;
   margin: -2px;
@@ -67,7 +67,16 @@ header {
       width: 30px
     }
   input:checked + span {
-    background-color: $button-inactive;
+    background-color: $button-active;
     color:white;
   }
+}
+
+.display-day {
+  background-color: $button-active;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 4px;
+  width: 30px
 }

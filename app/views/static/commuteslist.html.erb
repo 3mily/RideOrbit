@@ -16,12 +16,19 @@ Where your existing commutes will be.
         <p> Car Type : <%= commute.car_type%> </p>
         <p> From : <%= commute.origin_name %> </p>
         <p> To: <%= commute.destination_name %> </p>
-        <p> Days of Commute: <%= commute.days %> at <%= commute.arrival_time %></p>
-        </div>
+        <p> Days of Commute: 
+          <% commute.days.each do |day| %>
+            <span class="display-day"><%= day %></span>
+          <% end %>
+        </p>
+        <p> Arrival time: <%= commute.arrival_time %></p>
+      </div>
       <% end %>
     </div>
   <% end %>
+
   <hr>
+  
   <% if @passenger_commutes %>
     <div class="commute">
       <h2>Your commutes as a Passenger:</h2>
@@ -30,7 +37,12 @@ Where your existing commutes will be.
         <p> Commute Number : <%= index += 1 %></p>
         <p> From : <%= commute.origin_name %> </p>
         <p> To: <%= commute.destination_name %> </p>
-        <p> Days of Commute: <%= commute.days %> at <%= commute.arrival_time %></p>
+        <p> Days of Commute: 
+          <% commute.days.each do |day| %>
+            <span class="display-day"><%= day %></span>
+          <% end %>
+        </p>
+        <p> Arrival time: <%= commute.arrival_time %></p>
         </div>
       <% end %>
     </div>
