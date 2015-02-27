@@ -8,7 +8,7 @@ class AddCommutesTable < ActiveRecord::Migration
       t.point :destination
       t.string :destination_name
       t.time :arrival_time
-      t.json :days
+      t.text :days, array: true, default: []
       t.json :user_info
       t.integer :seats_available
 
