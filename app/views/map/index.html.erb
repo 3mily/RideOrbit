@@ -32,6 +32,7 @@
       var start;
       var end;
       var waypoints = [];
+      var allOverlays = [];
 
       function initialize() {
         initMap();
@@ -59,7 +60,10 @@
       }
 
       function calcInitRoute() {
+        removeCircles();
         grabStartEnd();
+        addCircles(start);
+        addCircles(end);
         var request = {
             origin:start,
             destination:end,
@@ -70,6 +74,30 @@
             directionsDisplay.setDirections(response);
           }
         });
+      }
+
+      function addCircles(place){
+        var searchOptions = {
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 0,
+          fillColor: '#F15A24',
+          fillOpacity: 0.2,
+          map: map,
+          center: place,
+          radius: 1000
+        };
+        circles = new google.maps.Circle(searchOptions);
+        allOverlays.push(circles);
+      }
+      function removeCircles(){
+        if (start) {
+          for (var i=0; i < allOverlays.length; i++)
+          {
+            allOverlays[i].setMap(null);
+          }
+          allOverlays = [];
+        }
       }
 
       function grabStartEnd() {
