@@ -171,7 +171,8 @@ Passengercommute.create(
   destination: "49.2820030, -123.1072000",
   destination_name: "Work - Abbott and W Hastings (Downtown)",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 2,
@@ -180,7 +181,8 @@ Passengercommute.create(
   destination_name: "Work - King Edward and Cambie (Vancouver)",
   destination: "49.248910, -123.115528",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 3,
@@ -189,7 +191,8 @@ Passengercommute.create(
   destination: "49.283003, -123.115422",
   destination_name: "Work - Seymour and Dunsmuir (Downtown)",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 4,
@@ -198,7 +201,8 @@ Passengercommute.create(
   destination: "49.288682, -123.131102",
   destination_name: "Work - Nicola and Robson (Downtown)",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
 
   )
 Passengercommute.create(
@@ -208,7 +212,8 @@ Passengercommute.create(
   destination_name: "Work - Wesbrook Mall and Thunderbird Blvd (UBC)",
   destination: "49.261669,-123.241450",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 5,
@@ -217,7 +222,8 @@ Passengercommute.create(
   destination_name: "Work 2 - Seymour and Smithe (Downtown)",
   destination: "49.279679, -123.120421",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 6,
@@ -226,7 +232,8 @@ Passengercommute.create(
   destination_name: "Work - 37th Ave and Kersland Dr (Oakridge Area)",
   destination: "49.237140, -123.114471",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 7,
@@ -235,7 +242,8 @@ Passengercommute.create(
   destination_name: "Work - Lyndhurst and Willoughby (Coquitlam)",
   destination: "49.258856, -122.895429",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 8,
@@ -244,7 +252,8 @@ Passengercommute.create(
   destination_name: "Work - Como Lake Ave and Crestwood Dr (Coquitlam)",
   destination: "49.263468, -122.852723",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 9,
@@ -253,7 +262,8 @@ Passengercommute.create(
   destination_name: "Work - E Mall and Thunderbird Blvd",
   destination: "49.260103, -123.245706",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 10,
@@ -262,7 +272,8 @@ Passengercommute.create(
   destination_name: "Work - Schoolhouse and Austin Ave",
   destination: "49.283003, -123.115422",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 1,
@@ -273,7 +284,8 @@ Drivercommute.create(
   destination: "49.2820030, -123.1072000",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 3,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 2,
@@ -284,7 +296,8 @@ Drivercommute.create(
   destination: "49.248910, -123.115528",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 3,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 3,
@@ -294,7 +307,8 @@ Drivercommute.create(
   destination_name: "Work - Seymour and Dunsmuir (Downtown)",
   destination: "49.283003, -123.115422",
   arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 4,
@@ -305,7 +319,8 @@ Drivercommute.create(
   destination: "49.288682, -123.131102",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 3,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 5,
@@ -316,7 +331,8 @@ Drivercommute.create(
   destination: "49.261669, -123.241450",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 3,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 5,
@@ -327,7 +343,8 @@ Drivercommute.create(
   destination: "49.279679, -123.120421",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 3,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 6,
@@ -338,7 +355,8 @@ Drivercommute.create(
   destination: "49.237140, -123.114471",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 4,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 7,
@@ -349,7 +367,8 @@ Drivercommute.create(
   destination: "49.258856, -122.895429",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 4,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 8,
@@ -360,7 +379,8 @@ Drivercommute.create(
   destination: "49.263468, -122.852723",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 5,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 9,
@@ -371,7 +391,8 @@ Drivercommute.create(
   destination: "49.260103, -123.245706",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 5,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 10,
@@ -382,6 +403,7 @@ Drivercommute.create(
   destination: "49.283003, -123.115422",
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 1,
-  days: ["Mon","Tues","Wed"]
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
   )
 
