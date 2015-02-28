@@ -72,13 +72,13 @@
     <% end %>
   }
 
-  function calcInitRoute() {
-    removeCircles();
-    grabStartEnd();
-    addCircles(start);
-    addCircles(end);
-    removeMarkers();
-    showPassengerMarkers();
+  function calcInitRoute(user) {
+    // removeCircles();
+    grabStartEnd(user);
+    // addCircles(start);
+    // addCircles(end);
+    // removeMarkers();
+    // showPassengerMarkers();
     var request = {
         origin:start,
         destination:end,
@@ -143,11 +143,17 @@
           });
   }
 
-  function grabStartEnd() {
-    var commuteInfo = document.getElementById('commute').value;
+  function grabStartEnd(user) {
+    if (user==="passenger") {
+      var commuteInfo = document.getElementById('commute_passenger').value;
+    } else if (user === "driver"){
+      var commuteInfo = document.getElementById('commute_driver').value;      
+    }
+
     var commuteInfoArray = commuteInfo.split(',');
     commute = commuteInfoArray[0];
     commuteId = commuteInfoArray[1];
+    commuter = commuteInfoArray[2];
     start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
     end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]);
   }
