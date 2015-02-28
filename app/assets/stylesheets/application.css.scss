@@ -12,20 +12,9 @@ body {
   margin: 10px;
 }
 
-header {
-  background-color: $navbar-color;
-  height: 50px;
-  padding: 10px;
-  ul li {
-    list-style-type: none;
-    display: inline; 
-  }
-  div:nth-child(1) {
-   float: left; 
-  }
-  div:nth-child(2) {
-   float: right; 
-  }
+.dropdown-img{
+    border-radius:100%;
+    max-height: 50px;
 }
 
 // flash message
@@ -105,7 +94,6 @@ header {
   width: 40px
 }
 
-
 // form containers
 #new-passenger-container {
   background-color: #ddd;
@@ -120,8 +108,6 @@ header {
   margin: 10px;
   max-width: 600px;
 }
-
-
 
 .hidden {
   display: none;
