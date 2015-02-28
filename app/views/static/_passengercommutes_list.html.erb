@@ -1,25 +1,26 @@
-<div class="container">
-<% if !@passenger_commutes%>
-  <h2>You have made no commutes as a Passenger!<br>
-    Please make one <%= link_to "here", newcommute_path %>.</h2>
+<div class="container-fluid">
+  <% if !@passenger_commutes%>
+    <h2>You have made no commutes as a Passenger!<br>
+      Please make one <%= link_to "here", newcommute_path %>.</h2>
 
-<% else %>
+  <% else %>
 
-<div class="row center">
-    <h2>Your commutes as a Passenger:</h2>
-    <% @passenger_commutes.each_with_index do |commute,index| %>
-      <div class="col-md-4 d-com">
-      <p> Commute Number : <%= index += 1 %></p>
-      <p> From : <%= commute.origin_name %> </p>
-      <p> To: <%= commute.destination_name %> </p>
-      <p> Days of Commute: </p>
-        <% commute.days.each do |day| %>
-          <span class="display-day"><%= day %></span>
-        <% end %>
-      
-      <p> Arrival time: <%= commute.arrival_time %></p>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+    <div class="row">
+      <h2>Your commutes as a Passenger:</h2>
+      <% @passenger_commutes.each_with_index do |commute,index| %>
+        <div class="col-md-4 commute-box">
+          <div class="inner d-com">
+            <p><h4>Commute No. <%= index += 1 %></h4></p>
+            <p><h4>From:<br></h4><%= commute.origin_name %></p>
+            <p> To: <%= commute.destination_name %> </p>
+            <p> Days of Commute: </p>
+              <% commute.days.each do |day| %>
+                <span class="display-day"><%= day %></span>
+              <% end %>    
+            <p> Arrival time: <%= commute.arrival_time %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

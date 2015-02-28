@@ -2,6 +2,9 @@ $bg-color: #eff;
 $navbar-color: #cdd;
 $button-active: #911;
 $button-inactive: #EFEFEF;
+$commutes-box-border: #000;
+$commutes-box-bg: #ddd;
+$flash-bg: #ccc;
 
 
 body {
@@ -28,17 +31,21 @@ header {
 
 // flash message
 .flash {
-  background-color: #ccc;
+  background-color: $flash-bg;
   padding: 10px;
   margin: 10px
 }
 
-
-.d-com {
-  background-color: #ddd;
-  padding: 5px;
-  margin: 10px;
-  max-width: 400px;
+// indiv commute container on commutes list page
+.commute-box {
+    padding: 10px;
+  .inner {
+    background-color: $commutes-box-bg;
+    padding: 5px;
+    border-radius: 15px;
+    border: 2px solid $commutes-box-border;
+    height: 300px;
+  }
 }
 
 
@@ -99,12 +106,6 @@ header {
   margin: 10px;
   max-width: 600px;
 }
-
-.row.center {
-  margin: 0 auto;
-  align: center;
-}
-
 
 
 
