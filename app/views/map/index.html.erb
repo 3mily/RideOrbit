@@ -59,20 +59,20 @@
 
         google.maps.event.addListener(map, 'idle', function() {
           bounds = map.getBounds();
-          var commuteHash = {
-            "commute_id": commuteId
-          };
-          $.ajax({
-                    url: '/api/passengercommutes',
-                    method: 'get',
-                    dataType: 'json',
-                    data: commuteHash,
-                    success: function(response) {
-                        responseCommutes = response;
-                        initCommutes();
-                        console.log(response);
-                    },
-                });
+          // var commuteHash = {
+          //   "commute_id": commuteId
+          // };
+          // $.ajax({
+          //           url: '/api/passengercommutes',
+          //           method: 'get',
+          //           dataType: 'json',
+          //           data: commuteHash,
+          //           success: function(response) {
+          //               responseCommutes = response;
+          //               initCommutes();
+          //               console.log(response);
+          //           },
+          //       });
         });
       }
 
@@ -81,6 +81,7 @@
         grabStartEnd();
         addCircles(start);
         addCircles(end);
+        showPassengers();
         var request = {
             origin:start,
             destination:end,
@@ -115,6 +116,23 @@
           }
           allOverlays = [];
         }
+      }
+
+      function showPassengers(){
+        var commuteHash = {
+          "commute_id": commuteId
+        };
+        $.ajax({
+                  url: '/api/passengercommutes',
+                  method: 'get',
+                  dataType: 'json',
+                  data: commuteHash,
+                  success: function(response) {
+                      responseCommutes = response;
+                      initCommutes();
+                      console.log(response);
+                  },
+              });
       }
 
       function grabStartEnd() {
