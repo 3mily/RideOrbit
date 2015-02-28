@@ -1,6 +1,6 @@
 class Drivercommute < ActiveRecord::Base
   belongs_to :user
-  has_many :passengercommutes
+  has_one :passengercommute
   has_many :requests
   has_many :reviews
   scope :within_origin, ->(current_passengercommutes_id,earth_degree) {where("origin <@ CIRCLE((SELECT origin FROM passengercommutes WHERE passengercommutes.id = ?), ?)", current_passengercommutes_id, earth_degree)}
