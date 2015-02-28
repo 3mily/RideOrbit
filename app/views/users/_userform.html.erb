@@ -30,8 +30,13 @@
   <div>
     <%= f.label :picture, "Profile Picture" %><br>
     <%= f.file_field :picture %> <br>
-
   </div>
+
+  <div>
+    <%= f.label "industry", "Industry" %>
+    <%= f.select :industry, options_for_select(["agriculture","energy","entertainment","finance","government","health/medical","hospitality","marketing/communications","non-profit","publishing","science","technology","transportation"]) %>
+  </div>
+
   <div>
     <%= f.label "linkedin", "LinkedIn (optional)" %><br>
     <%= f.text_field "linkedin" %>
