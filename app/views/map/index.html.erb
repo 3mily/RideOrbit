@@ -73,12 +73,12 @@
   }
 
   function calcInitRoute(user) {
-    // removeCircles();
+    removeCircles();
     grabStartEnd(user);
-    // addCircles(start);
-    // addCircles(end);
-    // removeMarkers();
-    // showPassengerMarkers();
+    addCircles(start);
+    addCircles(end);
+    removeMarkers();
+    showPassengerMarkers(user);
     var request = {
         origin:start,
         destination:end,
@@ -126,9 +126,10 @@
     }
   }
 
-  function showPassengerMarkers(){
+  function showPassengerMarkers(user){
     var commuteHash = {
       "commute_id": commuteId,
+      "commuter": user
     };
     $.ajax({
       url: '/api/passengercommutes',
