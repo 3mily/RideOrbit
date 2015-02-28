@@ -35,6 +35,8 @@
   var directionsDisplay = new google.maps.DirectionsRenderer();
   var drivercommutesOriginsArray = []; 
   var drivercommutesDestinationsArray = [];
+  var passengercommutesOriginsArray = [];
+  var passengercommutesDestinationsArray = [];
   var bounds; //grab bounds for map
   var iconImg; //url for custom icon
   var responseCommutes; //response objects returned from polling our db
@@ -69,6 +71,11 @@
     <% @user.drivercommutes.each do |commute| %>
       drivercommutesOriginsArray.push(<%=raw commute.origin.to_json %>);
       drivercommutesDestinationsArray.push(<%=raw commute.destination.to_json %>);
+    <% end %>
+
+    <% @user.passengercommutes.each do |commute| %>
+      passengercommutesOriginsArray.push(<%=raw commute.origin.to_json %>);
+      passengercommutesDestinationsArray.push(<%=raw commute.destination.to_json %>);
     <% end %>
   }
 
@@ -149,16 +156,23 @@
   function grabStartEnd(user) {
     if (user==="passenger") {
       var commuteInfo = document.getElementById('commute_passenger').value;
+      getCommuteInfo(commuteInfo);
+      start = new google.maps.LatLng(passengercommutesOriginsArray[commute][0], passengercommutesOriginsArray[commute][1]); 
+      end = new google.maps.LatLng(passengercommutesDestinationsArray[commute][0], passengercommutesDestinationsArray[commute][1]); 
     } else if (user === "driver"){
-      var commuteInfo = document.getElementById('commute_driver').value;      
+      var commuteInfo = document.getElementById('commute_driver').value;     
+      getCommuteInfo(commuteInfo);
+      start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
+      end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]); 
     }
+  }
 
+  function getCommuteInfo(commute_info){
+    var commuteInfo = commute_info
     var commuteInfoArray = commuteInfo.split(',');
     commute = commuteInfoArray[0];
     commuteId = commuteInfoArray[1];
     commuter = commuteInfoArray[2];
-    start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
-    end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]);
   }
 
   function initCommutes() {
