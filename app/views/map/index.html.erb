@@ -65,7 +65,7 @@
         addCircles(start);
         addCircles(end);
         removeMarkers();
-        showPassengers();
+        showPassengerMarkers();
         var request = {
             origin:start,
             destination:end,
@@ -113,9 +113,9 @@
         }
       }
 
-      function showPassengers(){
+      function showPassengerMarkers(){
         var commuteHash = {
-          "commute_id": commuteId
+          "commute_id": commuteId,
         };
         $.ajax({
           url: '/api/passengercommutes',
