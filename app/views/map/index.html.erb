@@ -1,22 +1,36 @@
 <h1>Map Page</h1>
 <h1>Hello, <%= @user.firstname %></h1>
-
+<!-- 
 <div class="input-control switch">
     <label>
         <input type="checkbox" />
         <span class="check"></span>
     </label>
+</div> -->
+
+<label class="switch-light well" onclick="">
+  <input type="checkbox" id="commutes-select-toggle">
+  <span>
+    <span>Passenger</span>
+    <span>Driver</span>
+  </span>
+  <a class="btn btn-primary"></a>
+</label>
+
+<div id="passenger-commute-select">
+  <%= render 'passengerselect' %>
+</div>
+<div id="driver-commute-select" style="display:none">
+  <%= render 'driverselect' %>
 </div>
 
-<h3>Select A Commute (Driver)</h3>
-<select id="commute" onchange="calcInitRoute()">
-  <option disabled selected> -- select a commute -- </option>
-  <% @user.drivercommutes.each_with_index do |commute,index| %>
-    <option value="<%=index%>"><%=index%> <%= commute.origin_name%> to <%= commute.destination_name%></option>
-  <% end %>
-</select>
+<div>
+  <label for="search_radius">Radius in kilometres</label>
+  <input type="text" id="search_radius" name="search_radius">
+</div>
 
 <script type="text/javascript">
+<<<<<<< HEAD
       var map;
       var directionsService = new google.maps.DirectionsService();
       var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -118,36 +132,91 @@
         commute = document.getElementById('commute').value;
         start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
         end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]);
-      }
+=======
+  var map;
+  var directionsService = new google.maps.DirectionsService();
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var drivercommutesOriginsArray = []; 
+  var drivercommutesDestinationsArray = [];
+  var bounds; //grab bounds for map
+  var iconImg; //url for custom icon
+  var responseCommutes; //response objects returned from polling our db
+  var currentlyBouncing = null; //bounce animation tracker default to null
+  var contentString;
+  var infowindow;
+  var commute;
+  var start;
+  var end;
+  var waypoints = [];
+  var allOverlays = [];
+  var allMarkers = [];
+  var commuteId;
+  searchRadius = 1000;
 
-      function initCommutes() {
-        for (var i = 0, len = responseCommutes.length; i < len; i++) {
-          addCommute(i);
-        }
-      }
+  $("#commutes-select-toggle").on("click", function(){
+    $("#passenger-commute-select").toggle();
+    $("#driver-commute-select").toggle();
+  })
 
-      function addCommuteMarker(idx, place) {
-        selectIconImg(place);
-        responseCommutes[idx][place].marker = new google.maps.Marker({
-          position: new google.maps.LatLng(responseCommutes[idx][place][0], responseCommutes[idx][place][1]),
-          icon: iconImg,
-          map: map
-        });
-        createInfoWindow(idx,place);
-        addBounceToMarker(idx,place);
-      }
 
-      function addBounceToMarker(idx,place) {
-        google.maps.event.addListener(responseCommutes[idx][place].marker, 'click', function () {
-          if (currentlyBouncing) {
-            currentlyBouncing.origin.marker.setAnimation(null);
-            currentlyBouncing.destination.marker.setAnimation(null);
-          }
-          currentlyBouncing = responseCommutes[idx];
-          currentlyBouncing.origin.marker.setAnimation(google.maps.Animation.BOUNCE);
-          currentlyBouncing.destination.marker.setAnimation(google.maps.Animation.BOUNCE);
-        });
+  $('#search_radius').on('keyup', function(){
+    searchRadius = $('#search_radius').val()*1000;
+    calcInitRoute(commuter)
+  });
+
+  function initialize() {
+    initMap();
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('directions-panel'));
+
+    <% @user.drivercommutes.each do |commute| %>
+      drivercommutesOriginsArray.push(<%=raw commute.origin.to_json %>);
+      drivercommutesDestinationsArray.push(<%=raw commute.destination.to_json %>);
+    <% end %>
+  }
+
+  function calcInitRoute(user) {
+    removeCircles();
+    grabStartEnd(user);
+    addCircles(start);
+    addCircles(end);
+    removeMarkers();
+    showPassengerMarkers(user);
+    var request = {
+        origin:start,
+        destination:end,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+>>>>>>> 7bfdc635341550b999949877825bab78289d2f4c
       }
+    });
+  }
+
+  function addCircles(place){
+    var searchOptions = {
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 0,
+      fillColor: '#F15A24',
+      fillOpacity: 0.2,
+      map: map,
+      center: place,
+      radius: searchRadius
+    };
+    circles = new google.maps.Circle(searchOptions);
+    allOverlays.push(circles);
+  }
+
+  function removeCircles(){
+    if (start) {
+      for (var i=0; i < allOverlays.length; i++)
+      {
+        allOverlays[i].setMap(null);
+      }
+<<<<<<< HEAD
 
       function createInfoWindow(idx,place) {
         contentString = '<div>'+'Name: ' + responseCommutes[idx]['user_info']['name'] +'<br>'+
@@ -163,16 +232,82 @@
         google.maps.event.addListener(responseCommutes[idx][place].marker, 'click', function() {
           infowindow.open(map,responseCommutes[idx][place].marker);
         });
-      }
+=======
+      allOverlays = [];
+    }
+  }
 
-      function selectIconImg(place) {
-        if (place === 'origin'){
-          iconImg = 'http://ecir.mit.edu/templates/rt_clarion/images/icons/icon-person.png'
-        }
-        else{
-          iconImg = 'http://www.wholeperson-counseling.org/gif/point-l.gif'
-        }
+  function removeMarkers(){
+    if (start) {
+      for (var i=0; i < allMarkers.length; i++)
+      {
+        allMarkers[i].setMap(null);
+>>>>>>> 7bfdc635341550b999949877825bab78289d2f4c
       }
+      allMarkers = [];
+    }
+  }
+
+  function showPassengerMarkers(user){
+    var commuteHash = {
+      "commute_id": commuteId,
+      "commuter": user,
+      "search_radius": searchRadius,
+      "DEGREE": 111209.70146739246
+    };
+    $.ajax({
+      url: '/api/passengercommutes',
+      method: 'get',
+      dataType: 'json',
+      data: commuteHash,
+      success: function(response) {
+          responseCommutes = response;
+          initCommutes();
+          console.log(response);
+      },
+          });
+  }
+
+  function grabStartEnd(user) {
+    if (user==="passenger") {
+      var commuteInfo = document.getElementById('commute_passenger').value;
+    } else if (user === "driver"){
+      var commuteInfo = document.getElementById('commute_driver').value;      
+    }
+
+    var commuteInfoArray = commuteInfo.split(',');
+    commute = commuteInfoArray[0];
+    commuteId = commuteInfoArray[1];
+    commuter = commuteInfoArray[2];
+    start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
+    end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]);
+  }
+
+  function initCommutes() {
+    for (var i = 0, len = responseCommutes.length; i < len; i++) {
+      addCommute(i);
+    }
+  }
+
+  function addCommuteMarker(idx, place) {
+    selectIconImg(place);
+    responseCommutes[idx][place].marker = new google.maps.Marker({
+      position: new google.maps.LatLng(responseCommutes[idx][place][0], responseCommutes[idx][place][1]),
+      icon: iconImg,
+      map: map
+    });
+    allMarkers.push(responseCommutes[idx][place].marker)
+    createInfoWindow(idx,place);
+    addBounceToMarker(idx,place);
+  }
+
+  function addBounceToMarker(idx,place) {
+    google.maps.event.addListener(responseCommutes[idx][place].marker, 'click', function () {
+      if (currentlyBouncing) {
+        currentlyBouncing.origin.marker.setAnimation(null);
+        currentlyBouncing.destination.marker.setAnimation(null);
+      }
+<<<<<<< HEAD
 
       function addCommute(idx) {
         addCommuteMarker(idx, 'origin');
@@ -192,6 +327,52 @@
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
+=======
+      currentlyBouncing = responseCommutes[idx];
+      currentlyBouncing.origin.marker.setAnimation(google.maps.Animation.BOUNCE);
+      currentlyBouncing.destination.marker.setAnimation(google.maps.Animation.BOUNCE);
+    });
+  }
+
+  function createInfoWindow(idx,place) {
+    contentString = '<div>'+'Name: ' + responseCommutes[idx]['user_info']['name'] +'<br>'+
+                    'Email: ' + responseCommutes[idx]['user_info']['email'] +'<br>'+
+                    'Phone: ' + responseCommutes[idx]['user_info']['name'] +'<br>'+
+                    '<a href="#">View Profile</a>'+'<br>'+
+                    '<a href="#">Redraw Route</a>'
+                    '</div>';
+    infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    google.maps.event.addListener(responseCommutes[idx][place].marker, 'click', function() {
+      infowindow.open(map,responseCommutes[idx][place].marker);
+    });
+  }
+
+  function selectIconImg(place) {
+    if (place === 'origin'){
+      iconImg = 'http://ecir.mit.edu/templates/rt_clarion/images/icons/icon-person.png'
+    }
+    else{
+      iconImg = 'http://www.wholeperson-counseling.org/gif/point-l.gif'
+    }
+  }
+
+  function addCommute(idx) {
+    addCommuteMarker(idx, 'origin');
+    addCommuteMarker(idx, 'destination');
+  } 
+
+  function initMap() {
+    var mapOptions = {
+      center: { lat: 49.282043, lng: -123.108162},
+      zoom: 11
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+>>>>>>> 7bfdc635341550b999949877825bab78289d2f4c
 </script>
 
 <div id="directions-panel"></div>

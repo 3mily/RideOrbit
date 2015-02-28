@@ -1,5 +1,36 @@
-<%= render 'drivercommutes' %>
-<hr>
-<%= render 'passengercommutes' %>
-<hr>
+<div class="container">
+
+  <h1>Create a new commute</h1>
+
+  <div class="switch-light-container">
+    <label class="switch-light well">
+      <input type="checkbox" id="commutes-type-toggle">
+      <span>
+        <span>Passenger</span>
+        <span>Driver</span>
+      </span>
+      <a class="btn btn-primary"></a>
+    </label>
+  </div>
+
+  <div id="new-passenger-container">
+    <%= render 'passengercommutes' %>
+  </div>
+
+  <div id="new-driver-container" class="hidden">
+    <%= render 'drivercommutes' %>
+  </div>
+
+</div>
+
 <%= render 'requestform' %>
+
+<script type="text/javascript">
+
+$("#commutes-type-toggle").on("click", function(){
+  $("#new-passenger-container").toggleClass("hidden");
+  $("#new-driver-container").toggleClass("hidden");
+})
+
+
+</script>
