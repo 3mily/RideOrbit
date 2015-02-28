@@ -12,9 +12,14 @@
 <select id="commute" onchange="calcInitRoute()">
   <option disabled selected> -- select a commute -- </option>
   <% @user.drivercommutes.each_with_index do |commute,index| %>
-    <option value="<%=index%>"><%=index%> <%= commute.origin_name%> to <%= commute.destination_name%></option>
+    <option value="<%=index%>,<%=commute.id%>"><%=index%> <%= commute.origin_name%> to <%= commute.destination_name%></option>
   <% end %>
 </select>
+
+<div>
+  <label for="search_radius">Radius in kilometres</label>
+  <input type="text" id="search_radius" name="search_radius">
+</div>
 
 <script type="text/javascript">
       var map;
@@ -33,6 +38,15 @@
       var end;
       var waypoints = [];
       var allOverlays = [];
+      var allMarkers = [];
+      var commuteId;
+      searchRadius = 1000;
+
+
+      $('#search_radius').on('keyup', function(){
+        searchRadius = $('#search_radius').val()*1000;
+        calcInitRoute()
+      });
 
       function initialize() {
         initMap();
@@ -43,21 +57,6 @@
           drivercommutesOriginsArray.push(<%=raw commute.origin.to_json %>);
           drivercommutesDestinationsArray.push(<%=raw commute.destination.to_json %>);
         <% end %>
-
-        google.maps.event.addListener(map, 'idle', function() {
-          bounds = map.getBounds();
-          $.ajax({
-                    url: '/api/passengercommutes',
-                    method: 'get',
-                    dataType: 'json',
-                    data: bounds.toString(),
-                    success: function(response) {
-                        responseCommutes = response;
-                        initCommutes();
-                        console.log(response);
-                    },
-                });
-        });
       }
 
       function calcInitRoute() {
@@ -65,6 +64,8 @@
         grabStartEnd();
         addCircles(start);
         addCircles(end);
+        removeMarkers();
+        showPassengerMarkers();
         var request = {
             origin:start,
             destination:end,
@@ -86,11 +87,12 @@
           fillOpacity: 0.2,
           map: map,
           center: place,
-          radius: 1000
+          radius: searchRadius
         };
         circles = new google.maps.Circle(searchOptions);
         allOverlays.push(circles);
       }
+
       function removeCircles(){
         if (start) {
           for (var i=0; i < allOverlays.length; i++)
@@ -101,8 +103,38 @@
         }
       }
 
+      function removeMarkers(){
+        if (start) {
+          for (var i=0; i < allMarkers.length; i++)
+          {
+            allMarkers[i].setMap(null);
+          }
+          allMarkers = [];
+        }
+      }
+
+      function showPassengerMarkers(){
+        var commuteHash = {
+          "commute_id": commuteId,
+        };
+        $.ajax({
+          url: '/api/passengercommutes',
+          method: 'get',
+          dataType: 'json',
+          data: commuteHash,
+          success: function(response) {
+              responseCommutes = response;
+              initCommutes();
+              console.log(response);
+          },
+              });
+      }
+
       function grabStartEnd() {
-        commute = document.getElementById('commute').value;
+        var commuteInfo = document.getElementById('commute').value;
+        var commuteInfoArray = commuteInfo.split(',');
+        commute = commuteInfoArray[0];
+        commuteId = commuteInfoArray[1];
         start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
         end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]);
       }
@@ -120,6 +152,7 @@
           icon: iconImg,
           map: map
         });
+        allMarkers.push(responseCommutes[idx][place].marker)
         createInfoWindow(idx,place);
         addBounceToMarker(idx,place);
       }
