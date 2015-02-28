@@ -172,7 +172,7 @@ Passengercommute.create(
   destination_name: "Work - Abbott and W Hastings (Downtown)",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test1", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 2,
@@ -182,7 +182,7 @@ Passengercommute.create(
   destination: "49.248910, -123.115528",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test2", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 3,
@@ -192,7 +192,7 @@ Passengercommute.create(
   destination_name: "Work - Seymour and Dunsmuir (Downtown)",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "special", email:"special@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 4,
@@ -202,7 +202,7 @@ Passengercommute.create(
   destination_name: "Work - Nicola and Robson (Downtown)",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test3", email:"test@test.ca", phone: "604-802-1234"}
 
   )
 Passengercommute.create(
@@ -213,7 +213,7 @@ Passengercommute.create(
   destination: "49.261669,-123.241450",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test4", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 5,
@@ -223,7 +223,7 @@ Passengercommute.create(
   destination: "49.279679, -123.120421",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test5", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 6,
@@ -233,7 +233,7 @@ Passengercommute.create(
   destination: "49.237140, -123.114471",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test6", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 7,
@@ -243,7 +243,7 @@ Passengercommute.create(
   destination: "49.258856, -122.895429",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test7", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 8,
@@ -253,7 +253,7 @@ Passengercommute.create(
   destination: "49.263468, -122.852723",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test8", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 9,
@@ -263,7 +263,7 @@ Passengercommute.create(
   destination: "49.260103, -123.245706",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test9", email:"test@test.ca", phone: "604-802-1234"}
   )
 Passengercommute.create(
   user_id: 10,
@@ -273,7 +273,7 @@ Passengercommute.create(
   destination: "49.283003, -123.115422",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "test", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: "test10", email:"test@test.ca", phone: "604-802-1234"}
   )
 Drivercommute.create(
   user_id: 1,
