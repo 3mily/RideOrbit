@@ -1,5 +1,5 @@
 <h3>Select A Commute (Passenger)</h3>
-<select id="commute_passenger" onchange='calcInitRoute("passenger")'>
+<select id="commute_passenger" onchange='calcInitRoute("passenger")' class="form-control">
   <option disabled selected> -- select a commute -- </option>
   <% @user.passengercommutes.each_with_index do |commute,index| %>
     <option value="<%=index%>,<%=commute.id%>,passenger"><%=index%> <%= commute.origin_name%> to <%= commute.destination_name%></option>

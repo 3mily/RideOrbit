@@ -25,6 +25,13 @@ body {
     max-height: 50px;
 }
 
+.cut {
+  max-width: 48%;
+  display: inline-block;
+}
+
+
+
 // flash message
 .flash {
   background-color: $flash-bg;
