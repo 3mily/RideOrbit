@@ -38,6 +38,7 @@
       var end;
       var waypoints = [];
       var allOverlays = [];
+      var allMarkers = [];
       var commuteId;
       searchRadius = 1000;
 
@@ -56,24 +57,6 @@
           drivercommutesOriginsArray.push(<%=raw commute.origin.to_json %>);
           drivercommutesDestinationsArray.push(<%=raw commute.destination.to_json %>);
         <% end %>
-
-        google.maps.event.addListener(map, 'idle', function() {
-          bounds = map.getBounds();
-          // var commuteHash = {
-          //   "commute_id": commuteId
-          // };
-          // $.ajax({
-          //           url: '/api/passengercommutes',
-          //           method: 'get',
-          //           dataType: 'json',
-          //           data: commuteHash,
-          //           success: function(response) {
-          //               responseCommutes = response;
-          //               initCommutes();
-          //               console.log(response);
-          //           },
-          //       });
-        });
       }
 
       function calcInitRoute() {
@@ -81,6 +64,7 @@
         grabStartEnd();
         addCircles(start);
         addCircles(end);
+        removeMarkers();
         showPassengers();
         var request = {
             origin:start,
@@ -108,6 +92,7 @@
         circles = new google.maps.Circle(searchOptions);
         allOverlays.push(circles);
       }
+
       function removeCircles(){
         if (start) {
           for (var i=0; i < allOverlays.length; i++)
@@ -118,20 +103,30 @@
         }
       }
 
+      function removeMarkers(){
+        if (start) {
+          for (var i=0; i < allMarkers.length; i++)
+          {
+            allMarkers[i].setMap(null);
+          }
+          allMarkers = [];
+        }
+      }
+
       function showPassengers(){
         var commuteHash = {
           "commute_id": commuteId
         };
         $.ajax({
-                  url: '/api/passengercommutes',
-                  method: 'get',
-                  dataType: 'json',
-                  data: commuteHash,
-                  success: function(response) {
-                      responseCommutes = response;
-                      initCommutes();
-                      console.log(response);
-                  },
+          url: '/api/passengercommutes',
+          method: 'get',
+          dataType: 'json',
+          data: commuteHash,
+          success: function(response) {
+              responseCommutes = response;
+              initCommutes();
+              console.log(response);
+          },
               });
       }
 
@@ -157,6 +152,7 @@
           icon: iconImg,
           map: map
         });
+        allMarkers.push(responseCommutes[idx][place].marker)
         createInfoWindow(idx,place);
         addBounceToMarker(idx,place);
       }
