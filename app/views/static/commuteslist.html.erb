@@ -1,21 +1,27 @@
-Where your existing commutes will be.
-<h1>Current Commutes</h1>
+<div class="container">
 
-<label class="switch-light well" onclick="">
-  <input type="checkbox" id="commutes-type-toggle">
-  <span>
-    <span>Passenger</span>
-    <span>Driver</span>
-  </span>
+  <h1>Current Commutes</h1>
 
-  <a class="btn btn-primary"></a>
-</label>
 
-<div id="passengers-commutes-list">
-  <%= render 'passengercommutes_list' %>
-</div>
-<div id="drivers-commutes-list" style="display:none">
-  <%= render 'drivercommutes_list' %>
+  <div class="switch-light-container">
+    <label class="switch-light well">
+      <input type="checkbox" id="commutes-type-toggle">
+      <span>
+        <span>Passenger</span>
+        <span>Driver</span>
+      </span>
+      <a class="btn btn-primary"></a>
+    </label>
+  </div>
+
+
+  <div id="passengers-commutes-list">
+    <%= render 'passengercommutes_list' %>
+  </div>
+  <div id="drivers-commutes-list" class="hidden">
+    <%= render 'drivercommutes_list' %>
+  </div>
+
 </div>
 
 
@@ -24,8 +30,8 @@ Where your existing commutes will be.
 <script type="text/javascript">
 
 $("#commutes-type-toggle").on("click", function(){
-  $("#passengers-commutes-list").toggle();
-  $("#drivers-commutes-list").toggle();
+  $("#passengers-commutes-list").toggleClass("hidden");
+  $("#drivers-commutes-list").toggleClass("hidden");
 })
 
 
