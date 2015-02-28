@@ -1,8 +1,16 @@
+$orange-dark: #FF7A3D;
+$orange-light: #E5B66A;
+$blue-light: #00B0BF;
+$blue-dark: #00467F;
+$blue-darker: #040040;
+
+
+
 $bg-color: #eff;
-$navbar-color: #cdd;
+$navbar-color: #00BAFF;
 $button-active: #911;
 $button-inactive: #EFEFEF;
-$commutes-box-border: #000;
+$commutes-box-border: #fff;
 $commutes-box-bg: #ddd;
 $flash-bg: #ccc;
 
@@ -40,12 +48,26 @@ header {
 .commute-box {
     padding: 10px;
   .inner {
+    position: relative;
     background-color: $commutes-box-bg;
     padding: 5px;
-    border-radius: 15px;
-    border: 2px solid $commutes-box-border;
+    border-radius: 5px;
     height: 300px;
+    box-shadow: 5px 5px 5px #888888;
   }
+}
+//commute no. tab for passengers
+.p-tab {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid #000; 
+    margin-left: 3px;
+    height: 0;
+    line-height: 50px;
 }
 
 
