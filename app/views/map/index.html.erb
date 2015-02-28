@@ -78,7 +78,7 @@
     addCircles(start);
     addCircles(end);
     removeMarkers();
-    showPassengerMarkers(user);
+    showAllMarkers(user);
     var request = {
         origin:start,
         destination:end,
@@ -126,7 +126,7 @@
     }
   }
 
-  function showPassengerMarkers(user){
+  function showAllMarkers(user){
     var commuteHash = {
       "commute_id": commuteId,
       "commuter": user,
