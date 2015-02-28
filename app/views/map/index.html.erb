@@ -23,10 +23,10 @@
 <div id="driver-commute-select" style="display:none">
   <%= render 'driverselect' %>
 </div>
-
+<br>
 <div>
   <label for="search_radius">Radius in kilometres</label>
-  <input type="text" id="search_radius" name="search_radius">
+  <input type="text" id="search_radius" name="search_radius" class="form-control cut">
 </div>
 
 <script type="text/javascript">
@@ -49,29 +49,23 @@
   var allMarkers = [];
   var commuteId;
   searchRadius = 1000;
-
   $("#commutes-select-toggle").on("click", function(){
     $("#passenger-commute-select").toggle();
     $("#driver-commute-select").toggle();
   })
-
-
   $('#search_radius').on('keyup', function(){
     searchRadius = $('#search_radius').val()*1000;
     calcInitRoute(commuter)
   });
-
   function initialize() {
     initMap();
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('directions-panel'));
-
     <% @user.drivercommutes.each do |commute| %>
       drivercommutesOriginsArray.push(<%=raw commute.origin.to_json %>);
       drivercommutesDestinationsArray.push(<%=raw commute.destination.to_json %>);
     <% end %>
   }
-
   function calcInitRoute(user) {
     removeCircles();
     grabStartEnd(user);
@@ -90,7 +84,6 @@
       }
     });
   }
-
   function addCircles(place){
     var searchOptions = {
       strokeColor: '#FF0000',
@@ -105,7 +98,6 @@
     circles = new google.maps.Circle(searchOptions);
     allOverlays.push(circles);
   }
-
   function removeCircles(){
     if (start) {
       for (var i=0; i < allOverlays.length; i++)
@@ -115,7 +107,6 @@
       allOverlays = [];
     }
   }
-
   function removeMarkers(){
     if (start) {
       for (var i=0; i < allMarkers.length; i++)
@@ -125,7 +116,6 @@
       allMarkers = [];
     }
   }
-
   function showPassengerMarkers(user){
     var commuteHash = {
       "commute_id": commuteId,
@@ -145,14 +135,12 @@
       },
           });
   }
-
   function grabStartEnd(user) {
     if (user==="passenger") {
       var commuteInfo = document.getElementById('commute_passenger').value;
     } else if (user === "driver"){
       var commuteInfo = document.getElementById('commute_driver').value;      
     }
-
     var commuteInfoArray = commuteInfo.split(',');
     commute = commuteInfoArray[0];
     commuteId = commuteInfoArray[1];
@@ -160,13 +148,11 @@
     start = new google.maps.LatLng(drivercommutesOriginsArray[commute][0], drivercommutesOriginsArray[commute][1]); 
     end = new google.maps.LatLng(drivercommutesDestinationsArray[commute][0], drivercommutesDestinationsArray[commute][1]);
   }
-
   function initCommutes() {
     for (var i = 0, len = responseCommutes.length; i < len; i++) {
       addCommute(i);
     }
   }
-
   function addCommuteMarker(idx, place) {
     selectIconImg(place);
     responseCommutes[idx][place].marker = new google.maps.Marker({
@@ -178,7 +164,6 @@
     createInfoWindow(idx,place);
     addBounceToMarker(idx,place);
   }
-
   function addBounceToMarker(idx,place) {
     google.maps.event.addListener(responseCommutes[idx][place].marker, 'click', function () {
       if (currentlyBouncing) {
@@ -190,7 +175,6 @@
       currentlyBouncing.destination.marker.setAnimation(google.maps.Animation.BOUNCE);
     });
   }
-
   function createInfoWindow(idx,place) {
     contentString = '<div>'+'Name: ' + responseCommutes[idx]['user_info']['name'] +'<br>'+
                     'Email: ' + responseCommutes[idx]['user_info']['email'] +'<br>'+
@@ -205,7 +189,6 @@
       infowindow.open(map,responseCommutes[idx][place].marker);
     });
   }
-
   function selectIconImg(place) {
     if (place === 'origin'){
       iconImg = 'http://ecir.mit.edu/templates/rt_clarion/images/icons/icon-person.png'
@@ -214,12 +197,10 @@
       iconImg = 'http://www.wholeperson-counseling.org/gif/point-l.gif'
     }
   }
-
   function addCommute(idx) {
     addCommuteMarker(idx, 'origin');
     addCommuteMarker(idx, 'destination');
   } 
-
   function initMap() {
     var mapOptions = {
       center: { lat: 49.282043, lng: -123.108162},
@@ -227,7 +208,6 @@
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   }
-
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 

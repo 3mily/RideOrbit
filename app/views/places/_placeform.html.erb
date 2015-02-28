@@ -3,15 +3,16 @@
 
   <div>
     <%= f.label "name", "Name" %> <br>
-    <%= f.text_field :name, placeholder: "eg. Home..." %>
+    <%= f.text_field :name, placeholder: "eg. Home...", class: "form-control" %>
   </div>
+  <br>
   <div>
     <%= f.label "cross_street", "Cross Streets" %><br>
-    <%= text_field_tag :street1, nil, placeholder: "W Hastings..." %> and <%= text_field_tag :street2, nil, placeholder: "Abbott..." %>
+    <%= text_field_tag :street1, nil, placeholder: "W Hastings...", class: "form-control cut" %> and <%= text_field_tag :street2, nil, placeholder: "Abbott...", class: "form-control cut" %>
     <% f.hidden_field :cross_street_point %>
   </div>
-
-<%= f.submit "Submit" %>
+  <br>
+<%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
 
 <!-- This is where all current_user's places will list. -->
