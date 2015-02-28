@@ -58,7 +58,7 @@
 
   $('#search_radius').on('keyup', function(){
     searchRadius = $('#search_radius').val()*1000;
-    calcInitRoute()
+    calcInitRoute(commuter)
   });
 
   function initialize() {
@@ -129,7 +129,9 @@
   function showPassengerMarkers(user){
     var commuteHash = {
       "commute_id": commuteId,
-      "commuter": user
+      "commuter": user,
+      "search_radius": searchRadius,
+      "DEGREE": 111209.70146739246
     };
     $.ajax({
       url: '/api/passengercommutes',
