@@ -1,0 +1,20 @@
+<% content_for :head_section do %>
+  <%= javascript_include_tag 'requests', 'data-turbolinks-track' => true %>
+<% end %>
+
+<label class="switch-light well" onclick="">
+  <input type="checkbox" id="commutes-select-toggle">
+  <span>
+    <span>Passenger</span>
+    <span>Driver</span>
+  </span>
+  <a class="btn btn-primary"></a>
+</label>
+
+<div id="requests-as-passenger">
+  <%=render 'passengerview'%>
+</div>
+
+<div id="requests-as-driver" style="display:none">
+  <%=render 'driverview'%>
+</div>

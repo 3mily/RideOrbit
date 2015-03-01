@@ -17,4 +17,8 @@ class RequestsController < ApplicationController
 
   def destroy
   end
+
+  def index
+    @user = current_user
+  end
 end
