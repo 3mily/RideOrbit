@@ -19,7 +19,7 @@ $(function(){
   var allMarkers = [];
   var commuteId;
   var searchRadius = 1000;
-  var infowindow = null;
+  var allInfoWindows = [];
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -107,6 +107,15 @@ $(function(){
     }
   }
 
+  function closeInfoWindow(){
+    if (allInfoWindows) {
+      for (var i=0; i < allInfoWindows.length; i++)
+      {
+        allInfoWindows[i].close();
+      }
+    }
+  }
+
   function getCoordinates(user) {
     if (user==="passenger") {
       var commuteInfo = document.getElementById('commute_passenger').value;
@@ -130,6 +139,7 @@ $(function(){
   }
 
   function renderRoute(){
+    console.log(waypoints);
     var request = {
         origin:origin,
         destination:destination,
@@ -239,21 +249,16 @@ $(function(){
                     '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
                     '<button class="request-button">Connect</button>'
                     '</div>';
-    closeInfoWindow();
-    infowindow = new google.maps.InfoWindow({
+    var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
+    allInfoWindows.push(infowindow);
     currentCommuteIndex = idx;
     google.maps.event.addListener(coordinates.marker, 'click', function() {
+      closeInfoWindow();
       infowindow.open(map,coordinates.marker);
       resetRequestButton();
     });
-  }
-
-  function closeInfoWindow(){
-    if (infowindow) {
-        infowindow.close();
-    }
   }
 
   function resetRequestButton(){
@@ -280,6 +285,8 @@ $(function(){
       data: params,
       error: function(xhr,status,thrownError){
         console.log("it didnt save or work or something oh noes", thrownError);
+        $('.request-button').attr("disabled", true);
+        $('.request-button').text("Sent Request");
       },
       success: function(response){
         console.log(response);
@@ -291,20 +298,21 @@ $(function(){
 
   $("#map-canvas").on("click", ".redraw", function(e){
     closeInfoWindow();
-    alert("redraw route worked")
     var originLat = this.getAttribute("origin-data-lat");
     var originLng = this.getAttribute("origin-data-lng");
     var destinationLat = this.getAttribute("destination-data-lat");
     var destinationLng = this.getAttribute("destination-data-lng");
     var originWayPt = new google.maps.LatLng(originLat, originLng);
     var destinationWayPt = new google.maps.LatLng(destinationLat, destinationLng);
-    console.log(originWayPt);
-    console.log(destinationWayPt);
-    waypoints.push({
-    location:waypt,
-      stopover:true
-    });
-    console.log(waypoints);
+    pushWayPt(originWayPt);
+    pushWayPt(destinationWayPt);
     renderRoute();
   });
+
+  function pushWayPt(waypoint){
+    waypoints.push({
+    location:waypoint,
+      stopover:true
+    });
+  }
 });
