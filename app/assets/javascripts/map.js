@@ -233,23 +233,28 @@ $(function(){
                     'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
                     '<a href="#">View Profile</a>'+'<br>'+
                     '<a href="#">Redraw Route</a>'+'<br>'+
-                    '<a href="#" class="request-button">Connect</a>'
+                    '<button class="request-button">Connect</button>'
                     '</div>';
     infowindow = new google.maps.InfoWindow({
       content: contentString
     });
+    currentCommuteIndex = idx;
     google.maps.event.addListener(commuteCoordinates.marker, 'click', function() {
       infowindow.open(map,commuteCoordinates.marker);
     });
   }
 
-  $(".request-button").on("click", function(){
+  $("#map-canvas").on("click", ".request-button", function(){
+    var initiator = $("#map-canvas").data("currentuser-id");
+    alert("click worked");
     var params = {
-      "driver_id": driver_id,
-      "passenger_id": pasfdaf
+      "initiator": initiator,
+      "user": commuter,
+      "user_commute_id": commuteId,
+      "requested_commute_id": userInfo[currentCommuteIndex]['id']
     };
-    $ajax({
-      url: "/request",
+    $.ajax({
+      url: "/requests",
       type: "POST",
       data: params,
       error: function(xhr,status,thrownError){
@@ -260,4 +265,5 @@ $(function(){
       }
     });
   });
+
 });

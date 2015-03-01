@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root to: 'static#index'
 
   get "/newcommute", to: "static#newcommute", as: "newcommute"
