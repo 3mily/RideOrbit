@@ -236,7 +236,7 @@ $(function(){
                     'Email: ' + clickedCommuteInfo['email'] +'<br>'+
                     'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
                     '<a href="#">View Profile</a>'+'<br>'+
-                    '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng"' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
+                    '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
                     '<button class="request-button">Connect</button>'
                     '</div>';
     closeInfoWindow();
@@ -266,6 +266,7 @@ $(function(){
   }
 
   $("#map-canvas").on("click", ".request-button", function(){
+    var initiator = $("#map-canvas").data("currentuser-id");
     alert("click worked");
     var params = {
       "initiator": initiator,
@@ -291,10 +292,14 @@ $(function(){
   $("#map-canvas").on("click", ".redraw", function(e){
     closeInfoWindow();
     alert("redraw route worked")
-    var lat = this.getAttribute("data-lat");
-    var lng = this.getAttribute("data-lng");
-    var waypt = new google.maps.LatLng(lat, lng);
-    console.log(waypt);
+    var originLat = this.getAttribute("origin-data-lat");
+    var originLng = this.getAttribute("origin-data-lng");
+    var destinationLat = this.getAttribute("destination-data-lat");
+    var destinationLng = this.getAttribute("destination-data-lng");
+    var originWayPt = new google.maps.LatLng(originLat, originLng);
+    var destinationWayPt = new google.maps.LatLng(destinationLat, destinationLng);
+    console.log(originWayPt);
+    console.log(destinationWayPt);
     waypoints.push({
     location:waypt,
       stopover:true
