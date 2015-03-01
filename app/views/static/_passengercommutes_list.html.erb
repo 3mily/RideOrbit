@@ -9,8 +9,8 @@
       <h2>Your commutes as a Passenger:</h2>
       <% @passenger_commutes.each_with_index do |commute,index| %>
         <div class="col-md-4 commute-box">
-                <span class="p-tab"><%= image_tag "icon-passenger.png" %>Commute No. <%= index += 1 %></span>
-          <div class="inner d-com">
+            <span class="p-tab"><%= image_tag "icon-passenger.png" %>Commute No. <%= index += 1 %></span>
+          <div class="inner">
             <p><h4>From:<br></h4><%= commute.origin_name %></p>
             <p> To: <%= commute.destination_name %> </p>
             <p> Days of Commute: </p>

@@ -8,16 +8,19 @@
     <div class="row">
       <h2>Your commutes as a Driver:</h2>
       <% @driver_commutes.each_with_index do |commute,index| %>
-        <div class="col-md-4 d-com">
-          <p> Commute Number : <%= index += 1 %></p>
-          <p> Car Type : <%= commute.car_type%> </p>
-          <p> From : <%= commute.origin_name %> </p>
-          <p> To: <%= commute.destination_name %> </p>
-          <p> Days of Commute: </p>
-          <% commute.days.each do |day| %>
-            <span class="display-day"><%= day %></span>
-          <% end %> 
-          <p> Arrival time: <%= commute.arrival_time %></p>
+        <div class="col-md-4 commute-box">
+              <span class="d-tab"><%= image_tag "icon-driver.png" %>
+              Commute No. <%= index += 1 %></span>
+          <div class="inner">
+            <p> Car Type : <%= commute.car_type%> </p>
+            <p> From : <%= commute.origin_name %> </p>
+            <p> To: <%= commute.destination_name %> </p>
+            <p> Days of Commute: </p>
+            <% commute.days.each do |day| %>
+              <span class="display-day"><%= day %></span>
+            <% end %> 
+            <p> Arrival time: <%= commute.arrival_time %></p>
+          </div>
         </div>
       <% end %>
     </div>
