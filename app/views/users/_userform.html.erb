@@ -13,19 +13,19 @@
 
   <div>
     <%= f.label "firstname", "First Name" %><br>
-    <%= f.text_field "firstname" %>
+    <%= f.text_field "firstname", class:"form-control" %>
   </div>
   <div>
     <%= f.label "lastname", "Last Name" %><br>
-    <%= f.text_field "lastname" %>
+    <%= f.text_field "lastname", class:"form-control" %>
   </div>
   <div>
     <%= f.label "email", "Email" %><br>
-    <%= f.text_field "email" %>
+    <%= f.text_field "email", class:"form-control" %>
   </div>
   <div>
     <%= f.label "phone", "Phone" %><br>
-    <%= f.text_field "phone" %>
+    <%= f.text_field "phone", class:"form-control" %>
   </div>
   <div>
     <%= f.label :picture, "Profile Picture" %><br>
@@ -34,21 +34,23 @@
 
   <div>
     <%= f.label "industry", "Industry" %>
+    <br>
     <%= f.select :industry, options_for_select(["agriculture","energy","entertainment","finance","government","health/medical","hospitality","marketing/communications","non-profit","publishing","science","technology","transportation"]) %>
   </div>
 
   <div>
     <%= f.label "linkedin", "LinkedIn (optional)" %><br>
-    <%= f.text_field "linkedin" %>
+    <%= f.text_field "linkedin", class:"form-control" %>
   </div>
   <div>
     <%= f.label "password" %><br>
-    <%= f.password_field "password" %>
+    <%= f.password_field "password", class:"form-control" %>
   </div>
   <div>
     <%= f.label "password_confirmation" %><br>
-    <%= f.password_field "password_confirmation" %>
+    <%= f.password_field "password_confirmation", class:"form-control" %>
   </div>
-  <div><%= f.submit "Submit" %></div>
+  <br>
+  <div><%= f.submit "Submit", class: "btn btn-primary" %></div>
   
 <% end %>
