@@ -6,20 +6,23 @@
   <% else %>
 
     <div class="row">
-      <h2>Your commutes as a Driver:</h2>
       <% @driver_commutes.each_with_index do |commute,index| %>
-        <div class="col-md-4 commute-box">
-              <span class="d-tab"><%= image_tag "icon-driver.png" %>
-              Commute No. <%= index += 1 %></span>
-          <div class="inner">
-            <p> Car Type : <%= commute.car_type%> </p>
-            <p> From : <%= commute.origin_name %> </p>
-            <p> To: <%= commute.destination_name %> </p>
-            <p> Days of Commute: </p>
-            <% commute.days.each do |day| %>
-              <span class="display-day"><%= day %></span>
-            <% end %> 
-            <p> Arrival time: <%= commute.arrival_time %></p>
+        <div class="col-md-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= image_tag "icon-driver.png" %>
+              Commute No. <%= index += 1 %></h3>
+            </div>
+            <div class="panel-body">
+              <p> Car Type : <%= commute.car_type%> </p>
+              <p> From : <%= commute.origin_name %> </p>
+              <p> To: <%= commute.destination_name %> </p>
+              <p> Days of Commute: </p>
+              <% commute.days.each do |day| %>
+                <span class="display-day"><%= day %></span>
+              <% end %> 
+              <p> Arrival time: <%= commute.arrival_time %></p>
+            </div>
           </div>
         </div>
       <% end %>

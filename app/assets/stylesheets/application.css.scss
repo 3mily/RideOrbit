@@ -1,12 +1,16 @@
-$orange-dark: #FF7A3D;
+$orange-dark1: #FF7A3D;
+$orange-dark2: #FF7028;
 $orange-light: #E5B66A;
-$blue-light: #00B0BF;
+$blue-light1: #00B0BF;
+$blue-light2: #0099a6;
 $blue-dark: #00467F;
 $blue-darker: #040040;
+$grey-light: #eee;
+$grey-dark: #1f1f1f;
 
 
 
-$bg-color: #eff;
+$bg-color: #fff;
 $navbar-color: #00BAFF;
 $button-active: #911;
 $button-inactive: #EFEFEF;
@@ -20,6 +24,7 @@ body {
   margin: 10px;
 }
 
+// 3mily's face
 .dropdown-img{
     border-radius:100%;
     max-height: 50px;
@@ -30,6 +35,16 @@ body {
   display: inline-block;
 }
 
+.container.new-center {
+  margin: 0 auto;
+  max-width: 600px;
+}
+.container.list-center {
+  margin: 0 auto;
+}
+.container h1 {
+  text-align: center;
+}
 
 
 // flash message
@@ -39,46 +54,55 @@ body {
   margin: 10px
 }
 
-
-// indiv commute container on commutes list page
-.commute-box {
-    padding: 10px;
-  .inner {
-    position: relative;
-    background-color: $commutes-box-bg;
-    padding: 5px;
-    border-radius: 5px;
-    height: 300px;
-    box-shadow: 5px 5px 5px #888888;
-  }
-}
-//commute no. tab for passengers
-.p-tab {
-    padding: 0 10px 10px 10px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    display: inline-block;
-    border-bottom: 30px solid $orange-dark;
-    border-radius: 10px;
-    margin-left: 3px;
-    height: 0;
-    line-height: 50px;
+//default button
+.btn.btn-default {
+  background-color: $blue-dark;
+  color: #fff;
+  padding: 10px 20px;
+  float: right;
 }
 
-//commute no. tab for drivers
-.d-tab {
-    padding: 0 10px 10px 10px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    display: inline-block;
-    // border-right: 30px solid transparent;
-    border-bottom: 30px solid $blue-dark;
-    border-radius: 10px;
-    margin-left: 3px;
-    height: 0;
-    line-height: 50px;
+.panel-body > div {
+  margin: 10px 0 5px 0;
+}
+
+//commute list container for passengers
+.panel-warning {
+  border-color: #fff;
+  box-shadow: 4px 4px 10px #aaa;
+}
+.panel-warning>.panel-heading {
+  padding-left: 20px;
+  color: #fff;
+  background-color: $orange-dark2; //fallback color
+  background-image: -moz-linear-gradient(top, $orange-dark1, $orange-dark2);
+  background-image: -ms-linear-gradient(top, $orange-dark1, $orange-dark2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($orange-dark1), to($orange-dark2));
+  background-image: -webkit-linear-gradient(top, $orange-dark1, $orange-dark2);
+  background-image: -o-linear-gradient(top, $orange-dark1, $orange-dark2);
+  background-image: linear-gradient(top, $orange-dark1, $orange-dark2);
+  background-repeat: repeat-x;
+  border-color: $orange-dark1;
+}
+
+
+//commute list container for drivers
+.panel-primary {
+  border-color: #fff;
+  box-shadow: 4px 4px 10px #aaa;
+}
+.panel-primary>.panel-heading {
+  padding-left: 20px;
+  color: #fff;
+  background-color: $blue-light2; //fallback color
+  background-image: -moz-linear-gradient(top, $blue-light1, $blue-light2);
+  background-image: -ms-linear-gradient(top, $blue-light1, $blue-light2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($blue-light1), to($blue-light2));
+  background-image: -webkit-linear-gradient(top, $blue-light1, $blue-light2);
+  background-image: -o-linear-gradient(top, $blue-light1, $blue-light2);
+  background-image: linear-gradient(top, $blue-light1, $blue-light2);
+  background-repeat: repeat-x;
+  border-color: $blue-light1;
 }
 
 
@@ -140,14 +164,12 @@ body {
 
 // form containers
 #new-passenger-container {
-  background-color: #ddd;
   padding: 5px;
   margin: 10px;
   max-width: 600px;
 }
 
 #new-driver-container {
-  background-color: #ddd;
   padding: 5px;
   margin: 10px;
   max-width: 600px;
@@ -161,6 +183,7 @@ body {
 @media only screen {
   .switch-light-container {
     max-width: 700px;
+    margin: 0 auto;
   }
   .switch-light {
     display: block;
@@ -220,5 +243,18 @@ body {
     height: 100%;
     padding: 0; 
   }
+}
+
+
+//gradient
+.orbit-nav {
+  background-color: #444; //fallback color
+  background-image: -moz-linear-gradient(top, #555, #444);
+  background-image: -ms-linear-gradient(top, #555, #444);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#555), to(#444));
+  background-image: -webkit-linear-gradient(top, #555, #444);
+  background-image: -o-linear-gradient(top, #555, #444);
+  background-image: linear-gradient(top, #555, #444);
+  background-repeat: repeat-x;
 }
 
