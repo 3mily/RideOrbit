@@ -11,7 +11,6 @@ $(function(){
   var userInfo; //response objects returned from polling our db
   var currentlyBouncing = null; //bounce animation tracker default to null
   var contentString;
-  var infowindow;
   var commute;
   var origin;
   var destination;
@@ -54,6 +53,18 @@ $(function(){
       zoom: 11
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    $(document.body).on("click", ".redraw", function(e){
+          var lat = this.getAttribute("data-lat");
+          var lng = this.getAttribute("data-lng");
+          var waypt = new google.maps.LatLng(lat, lng);
+          console.log(waypt);
+          waypoints.push({
+          location:waypt,
+            stopover:true
+          });
+          console.log(waypoints);
+          renderRoute();
+        });
   }
 
   function initDirections(){
@@ -133,6 +144,8 @@ $(function(){
     var request = {
         origin:origin,
         destination:destination,
+        waypoints: waypoints,
+        optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING
     };
     directionsService.route(request, function(response, status) {
@@ -232,10 +245,10 @@ $(function(){
                     'Email: ' + clickedCommuteInfo['email'] +'<br>'+
                     'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
                     '<a href="#">View Profile</a>'+'<br>'+
-                    '<a href="#">Redraw Route</a>'+'<br>'+
+                    '<button class="redraw" data-lat="' + userInfo[idx][place][0] + '" data-lng="' + userInfo[idx][place][1] +'">Redraw Route</button>' +
                     '<button class="request-button">Connect</button>'
                     '</div>';
-    infowindow = new google.maps.InfoWindow({
+    var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
     currentCommuteIndex = idx;
