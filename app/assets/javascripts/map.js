@@ -19,6 +19,7 @@ $(function(){
   var allMarkers = [];
   var commuteId;
   var searchRadius = 1000;
+  var infowindow = null;
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -54,6 +55,7 @@ $(function(){
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     $(document.body).on("click", ".redraw", function(e){
+          closeInfoWindow();
           var lat = this.getAttribute("data-lat");
           var lng = this.getAttribute("data-lng");
           var waypt = new google.maps.LatLng(lat, lng);
@@ -249,7 +251,8 @@ $(function(){
                     '<button class="redraw" data-lat="' + userInfo[idx][place][0] + '" data-lng="' + userInfo[idx][place][1] +'">Redraw Route</button>' +
                     '<button class="request-button">Connect</button>'
                     '</div>';
-    var infowindow = new google.maps.InfoWindow({
+    closeInfoWindow();
+    infowindow = new google.maps.InfoWindow({
       content: contentString
     });
     currentCommuteIndex = idx;
@@ -257,6 +260,12 @@ $(function(){
       infowindow.open(map,coordinates.marker);
       resetRequestButton();
     });
+  }
+
+  function closeInfoWindow(){
+    if (infowindow) {
+        infowindow.close();
+    }
   }
 
   function resetRequestButton(){
