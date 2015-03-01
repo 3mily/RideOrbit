@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :passengercommutes, only: [:create, :destroy]
   resources :places, only: [:create, :destroy, :show, :index]
   resource :reviews, only: [:create, :destroy]
-  resource :requests, only: [:create, :destroy]
+  resource :requests, only: [:create, :destroy, :index]
   
 
 end
