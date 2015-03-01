@@ -85,6 +85,7 @@ $(function(){
     addCircles(origin);
     addCircles(destination);
     showAllMarkers(user);
+    requestButtonText();
   }
 
   function removeCircles(){
@@ -177,6 +178,14 @@ $(function(){
     });
   }
 
+  function requestButtonText(){
+    if (initiator==="driver"){
+      $('.request-button').text("Invite to Ride");
+    } else {
+      $('.request-button').text("Request a Ride");
+    }
+  }
+
   function initCommutes() {
     for (var i = 0, len = userInfo.length; i < len; i++) {
       addCommute(i);
@@ -247,6 +256,8 @@ $(function(){
   $("#map-canvas").on("click", ".request-button", function(){
     var initiator = $("#map-canvas").data("currentuser-id");
     alert("click worked");
+    $('.request-button').attr("disabled", false);
+    requestButtonText();
     var params = {
       "initiator": initiator,
       "user": commuter,
@@ -262,6 +273,8 @@ $(function(){
       },
       success: function(response){
         console.log(response);
+        $('.request-button').attr("disabled", true);
+        $('.request-button').text("Sent Request");
       }
     });
   });
