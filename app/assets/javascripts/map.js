@@ -19,7 +19,6 @@ $(function(){
   var allMarkers = [];
   var commuteId;
   var searchRadius = 1000;
-  var initiator = $("#map-canvas").data("currentuser-id");
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -191,14 +190,6 @@ $(function(){
     });
   }
 
-  function requestButtonText(){
-    if (initiator==="driver"){
-      $('.request-button').text("Invite to Ride");
-    } else {
-      $('.request-button').text("Request a Ride");
-    }
-  }
-
   function initCommutes() {
     for (var i = 0, len = userInfo.length; i < len; i++) {
       addCommute(i);
@@ -264,9 +255,17 @@ $(function(){
     currentCommuteIndex = idx;
     google.maps.event.addListener(coordinates.marker, 'click', function() {
       infowindow.open(map,coordinates.marker);
-      requestButtonText();
-      $('.request-button').attr("disabled", false);
+      resetRequestButton();
     });
+  }
+
+  function resetRequestButton(){
+    if (commuter==="driver"){
+      $('.request-button').text("Invite to Ride");
+    } else {
+      $('.request-button').text("Request a Ride");
+    }
+    $('.request-button').attr("disabled", false);
   }
 
   $("#map-canvas").on("click", ".request-button", function(){
