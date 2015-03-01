@@ -19,6 +19,7 @@ $(function(){
   var allMarkers = [];
   var commuteId;
   var searchRadius = 1000;
+  var initiator = $("#map-canvas").data("currentuser-id");
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -96,7 +97,6 @@ $(function(){
     addCircles(origin);
     addCircles(destination);
     showAllMarkers(user);
-    requestButtonText();
   }
 
   function removeCircles(){
@@ -250,6 +250,7 @@ $(function(){
 
   function createInfoWindow(idx,place) {
     var clickedCommuteInfo = userInfo[idx]['user_info'];
+    var coordinates = userInfo[idx][place];
     contentString = '<div>'+'Name: ' + clickedCommuteInfo['name'] +'<br>'+
                     'Email: ' + clickedCommuteInfo['email'] +'<br>'+
                     'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
@@ -261,16 +262,15 @@ $(function(){
       content: contentString
     });
     currentCommuteIndex = idx;
-    google.maps.event.addListener(commuteCoordinates.marker, 'click', function() {
-      infowindow.open(map,commuteCoordinates.marker);
+    google.maps.event.addListener(coordinates.marker, 'click', function() {
+      infowindow.open(map,coordinates.marker);
+      requestButtonText();
+      $('.request-button').attr("disabled", false);
     });
   }
 
   $("#map-canvas").on("click", ".request-button", function(){
-    var initiator = $("#map-canvas").data("currentuser-id");
     alert("click worked");
-    $('.request-button').attr("disabled", false);
-    requestButtonText();
     var params = {
       "initiator": initiator,
       "user": commuter,
