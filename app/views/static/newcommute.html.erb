@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container new-center">
 
   <h1>Create a new commute</h1>
 
@@ -23,11 +23,9 @@
 
 </div>
 
-<%= render 'requestform' %>
-
 <script type="text/javascript">
 
-$("#commutes-type-toggle").on("click", function(){
+$("#commutes-type-toggle").on("click", function(e){
   $("#new-passenger-container").toggleClass("hidden");
   $("#new-driver-container").toggleClass("hidden");
 })
