@@ -10,7 +10,6 @@ $(function(){
   var iconImg; //url for custom icon
   var userInfo; //response objects returned from polling our db
   var currentlyBouncing = null; //bounce animation tracker default to null
-  var contentString;
   var commute;
   var origin;
   var destination;
@@ -19,6 +18,7 @@ $(function(){
   var allMarkers = [];
   var commuteId;
   var searchRadius = 1000;
+  var allInfoWindows = [];
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -53,18 +53,6 @@ $(function(){
       zoom: 11
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    $(document.body).on("click", ".redraw", function(e){
-          var lat = this.getAttribute("data-lat");
-          var lng = this.getAttribute("data-lng");
-          var waypt = new google.maps.LatLng(lat, lng);
-          console.log(waypt);
-          waypoints.push({
-          location:waypt,
-            stopover:true
-          });
-          console.log(waypoints);
-          renderRoute();
-        });
   }
 
   function initDirections(){
@@ -118,6 +106,15 @@ $(function(){
     }
   }
 
+  function closeInfoWindow(){
+    if (allInfoWindows) {
+      for (var i=0; i < allInfoWindows.length; i++)
+      {
+        allInfoWindows[i].close();
+      }
+    }
+  }
+
   function getCoordinates(user) {
     if (user==="passenger") {
       var commuteInfo = document.getElementById('commute_passenger').value;
@@ -141,6 +138,7 @@ $(function(){
   }
 
   function renderRoute(){
+    console.log(waypoints);
     var request = {
         origin:origin,
         destination:destination,
@@ -153,6 +151,7 @@ $(function(){
         directionsDisplay.setDirections(response);
       }
     });
+    waypoints = [];
   }
 
   function addCircles(place){
@@ -242,21 +241,30 @@ $(function(){
   function createInfoWindow(idx,place) {
     var clickedCommuteInfo = userInfo[idx]['user_info'];
     var coordinates = userInfo[idx][place];
-    contentString = '<div>'+'Name: ' + clickedCommuteInfo['name'] +'<br>'+
+    var contentString = '<div>'+'Name: ' + clickedCommuteInfo['name'] +'<br>'+
                     'Email: ' + clickedCommuteInfo['email'] +'<br>'+
                     'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
                     '<a href="#">View Profile</a>'+'<br>'+
-                    '<button class="redraw" data-lat="' + userInfo[idx][place][0] + '" data-lng="' + userInfo[idx][place][1] +'">Redraw Route</button>' +
+                    '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
                     '<button class="request-button">Connect</button>'
                     '</div>';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
+    allInfoWindows.push(infowindow);
     currentCommuteIndex = idx;
     google.maps.event.addListener(coordinates.marker, 'click', function() {
+      closeInfoWindow();
       infowindow.open(map,coordinates.marker);
+      changePassengerView();
       resetRequestButton();
     });
+  }
+
+  function changePassengerView(){
+    if (commuter==="passenger") {
+      $('.redraw').hide();
+    }
   }
 
   function resetRequestButton(){
@@ -269,6 +277,7 @@ $(function(){
   }
 
   $("#map-canvas").on("click", ".request-button", function(){
+    var initiator = $("#map-canvas").data("currentuser-id");
     alert("click worked");
     var params = {
       "initiator": initiator,
@@ -282,6 +291,8 @@ $(function(){
       data: params,
       error: function(xhr,status,thrownError){
         console.log("it didnt save or work or something oh noes", thrownError);
+        $('.request-button').attr("disabled", true);
+        $('.request-button').text("Sent Request");
       },
       success: function(response){
         console.log(response);
@@ -291,4 +302,23 @@ $(function(){
     });
   });
 
+  $("#map-canvas").on("click", ".redraw", function(e){
+    closeInfoWindow();
+    var originLat = this.getAttribute("origin-data-lat");
+    var originLng = this.getAttribute("origin-data-lng");
+    var destinationLat = this.getAttribute("destination-data-lat");
+    var destinationLng = this.getAttribute("destination-data-lng");
+    var originWayPt = new google.maps.LatLng(originLat, originLng);
+    var destinationWayPt = new google.maps.LatLng(destinationLat, destinationLng);
+    pushWayPt(originWayPt);
+    pushWayPt(destinationWayPt);
+    renderRoute();
+  });
+
+  function pushWayPt(waypoint){
+    waypoints.push({
+    location:waypoint,
+      stopover:true
+    });
+  }
 });

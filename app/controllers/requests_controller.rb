@@ -12,10 +12,13 @@ class RequestsController < ApplicationController
     end
     @request.initiated_by_id = params["initiator"]
     @request.save
-    binding.pry
     render json: @request
   end
 
   def destroy
+  end
+
+  def index
+    @user = current_user
   end
 end
