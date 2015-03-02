@@ -19,16 +19,15 @@
 
 </head>
 <body>
+<div class="other-page-bg">
 
 <%= render 'layouts/header' %>
-<marquee>Ride Orbit</marquee>
-<div class="flash">
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, value) %>
-  <% end %>
-</div>
+
+<%= flash_messages %>
 
 <%= yield %>
 
+</div>
 </body>
+
 </html>

@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   def index
     @user = current_user
     @reviews = Review.all
-    @review = Review.new
   end
   
   def new
@@ -22,7 +21,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.where(id: params[:user_id])
+    @user = User.where(id: params[:user_id])
+    @reviews = Review.all
+    @review = Review.new
   end
 
   # helper method

@@ -1,4 +1,7 @@
-<h1>Place</h1>
+<% content_for :head_section do %>
+  <%= javascript_include_tag 'places', 'data-turbolinks-track' => true %>
+<% end %>
+
 <%= form_for @place, url: {action: 'create'} do |f| %>
 
   <div>
@@ -8,11 +11,14 @@
   <br>
   <div>
     <%= f.label "cross_street", "Cross Streets" %><br>
-    <%= text_field_tag :street1, nil, placeholder: "W Hastings...", class: "form-control cut" %> and <%= text_field_tag :street2, nil, placeholder: "Abbott...", class: "form-control cut" %>
+    <%= text_field_tag :street1, nil, placeholder: "W Hastings...", class: "form-control cut" %> <%= text_field_tag :street2, nil, placeholder: "Abbott...", class: "form-control cut" %>
     <% f.hidden_field :cross_street_point %>
   </div>
   <br>
-<%= f.submit "Submit", class: "btn btn-primary" %>
+<%= f.submit "Add to list", class: "btn btn-default btn-consistent  " %>      
+<%= button_to "Log in", new_session_path, method: "get", class: 'btn btn-default btn-consistent' %>
+
+<%= link_to "Make a Commute", newcommute_path %>
 <% end %>
 
 <!-- This is where all current_user's places will list. -->
