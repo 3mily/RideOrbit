@@ -1,9 +1,9 @@
-<h1>Map Page</h1>
-<h1>Hello, <%= @user.firstname %></h1>
-
 <% content_for :head_section do %>
   <%= javascript_include_tag 'map', 'data-turbolinks-track' => true %>
 <% end %>
+
+<h1>Map Page</h1>
+<h1>Hello, <%= @user.firstname %></h1>
 
 <label class="switch-light well" onclick="">
   <input type="checkbox" id="commutes-select-toggle">

@@ -63,16 +63,16 @@ body {
 .welcome-panel {
   border: none;
   padding: 20px;
-  margin-top: 20%;
+  margin-top: 15%;
   text-align: center;
-      h1 {
-      color: $blue-light-text;
-      font-size: 9em;
+    h1 {
+    color: $blue-light-text;
+    font-size: 9em;
+  }
+    h2 {
+      color: white;
+      font-size: 2.5em;
     }
-      h2 {
-        color: white;
-        font-size: 2.5em;
-      }
 }
 
 .panel {
