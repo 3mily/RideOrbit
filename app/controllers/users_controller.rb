@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
+    @reviews = Review.all
+    @review = Review.new
   end
   
   def new

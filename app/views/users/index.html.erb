@@ -15,6 +15,23 @@
   <p class="text-center"><b>Email:</b> <%= current_user.email %></p>
   <p class="text-center"><b>Phone:</b> <%=current_user.phone %></p>
 
+  <h3>Reviews</h3>
+  <% @reviews.each do |review| %>
+    <p><%= review.body %></p>
+    <p><%= review.rating %></p>
+  <% end %>
+
+  <h3>Leave a Review:</h3>
+  <%= form_for @review, url: reviews_path do |f| %>
+  <%= f.text_area :body, class: "form-control" %>
+  <br>
+  <p>Rating (out of 5):</p>
+  <%= f.select :rating, options_for_select([1,2,3,4,5]), {}, class: "form-control" %>
+  <br>
+  <br>
+  <%= f.submit "Create", class: "btn btn-primary" %>
+  <% end %>
+
 <% end %>
 </div>
 </div>
