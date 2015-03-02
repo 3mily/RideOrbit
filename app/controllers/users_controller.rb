@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
+    @reviews = Review.all
+    @review = Review.new
   end
   
   def new
@@ -19,6 +21,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    # @user = User.where(id: params[:user_id])
+  end
 
   # helper method
   def user_params
