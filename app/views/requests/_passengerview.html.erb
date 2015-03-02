@@ -1,0 +1,26 @@
+<div id="pending-drivers">
+  <p> Pending Drivers </p>
+  <% @user.passengercommutes.each_with_index do |commute,index| %>
+  <p> Commute Number : <%= index+1 %>
+   <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
+   Pending Invitations From Drivers: 
+   <% if commute.requests.empty? %>
+    None
+   <% else %>
+    <% commute.requests.each do |request|%>
+      <% if request.approved_at.nil? && request.rejected_at.nil? %>
+        <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
+        <button class="accept" data-driver-id="<%=request.initiated_by_id%>" data-request-id= "<%=request.id%>" data-passenger-id="<%=@user.id%>" data-passenger-commute-id="<%=request.passengercommute_id%>" data-driver-commute-id="<%=request.drivercommute_id%>">Accept</button>
+        <button class="decline">Decline</button>
+      <% else %>
+        None
+      <% end %>
+    <% end %> 
+   <% end %>
+  <% end %> 
+</div>
+
+
+<div id="confirmed-drivers">
+  <p> Confirmed Drivers </p>
+</div>

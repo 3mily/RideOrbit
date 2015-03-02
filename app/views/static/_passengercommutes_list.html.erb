@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <% if !@passenger_commutes%>
+    <h2>You have made no commutes as a Passenger!<br>
+      Please make one <%= link_to "here", newcommute_path %>.</h2>
+
+  <% else %>
+
+    <div class="row">
+      <% @passenger_commutes.each_with_index do |commute,index| %>
+        <div class="col-md-4">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= image_tag "icon-passenger.png" %>Commute No. <%= index += 1 %></h3>
+            </div>
+            <div class="panel-body">
+              <p><h4>From:<br></h4><%= commute.origin_name %></p>
+              <p> To: <%= commute.destination_name %> </p>
+              <p> Days of Commute: </p>
+              <% commute.days.each do |day| %>
+                <span class="display-day"><%= day %></span>
+              <% end %>    
+            <p> Arrival time: <%= commute.arrival_time %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

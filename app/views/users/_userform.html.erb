@@ -1,0 +1,56 @@
+<%= form_for @user, :html=>{:multipart => true} do |f| %>
+
+  <% if @user.errors.any? %>
+    <div>
+      <%= pluralize(@user.errors.count, "error") %> prevented this user from being created:
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label "firstname", "First Name" %><br>
+    <%= f.text_field "firstname", class:"form-control" %>
+  </div>
+  <div>
+    <%= f.label "lastname", "Last Name" %><br>
+    <%= f.text_field "lastname", class:"form-control" %>
+  </div>
+  <div>
+    <%= f.label "email", "Email" %><br>
+    <%= f.text_field "email", class:"form-control" %>
+  </div>
+  <div>
+    <%= f.label "phone", "Phone" %><br>
+    <%= f.text_field "phone", class:"form-control" %>
+  </div>
+  <div>
+    <%= f.label :picture, "Profile Picture" %><br>
+    <%= f.file_field :picture %> <br>
+  </div>
+
+  <div>
+    <%= f.label "industry", "Industry" %>
+    <br>
+    <%= f.select :industry, options_for_select(["agriculture","energy","entertainment","finance","government","health/medical","hospitality","marketing/communications","non-profit","publishing","science","technology","transportation"]) %>
+  </div>
+
+  <div>
+    <%= f.label "linkedin", "LinkedIn (optional)" %><br>
+    <%= f.text_field "linkedin", class:"form-control" %>
+  </div>
+  <div>
+    <%= f.label "password" %><br>
+    <%= f.password_field "password", class:"form-control" %>
+  </div>
+  <div>
+    <%= f.label "password_confirmation" %><br>
+    <%= f.password_field "password_confirmation", class:"form-control" %>
+  </div>
+  <br>
+  <div><%= f.submit "Submit", class: "btn btn-primary" %></div>
+  
+<% end %>

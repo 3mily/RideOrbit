@@ -1,0 +1,341 @@
+$orange-light1: #FFC553;
+$orange-light2: #FFB247;
+$orange-dark: #E5B66A;
+$blue-light-text: #6fffd5;
+$blue-light1: #5EEFC1;
+$blue-light2: #5ED4C1;
+$blue-dark: #00AAB0;
+$blue-darker: #040040;
+$grey-light: #eee;
+$grey-dark: #1f1f1f;
+
+
+
+$bg-color: #111;
+$navbar-color: #00BAFF;
+$button-active: #911;
+$button-inactive: #EFEFEF;
+$commutes-box-border: #fff;
+$commutes-box-bg: #ddd;
+$flash-bg: #ccc;
+
+body {
+  background-color: $bg-color;
+}
+
+//flash message
+.alert {
+    background-color: rgba(229, 182, 106, 0.2);
+    color: $orange-dark;
+    text-align: center; 
+    max-width: 600px;
+    margin: 0 auto;
+}
+.notice {
+    background-color: #eee;
+    color: #aaa;
+    text-align: center; 
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.orbit-nav {
+  padding: 5px;
+  border: none;
+  border-radius: 0;
+  li {
+    margin-top: 15px;
+    font-size: 1.2em;
+  }
+}
+
+.landing-page-bg {
+  background: url('bg.jpg') no-repeat center center fixed;
+  height: 1020px;
+  margin-top: -20px;
+}
+.other-page-bg {
+  background: url('bg2.jpg') no-repeat center center fixed;
+  height: 1020px;
+  margin-top: -10px;
+}
+
+.welcome-panel {
+  border: none;
+  padding: 20px;
+  margin-top: 15%;
+  text-align: center;
+    h1 {
+    color: $blue-light-text;
+    font-size: 9em;
+  }
+    h2 {
+      color: white;
+      font-size: 2.5em;
+    }
+}
+
+.panel {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-consistent {
+  width: 200px;
+}
+
+.btn-primary {
+  background-color: $blue-dark;
+  border: none;
+}
+
+// 3mily's face
+.dropdown-img{
+    border-radius:100%;
+    max-height: 50px;
+}
+.prof-pic {
+  border-radius: 100%;
+}
+
+.cut {
+  max-width: 48%;
+  display: inline-block;
+}
+
+.container.new-center {
+  margin: 0 auto;
+  max-width: 600px;
+  h1 {
+    color: #222;
+  }
+}
+.container.list-center {
+  margin: 0 auto;
+}
+.container h1 {
+  text-align: center;
+}
+
+.prof-pic {
+  border-radius: 100%;
+}
+
+// flash message
+.flash {
+  background-color: $flash-bg;
+  padding: 10px;
+  margin: 10px
+}
+
+//default button
+.btn.btn-default {
+  background-color: $blue-dark;
+  color: #fff;
+  padding: 10px 20px;
+  float: right;
+}
+
+.panel-body > div {
+  margin: 10px 0 5px 0;
+}
+
+//commute list container for passengers
+.panel-warning {
+  border-color: #fff;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+}
+.panel-warning>.panel-heading {
+  padding-left: 20px;
+  color: #fff;
+  background-color: $orange-light2; //fallback color
+  background-image: -moz-linear-gradient(top, $orange-light1, $orange-light2);
+  background-image: -ms-linear-gradient(top, $orange-light1, $orange-light2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($orange-light1), to($orange-light2));
+  background-image: -webkit-linear-gradient(top, $orange-light1, $orange-light2);
+  background-image: -o-linear-gradient(top, $orange-light1, $orange-light2);
+  background-image: linear-gradient(top, $orange-light1, $orange-light2);
+  background-repeat: repeat-x;
+  border-color: $orange-light1;
+}
+
+
+//commute list container for drivers
+.panel-primary {
+  border-color: #fff;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+}
+.panel-primary>.panel-heading {
+  padding-left: 20px;
+  color: #fff;
+  background-color: $blue-light2; //fallback color
+  background-image: -moz-linear-gradient(top, $blue-light1, $blue-light2);
+  background-image: -ms-linear-gradient(top, $blue-light1, $blue-light2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($blue-light1), to($blue-light2));
+  background-image: -webkit-linear-gradient(top, $blue-light1, $blue-light2);
+  background-image: -o-linear-gradient(top, $blue-light1, $blue-light2);
+  background-image: linear-gradient(top, $blue-light1, $blue-light2);
+  background-repeat: repeat-x;
+  border-color: $blue-light1;
+}
+
+//default panel gradient
+.panel-default>.panel-heading {
+  padding-left: 20px;
+  color: #222;
+  background-color: $orange-dark;
+  border-color: $orange-dark;
+}
+
+
+// google maps 
+#map-canvas {
+ height: 400px;
+ width: 75%;
+ border-radius: 10px;
+ margin-top: 10px;
+}
+
+
+// button-like check boxes for the days of week
+.day {
+  background-color: $button-inactive;
+  overflow:auto;
+  display: inline-block;
+  margin: -2px;
+  -webkit-user-select: none;
+    span {
+      text-align:center;
+      padding: 2px 5px;
+      display: inline-block;
+      width: 40px
+    }
+    input {
+      position:absolute;
+      top:-20px;
+      width: 40px
+    }
+  input:checked + span {
+    background-color: $button-active;
+    color:white;
+  }
+}
+
+ #map-canvas {
+   height: 400px;
+   width: 75%;
+   border-radius: 10px;
+   margin-top: 10px;
+   float: left;
+ }
+
+ #directions-panel {
+  float: right;
+  width: 230px;
+  max-height: 400px;
+ }
+
+.display-day {
+  background-color: $button-active;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 4px;
+  width: 40px
+}
+
+// form containers
+#new-passenger-container {
+  padding: 5px;
+  margin: 10px;
+  max-width: 600px;
+}
+
+#new-driver-container {
+  padding: 5px;
+  margin: 10px;
+  max-width: 600px;
+}
+
+.hidden {
+  display: none;
+}
+
+// SWITCH-BAR refactor later please.
+@media only screen {
+  .switch-light-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .switch-light {
+    display: block;
+    min-height: 1.875em;
+    position: relative;
+    overflow: visible;
+    padding: 0;
+    box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;}
+  .switch-light a {
+    display: block;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out; }
+  .switch-light label, .switch-light > span {
+    line-height: 1.875em;
+    vertical-align: middle; }
+  .switch-light input:focus ~ a, .switch-light input:focus + label {
+    outline: 1px dotted #888; }
+  .switch-light label {
+    position: relative;
+    z-index: 3;
+    display: block;
+    width: 100%; }
+  .switch-light input {
+    position: absolute;
+    opacity: 0;
+    z-index: 5; }
+    .switch-light input:checked ~ a {
+      right: 0%; }
+  .switch-light > span {
+    position: absolute;
+    left: -6.25em;
+    width: 100%;
+    margin: 0;
+    padding-right: 6.25em;
+    text-align: left; }
+  .switch-light > span span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: block;
+    width: 50%;
+    margin-left: 6.25em;
+    text-align: center; }
+    .switch-light > span span:last-child {
+      left: 50%; }
+  .switch-light a {
+    position: absolute;
+    right: 50%;
+    top: 0;
+    z-index: 4;
+    display: block;
+    width: 50%;
+    height: 100%;
+    padding: 0; 
+  }
+}
+
+
+//gradient
+.orbit-nav {
+  background-color: #444; //fallback color
+  background-image: -moz-linear-gradient(top, #555, #444);
+  background-image: -ms-linear-gradient(top, #555, #444);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#555), to(#444));
+  background-image: -webkit-linear-gradient(top, #555, #444);
+  background-image: -o-linear-gradient(top, #555, #444);
+  background-image: linear-gradient(top, #555, #444);
+  background-repeat: repeat-x;
+}
+

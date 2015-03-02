@@ -1,0 +1,31 @@
+<div class="container">
+  <% if !@driver_commutes%>
+    <h2>You have made no commutes as a Driver!<br>
+      Please make one <%= link_to "here", newcommute_path %>.</h2>
+
+  <% else %>
+
+    <div class="row">
+      <% @driver_commutes.each_with_index do |commute,index| %>
+        <div class="col-md-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= image_tag "icon-driver.png" %>
+              Commute No. <%= index += 1 %></h3>
+            </div>
+            <div class="panel-body">
+              <p> Car Type : <%= commute.car_type%> </p>
+              <p> From : <%= commute.origin_name %> </p>
+              <p> To: <%= commute.destination_name %> </p>
+              <p> Days of Commute: </p>
+              <% commute.days.each do |day| %>
+                <span class="display-day"><%= day %></span>
+              <% end %> 
+              <p> Arrival time: <%= commute.arrival_time %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

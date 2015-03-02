@@ -1,0 +1,29 @@
+<% content_for :head_section do %>
+  <%= javascript_include_tag 'map', 'data-turbolinks-track' => true %>
+<% end %>
+
+<h1>Map Page</h1>
+<h1>Hello, <%= @user.firstname %></h1>
+
+<label class="switch-light well" onclick="">
+  <input type="checkbox" id="commutes-select-toggle">
+  <span>
+    <span>Passenger</span>
+    <span>Driver</span>
+  </span>
+  <a class="btn btn-primary"></a>
+</label>
+
+<div id="passenger-commute-select">
+  <%= render 'passengerselect' %>
+</div>
+<div id="driver-commute-select" style="display:none">
+  <%= render 'driverselect' %>
+</div>
+<br>
+<div>
+  <label for="search_radius">Radius in kilometres</label>
+  <input type="text" id="search_radius" name="search_radius" class="form-control cut">
+</div>
+<div id="directions-panel"></div>
+<div id="map-canvas" data-drivercommutes="<%= @user.drivercommutes.to_json %>" data-passengercommutes="<%= @user.passengercommutes.to_json %>" data-currentuser-id="<%= @user.id%>"></div>
