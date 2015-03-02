@@ -8,9 +8,10 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      flash.now[:alert] = "Hello, " + user.firstname + "!"
       redirect_to root_path
     else
-      flash.now[:alert] = "Log in failed :("
+      flash.now[:notice] = "Log in failed :("
       render :new
     end
     # user = User.first
@@ -22,6 +23,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     # render nothing: true, status: 204
-    redirect_to root_path, notice: "Tsuus!"
+    redirect_to root_path, alert: "Bye for now!"
   end
 end

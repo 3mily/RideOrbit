@@ -1,12 +1,5 @@
 <h1>Map Page</h1>
 <h1>Hello, <%= @user.firstname %></h1>
-<!-- 
-<div class="input-control switch">
-    <label>
-        <input type="checkbox" />
-        <span class="check"></span>
-    </label>
-</div> -->
 
 <% content_for :head_section do %>
   <%= javascript_include_tag 'map', 'data-turbolinks-track' => true %>
