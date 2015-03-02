@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :drivercommutes, only: [:create, :destroy]
-  resources :passengercommutes, only: [:create, :destroy]
+  resources :drivercommutes, only: [:create, :destroy, :update]
+  resources :passengercommutes, only: [:create, :destroy, :update]
   resources :places, only: [:create, :destroy, :show, :index]
   resource :reviews, only: [:create, :destroy, :show]
   resources :requests, only: [:create, :destroy, :index, :update]

@@ -17,7 +17,10 @@ class PassengercommutesController < ApplicationController
   def destroy
   end
 
-
+  def update
+    # binding.pry
+    render json: params
+  end
 
 
 

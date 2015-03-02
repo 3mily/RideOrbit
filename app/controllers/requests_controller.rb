@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
   end
 
   def update
-    
+    render json: params
   end
 
   def index

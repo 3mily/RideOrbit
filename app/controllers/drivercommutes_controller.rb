@@ -17,6 +17,10 @@ class DrivercommutesController < ApplicationController
   def destroy
   end
 
+  def update
+    render json: params
+  end
+
   #helper methods
   def driver_commute_params
     params.require(:drivercommute).permit(
