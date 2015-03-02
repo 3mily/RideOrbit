@@ -18,7 +18,10 @@ class DrivercommutesController < ApplicationController
   end
 
   def update
-    render json: params
+    @driver_commute_update = Drivercommute.find(params["drivercommute_id"])
+    @driver_commute_update.passenger = params["passenger_id"]
+    @driver_commute_update.save
+    render json: @driver_commute_update
   end
 
   #helper methods

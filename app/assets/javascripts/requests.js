@@ -12,15 +12,14 @@ $(function(){
     var passengerId = $(".accept").data("passenger-id");
     var passengercommuteId = $(".accept").data("passenger-commute-id");
     var drivercommuteId = $(".accept").data("driver-commute-id")
-    console.log(driverId);
-    params = {
+    var params = {
       "request_id": requestId,
       "drivercommute_id": drivercommuteId,
       "passengercommute_id": passengercommuteId,
       "driver_id": driverId,
-      "passenger_id": passengerId
+      "passenger_id": passengerId,
+      "status": "accept"
     }
-    console.log(params);
     updateRequest(params);
     updateDriverCommute(params);
     updatePassengerCommute(params);
@@ -35,7 +34,7 @@ $(function(){
         console.log("it didnt save or work or something oh noes", thrownError);
       },
       success: function(response){
-        console.log($(".accept").data("driver-id"));
+        console.log("success requestupdate")
       }
     });
   }
@@ -49,7 +48,7 @@ $(function(){
         console.log("it didnt save or work or something oh noes", thrownError);
       },
       success: function(response){
-        console.log($(".accept").data("driver-id"));
+        console.log("success drivercommuteupdate")
       }
     });
   }
@@ -63,14 +62,42 @@ $(function(){
         console.log("it didnt save or work or something oh noes", thrownError);
       },
       success: function(response){
-        console.log($(".accept").data("driver-id"));
+        console.log("success passengerupdate")
       }
     });    
   }
 
   $(".decline").on("click",function(){
     alert("hi decline");
-    console.log($(".decline").data("driver-id"));
+    var driverId = $(".accept").data("driver-id");
+    var requestId = $(".accept").data("request-id");
+    var passengerId = $(".accept").data("passenger-id");
+    var passengercommuteId = $(".accept").data("passenger-commute-id");
+    var drivercommuteId = $(".accept").data("driver-commute-id")
+    params = {
+      "request_id": requestId,
+      "drivercommute_id": drivercommuteId,
+      "passengercommute_id": passengercommuteId,
+      "driver_id": driverId,
+      "passenger_id": passengerId,
+      "status": nil
+    }
+    declineRequest(params);
   });
+
+  function declineRequest(params){
+    params["status"]="decline"
+    $.ajax({
+      url: "/requests/"+params["request_id"],
+      type: "PATCH",
+      data: params,
+      error: function(xhr,status,thrownError){
+        console.log("didn't decline", thrownError)
+      },
+      success: function(response){
+        console.log("decline success")
+      }
+    });
+  }
 
 })

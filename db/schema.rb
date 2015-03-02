@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(version: 20150302064935) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "industry"
-    t.text     "bio"
   end
 
 end
