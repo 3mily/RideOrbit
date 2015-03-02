@@ -1,3 +1,6 @@
+<% content_for :head_section do %>
+  <%= javascript_include_tag 'commuteslist', 'data-turbolinks-track' => true %>
+<% end %>
 <div class="container list-center">
 
   <h1>Current Commutes</h1>
@@ -24,16 +27,3 @@
 
 </div>
 
-
-
-
-
-<script type="text/javascript">
-
-$("#commutes-type-toggle").on("click", function(){
-  $("#passengers-commutes-list").toggleClass("hidden");
-  $("#drivers-commutes-list").toggleClass("hidden");
-})
-
-
-</script>
