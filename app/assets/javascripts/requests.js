@@ -12,7 +12,7 @@ $(function(){
     var passengerId = $(".accept").data("passenger-id");
     var passengercommuteId = $(".accept").data("passenger-commute-id");
     var drivercommuteId = $(".accept").data("driver-commute-id")
-    var params = {
+    params = {
       "request_id": requestId,
       "drivercommute_id": drivercommuteId,
       "passengercommute_id": passengercommuteId,
@@ -20,12 +20,12 @@ $(function(){
       "passenger_id": passengerId,
       "status": "accept"
     }
-    updateRequest(params);
-    updateDriverCommute(params);
-    updatePassengerCommute(params);
+    updateRequest();
+    updateDriverCommute();
+    updatePassengerCommute();
   });
 
-  function updateRequest(params){
+  function updateRequest(){
     $.ajax({
       url: "/requests/"+params["request_id"],
       type: "PATCH",
@@ -39,7 +39,7 @@ $(function(){
     });
   }
 
-  function updateDriverCommute(params){
+  function updateDriverCommute(){
     $.ajax({
       url: "/drivercommutes/"+params["drivercommute_id"],
       type: "PATCH",
@@ -53,7 +53,7 @@ $(function(){
     });
   }
 
-  function updatePassengerCommute(params){
+  function updatePassengerCommute(){
     $.ajax({
       url: "/passengercommutes/"+params["passengercommute_id"],
       type: "PATCH",
@@ -69,24 +69,11 @@ $(function(){
 
   $(".decline").on("click",function(){
     alert("hi decline");
-    var driverId = $(".accept").data("driver-id");
-    var requestId = $(".accept").data("request-id");
-    var passengerId = $(".accept").data("passenger-id");
-    var passengercommuteId = $(".accept").data("passenger-commute-id");
-    var drivercommuteId = $(".accept").data("driver-commute-id")
-    params = {
-      "request_id": requestId,
-      "drivercommute_id": drivercommuteId,
-      "passengercommute_id": passengercommuteId,
-      "driver_id": driverId,
-      "passenger_id": passengerId,
-      "status": nil
-    }
-    declineRequest(params);
+    params["status"]="decline";
+    declineRequest();
   });
 
-  function declineRequest(params){
-    params["status"]="decline"
+  function declineRequest(){
     $.ajax({
       url: "/requests/"+params["request_id"],
       type: "PATCH",
