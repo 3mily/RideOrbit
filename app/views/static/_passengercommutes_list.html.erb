@@ -21,7 +21,9 @@
               <% end %>    
             <p> Arrival time: <%= commute.arrival_time %></p>
                 <div>
-                  <button class="connected">Connected</button>
+                <% if commute.driver %>
+                  <button class="connected"><%= link_to "Connected", "/users/#{commute.driver}" %></button>
+                <% end %>
               </div>
             </div>
           </div>
