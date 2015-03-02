@@ -2,13 +2,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12 col-md-offset-1 welcome-panel panel-default">
+      <div class="col-md-12 welcome-panel panel-default">
   <p><h1>Make connections.<br></p>
   <p><h2>Meet professionals on your way to work.</h2></p><br>
 
   <% if current_user %>
 
-    <%= button_to "Make a commute", newcommute_path, method: "get", class: 'btn btn-warning btn-lg' %>
+    <%= button_to "Begin your commute", newcommute_path, method: "get", class: 'btn btn-warning btn-lg' %>
 
   <% else %>
 
