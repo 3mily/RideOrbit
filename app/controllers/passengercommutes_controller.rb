@@ -17,7 +17,13 @@ class PassengercommutesController < ApplicationController
   def destroy
   end
 
-
+  def update
+    @passenger_commute_update = Passengercommute.find(params["passengercommute_id"])
+    @passenger_commute_update.drivercommute_id = params["drivercommute_id"]
+    @passenger_commute_update.driver = params["driver_id"]
+    @passenger_commute_update.save
+    render json: @passenger_commute_update
+  end
 
 
 
