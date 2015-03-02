@@ -8,6 +8,6 @@ class Request < ActiveRecord::Base
 # user.requests.each do request
 #   if request.approved_by_id.nil?
 #   end
-end
+
 
 end

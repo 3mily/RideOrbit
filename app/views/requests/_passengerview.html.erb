@@ -1,6 +1,19 @@
 <div id="pending-drivers">
   <p> Pending Drivers </p>
-
+  <% @user.passengercommutes.each do |commute| %>
+   <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
+   Pending Invitations From Drivers: 
+   <% if commute.requests.empty? %>
+    None
+   <% else %>
+    <% commute.requests.each do |request|%>
+    <% binding.pry%>
+      <% if request.approved_at.nil? && request.rejected_at.nil? %>
+        <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
+      <% end %>
+    <% end %> 
+   <% end %>
+  <% end %> 
 </div>
 
 
