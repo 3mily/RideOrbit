@@ -22,6 +22,11 @@
                 <span class="display-day"><%= day %></span>
               <% end %> 
               <p> Arrival time: <%= commute.arrival_time %></p>
+                <div>
+                <% if commute.passenger %>
+                  <button class="connected"><%= link_to "Connected", "/users/#{commute.passenger}" %></button>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

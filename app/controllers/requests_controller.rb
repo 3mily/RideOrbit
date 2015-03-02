@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
     else
       @update_request.rejected_at = Time.now
     end
-    # @update_request.save
+    @update_request.save
     render json: @update_request
   end
 
