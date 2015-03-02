@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @reviews = Review.all
+    @users = User.all
+    @reviews = Review.where(reviewee_id: current_user.id)
   end
   
   def new
@@ -21,9 +22,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.where(id: params[:user_id])
-    @reviews = Review.all
+    @user = User.where(id: params[:id]).first
+    @users = User.all
     @review = Review.new
+    @reviews = Review.where(reviewee_id: params[:id])
   end
 
   # helper method

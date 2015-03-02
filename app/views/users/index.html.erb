@@ -22,8 +22,10 @@
     <p>None yet.</p>
   <% else %>  
   <% @reviews.each do |review| %>
-    <p><%= review.body %></p>
-    <p><%= review.rating %></p>
+    <p><b>Reviewer: </b><%= @users.where(id: review.reviewer_id).first.firstname %>
+    <p><b>Content: </b><%= review.body %></p>
+    <p> <b>Rating: </b><%= review.rating %></p>
+    <hr>
   <% end %>
   <% end %>
 

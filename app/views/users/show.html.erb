@@ -8,18 +8,24 @@
   </div>
 
 <% else %> 
-  <img class="center-block prof-pic" src="<%=current_user.picture %>">
+  <img class="center-block prof-pic" src="<%= @user.picture %>">
   <br>
-  <p class="text-center"><b>Name:</b> <%= current_user.firstname %> <%=current_user.lastname %></p>
-  <p class="text-center"><b>Email:</b> <%= current_user.email %></p>
-  <p class="text-center"><b>Phone:</b> <%=current_user.phone %></p>
-  <p class="text-center"><b>Bio:</b> <%=current_user.bio %></p>
+  <p class="text-center"><b>Name:</b> <%= @user.firstname %> <%=@user.lastname %></p>
+  <p class="text-center"><b>Email:</b> <%= @user.email %></p>
+  <p class="text-center"><b>Phone:</b> <%= @user.phone %></p>
+  <p class="text-center"><b>Bio:</b> <%= @user.bio %></p>
 
 
   <h3>Reviews</h3>
-  <% @reviews.each do |review| %>
-    <p><%= review.body %></p>
-    <p><%= review.rating %></p>
+  <% if @reviews.empty? %>
+    <p>None yet.</p>
+  <% else %> 
+    <% @reviews.each do |review| %>
+      <p><b>Reviewer: </b><%= @users.where(id: review.reviewer_id).first.firstname %></p>
+      <p><b>Content: </b><%= review.body %></p>
+      <p><b>Rating: </b><%= review.rating %>/5</p>
+      <hr>
+    <% end %>
   <% end %>
 
   <h3>Leave a Review:</h3>
@@ -29,6 +35,8 @@
   <p>Rating (out of 5):</p>
   <%= f.select :rating, options_for_select([1,2,3,4,5]), {}, class: "form-control" %>
   <br>
+  <%= f.hidden_field :reviewee_id, :value => params[:id]%>
+  <%= f.hidden_field :reviewer_id, :value => current_user.id %>
   <br>
   <%= f.submit "Create", class: "btn btn-primary" %>
   <% end %>
