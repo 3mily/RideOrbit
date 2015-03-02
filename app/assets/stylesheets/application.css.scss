@@ -1,16 +1,17 @@
-$orange-dark1: #FF7A3D;
-$orange-dark2: #FF7028;
-$orange-light: #E5B66A;
-$blue-light1: #00B0BF;
-$blue-light2: #0099a6;
-$blue-dark: #00467F;
+$orange-light1: #FFC553;
+$orange-light2: #FFB247;
+$orange-dark: #E5B66A;
+$blue-light-text: #6fffd5;
+$blue-light1: #5EEFC1;
+$blue-light2: #5ED4C1;
+$blue-dark: #00AAB0;
 $blue-darker: #040040;
 $grey-light: #eee;
 $grey-dark: #1f1f1f;
 
 
 
-$bg-color: #fff;
+$bg-color: #111;
 $navbar-color: #00BAFF;
 $button-active: #911;
 $button-inactive: #EFEFEF;
@@ -20,14 +21,80 @@ $flash-bg: #ccc;
 
 body {
   background-color: $bg-color;
+}
+
+//flash message
+.alert {
+    background-color: rgba(229, 182, 106, 0.2);
+    color: $orange-dark;
+    text-align: center; 
+    max-width: 600px;
+    margin: 0 auto;
+}
+.notice {
+    background-color: #eee;
+    color: #aaa;
+    text-align: center; 
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.orbit-nav {
   padding: 5px;
-  margin: 10px;
+  border: none;
+  border-radius: 0;
+  li {
+    margin-top: 15px;
+    font-size: 1.2em;
+  }
+}
+
+.landing-page-bg {
+  background: url('bg.jpg') no-repeat center center fixed;
+  height: 1020px;
+  margin-top: -20px;
+}
+.other-page-bg {
+  background: url('bg2.jpg') no-repeat center center fixed;
+  height: 1020px;
+  margin-top: -10px;
+}
+
+.welcome-panel {
+  border: none;
+  padding: 20px;
+  margin-top: 20%;
+  text-align: center;
+      h1 {
+      color: $blue-light-text;
+      font-size: 9em;
+    }
+      h2 {
+        color: white;
+        font-size: 2.5em;
+      }
+}
+
+.panel {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-consistent {
+  width: 200px;
+}
+
+.btn-primary {
+  background-color: $blue-dark;
+  border: none;
 }
 
 // 3mily's face
 .dropdown-img{
     border-radius:100%;
     max-height: 50px;
+}
+.prof-pic {
+  border-radius: 100%;
 }
 
 .cut {
@@ -38,6 +105,9 @@ body {
 .container.new-center {
   margin: 0 auto;
   max-width: 600px;
+  h1 {
+    color: #222;
+  }
 }
 .container.list-center {
   margin: 0 auto;
@@ -72,27 +142,27 @@ body {
 //commute list container for passengers
 .panel-warning {
   border-color: #fff;
-  box-shadow: 4px 4px 10px #aaa;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
 }
 .panel-warning>.panel-heading {
   padding-left: 20px;
   color: #fff;
-  background-color: $orange-dark2; //fallback color
-  background-image: -moz-linear-gradient(top, $orange-dark1, $orange-dark2);
-  background-image: -ms-linear-gradient(top, $orange-dark1, $orange-dark2);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($orange-dark1), to($orange-dark2));
-  background-image: -webkit-linear-gradient(top, $orange-dark1, $orange-dark2);
-  background-image: -o-linear-gradient(top, $orange-dark1, $orange-dark2);
-  background-image: linear-gradient(top, $orange-dark1, $orange-dark2);
+  background-color: $orange-light2; //fallback color
+  background-image: -moz-linear-gradient(top, $orange-light1, $orange-light2);
+  background-image: -ms-linear-gradient(top, $orange-light1, $orange-light2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($orange-light1), to($orange-light2));
+  background-image: -webkit-linear-gradient(top, $orange-light1, $orange-light2);
+  background-image: -o-linear-gradient(top, $orange-light1, $orange-light2);
+  background-image: linear-gradient(top, $orange-light1, $orange-light2);
   background-repeat: repeat-x;
-  border-color: $orange-dark1;
+  border-color: $orange-light1;
 }
 
 
 //commute list container for drivers
 .panel-primary {
   border-color: #fff;
-  box-shadow: 4px 4px 10px #aaa;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
 }
 .panel-primary>.panel-heading {
   padding-left: 20px;
@@ -106,6 +176,14 @@ body {
   background-image: linear-gradient(top, $blue-light1, $blue-light2);
   background-repeat: repeat-x;
   border-color: $blue-light1;
+}
+
+//default panel gradient
+.panel-default>.panel-heading {
+  padding-left: 20px;
+  color: #222;
+  background-color: $orange-dark;
+  border-color: $orange-dark;
 }
 
 
