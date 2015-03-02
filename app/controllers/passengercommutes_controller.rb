@@ -15,14 +15,14 @@ class PassengercommutesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @destroy = Passengercommute.find(params["id"]).destroy
     @response = {
       "status": 200,
       "message": "successfully deleted",
       "commute_id": params["id"]
     }
-    render json: @response
+    # render json: @response
+    redirect_to commuteslist_path
   end
 
   def update
