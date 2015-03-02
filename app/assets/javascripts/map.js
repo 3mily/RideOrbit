@@ -10,7 +10,6 @@ $(function(){
   var iconImg; //url for custom icon
   var userInfo; //response objects returned from polling our db
   var currentlyBouncing = null; //bounce animation tracker default to null
-  var contentString;
   var commute;
   var origin;
   var destination;
@@ -242,7 +241,7 @@ $(function(){
   function createInfoWindow(idx,place) {
     var clickedCommuteInfo = userInfo[idx]['user_info'];
     var coordinates = userInfo[idx][place];
-    contentString = '<div>'+'Name: ' + clickedCommuteInfo['name'] +'<br>'+
+    var contentString = '<div>'+'Name: ' + clickedCommuteInfo['name'] +'<br>'+
                     'Email: ' + clickedCommuteInfo['email'] +'<br>'+
                     'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
                     '<a href="#">View Profile</a>'+'<br>'+
@@ -257,8 +256,15 @@ $(function(){
     google.maps.event.addListener(coordinates.marker, 'click', function() {
       closeInfoWindow();
       infowindow.open(map,coordinates.marker);
+      changePassengerView();
       resetRequestButton();
     });
+  }
+
+  function changePassengerView(){
+    if (commuter==="passenger") {
+      $('.redraw').hide();
+    }
   }
 
   function resetRequestButton(){
