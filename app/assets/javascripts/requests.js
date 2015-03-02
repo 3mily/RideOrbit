@@ -10,7 +10,7 @@ $(function(){
     var initiator = $(".accept").data("initiator");
     console.log(initiator);
 
-    var params {
+    var params = {
       "initiator": initiator
     }
 

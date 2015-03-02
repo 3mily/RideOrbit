@@ -1,6 +1,7 @@
 <div id="pending-drivers">
   <p> Pending Drivers </p>
-  <% @user.passengercommutes.each do |commute| %>
+  <% @user.passengercommutes.each_with_index do |commute,index| %>
+  <p> Commute Number : <%= index+1 %>
    <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
    Pending Invitations From Drivers: 
    <% if commute.requests.empty? %>

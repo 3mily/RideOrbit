@@ -18,6 +18,10 @@ class RequestsController < ApplicationController
   def destroy
   end
 
+  def update
+    
+  end
+
   def index
     @user = current_user
   end
