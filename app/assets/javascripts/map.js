@@ -244,7 +244,7 @@ $(function(){
     var contentString = '<div>'+'Name: ' + clickedCommuteInfo['name'] +'<br>'+
                     'Email: ' + clickedCommuteInfo['email'] +'<br>'+
                     'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
-                    '<a href="#">View Profile</a>'+'<br>'+
+                    '<a href="/users/'+ userInfo[0].id +'">View Profile</a>' + '<br>'+
                     '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
                     '<button class="request-button">Connect</button>'
                     '</div>';
