@@ -1,5 +1,21 @@
-<% if current_user %>
-  <h1>Hello, <%= current_user.firstname %>!</h1>
-<% else %>
-  <%= link_to "Sign Up", new_user_path %>
-<% end %>
+<div class="landing-page-bg">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-5 welcome-panel panel-default">
+  <p><h1>The less you burn<BR>the more you earn.</h1></p>
+  <p><h2>Start building your network today.</h2></p>
+
+  <% if current_user %>
+
+    <%= button_to "Make a commute", newcommute_path, method: "get", class: 'btn btn-warning btn-lg' %>
+
+  <% else %>
+
+      <%= button_to "Sign up", new_user_path, method: "get", class: 'btn btn-warning btn-lg btn-consistent' %> 
+      <%= button_to "Log in", new_session_path, method: "get", class: 'btn btn-primary btn-lg btn-consistent' %>
+
+  <% end %>
+
+  </div>
+</div>

@@ -20,14 +20,44 @@ $flash-bg: #ccc;
 
 body {
   background-color: $bg-color;
-  padding: 5px;
-  margin: 10px;
+}
+
+.landing-page-bg {
+  background: url('bg.jpg') no-repeat center center fixed;
+  height: 1020px;
+}
+.other-page-bg {
+  background: url('bg2.jpg') no-repeat center center fixed;
+  height: 1020px;
+}
+
+.welcome-panel {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  padding: 20px;
+  margin-top: 100px;
+  text-align: center;
+      h1 {
+      color: $blue-light1;
+      font-size: 5em;
+    }
+}
+
+.panel {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-consistent {
+  width: 100px;
 }
 
 // 3mily's face
 .dropdown-img{
     border-radius:100%;
     max-height: 50px;
+}
+.prof-pic {
+  border-radius: 100%;
 }
 
 .cut {
@@ -44,14 +74,6 @@ body {
 }
 .container h1 {
   text-align: center;
-}
-
-
-// flash message
-.flash {
-  background-color: $flash-bg;
-  padding: 10px;
-  margin: 10px
 }
 
 //default button
@@ -103,6 +125,14 @@ body {
   background-image: linear-gradient(top, $blue-light1, $blue-light2);
   background-repeat: repeat-x;
   border-color: $blue-light1;
+}
+
+//default panel gradient
+.panel-default>.panel-heading {
+  padding-left: 20px;
+  color: #222;
+  background-color: $orange-light;
+  border-color: $orange-light;
 }
 
 

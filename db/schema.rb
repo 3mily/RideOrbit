@@ -62,7 +62,8 @@ ActiveRecord::Schema.define(version: 20150228200217) do
   add_index "places", ["user_id"], name: "index_places_on_user_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "commute_id"
+    t.integer  "drivercommute_id"
+    t.integer  "passengercommute_id"
     t.datetime "approved_at"
     t.datetime "rejected_at"
     t.integer  "initiated_by_id"
@@ -72,10 +73,12 @@ ActiveRecord::Schema.define(version: 20150228200217) do
     t.datetime "updated_at"
   end
 
-  add_index "requests", ["commute_id"], name: "index_requests_on_commute_id", using: :btree
+  add_index "requests", ["drivercommute_id"], name: "index_requests_on_drivercommute_id", using: :btree
+  add_index "requests", ["passengercommute_id"], name: "index_requests_on_passengercommute_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "drivercommute_id"
+    t.integer  "passengercommute_id"
     t.integer  "reviewee_id"
     t.integer  "reviewer_id"
     t.integer  "rating"
@@ -85,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150228200217) do
   end
 
   add_index "reviews", ["drivercommute_id"], name: "index_reviews_on_drivercommute_id", using: :btree
+  add_index "reviews", ["passengercommute_id"], name: "index_reviews_on_passengercommute_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname"
