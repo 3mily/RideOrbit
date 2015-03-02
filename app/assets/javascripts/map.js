@@ -279,12 +279,19 @@ $(function(){
   $("#map-canvas").on("click", ".request-button", function(){
     var initiator = $("#map-canvas").data("currentuser-id");
     alert("click worked");
-    var params = {
+    params = {
+      "text_type": "request",
       "initiator": initiator,
       "user": commuter,
       "user_commute_id": commuteId,
-      "requested_commute_id": userInfo[currentCommuteIndex]['id']
-    };
+      "requested_commute_id": userInfo[currentCommuteIndex]['id'],
+      "request_receiver": userInfo[currentCommuteIndex]['user_info']
+    }
+    makeRequest();
+    sendRequestText();
+  });
+
+  function makeRequest(){
     $.ajax({
       url: "/requests",
       type: "POST",
@@ -300,7 +307,21 @@ $(function(){
         $('.request-button').text("Sent Request");
       }
     });
-  });
+  }
+
+  function sendRequestText(){
+    $.ajax({
+      url: "/twilio",
+      type: "POST",
+      data: params,
+      error: function(xhr,status,thrownError){
+        console.log("it didnt save or work or something oh noes", thrownError);
+      },
+      success: function(response){
+        console.log("success - twilio text send")
+      }
+    });
+  }
 
   $("#map-canvas").on("click", ".redraw", function(e){
     closeInfoWindow();

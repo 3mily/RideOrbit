@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :places, only: [:create, :destroy, :show, :index]
   resource :reviews, only: [:create, :destroy, :show]
   resources :requests, only: [:create, :destroy, :index, :update]
-  resources :twilio, only: [:create]
+  resources :twilio, only: [:create, :index]
   
 end
