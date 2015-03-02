@@ -21,6 +21,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    # @user = User.where(id: params[:user_id])
+  end
 
   # helper method
   def user_params
