@@ -17,6 +17,13 @@ class DrivercommutesController < ApplicationController
   def destroy
   end
 
+  def update
+    @driver_commute_update = Drivercommute.find(params["drivercommute_id"])
+    @driver_commute_update.passenger = params["passenger_id"]
+    @driver_commute_update.save
+    render json: @driver_commute_update
+  end
+
   #helper methods
   def driver_commute_params
     params.require(:drivercommute).permit(

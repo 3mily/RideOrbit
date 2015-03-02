@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302023858) do
+ActiveRecord::Schema.define(version: 20150302064935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150302023858) do
     t.integer  "seats_available"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "passenger"
   end
 
   add_index "drivercommutes", ["user_id"], name: "index_drivercommutes_on_user_id", using: :btree
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150302023858) do
     t.json     "user_info"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "driver"
   end
 
   add_index "passengercommutes", ["drivercommute_id"], name: "index_passengercommutes_on_drivercommute_id", using: :btree

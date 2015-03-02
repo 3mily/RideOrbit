@@ -18,6 +18,18 @@ class RequestsController < ApplicationController
   def destroy
   end
 
+  def update
+    @update_request = Request.find(params["request_id"])
+    if params["status"]=="accept"
+      @update_request.approved_at = Time.now
+      @update_request.approved_by_id = current_user.id
+    else
+      @update_request.rejected_at = Time.now
+    end
+    # @update_request.save
+    render json: @update_request
+  end
+
   def index
     @user = current_user
   end
