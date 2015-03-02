@@ -24,7 +24,11 @@
               <p> Arrival time: <%= commute.arrival_time %></p>
                 <div>
                 <% if commute.passenger %>
-                  <button class="connected"><%= link_to "Connected", "/users/#{commute.passenger}" %></button>
+                  <button class="connected"><%= link_to "Connected", "/users/#{commute.passenger}" %>
+                  </button>
+                  <button class="disconnect"><%= link_to "Disconnect", "#", :method=> :delete %></button>
+                <% else %>
+                  <button class="delete_driver_commute" data-commute-id="<%=commute.id%>">Delete Commute</button>
                 <% end %>
               </div>
             </div>

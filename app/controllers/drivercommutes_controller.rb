@@ -15,6 +15,8 @@ class DrivercommutesController < ApplicationController
   end
 
   def destroy
+    @destroy = Drivercommute.find(params["id"]).destroy
+    redirect_to commuteslist_path
   end
 
   def update

@@ -26,7 +26,7 @@
                   <button class="disconnect"><%= link_to "Disconnect", "#", :method=> :delete %></button>
                 <% else %>
                   <div>
-                  <button class="delete_commute" data-commute-id="<%=commute.id%>"><%= link_to "Delete Commute", "/passengercommutes/#{commute.id}", :method=> :delete %></button>
+                  <button class="delete_passenger_commute" data-commute-id="<%=commute.id%>">Delete Commute</button>
                   </div>
                 <% end %>
               </div>

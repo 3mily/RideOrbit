@@ -21,8 +21,7 @@ class PassengercommutesController < ApplicationController
       "message": "successfully deleted",
       "commute_id": params["id"]
     }
-    # render json: @response
-    redirect_to commuteslist_path
+    render json: @response
   end
 
   def update
