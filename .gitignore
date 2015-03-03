@@ -25,3 +25,7 @@
 #ignore HJ's notes
 
 notes.txt
+
+#ignore ds store 
+
+.DS_Store

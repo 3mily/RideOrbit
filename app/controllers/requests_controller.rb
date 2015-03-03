@@ -20,7 +20,7 @@ class RequestsController < ApplicationController
   end
 
   def update
-    @update_request = Request.find(params["request_id"])
+    @update_request = Request.find(params["id"])
     if params["status"]=="accept"
       @update_request.approved_at = Time.now
       @update_request.approved_by_id = current_user.id
@@ -33,6 +33,12 @@ class RequestsController < ApplicationController
 
   def index
     @user = current_user
+    @total_driver_requests = 0
+    @total_passenger_requests = 0
+    @rejected_driver_requests = 0
+    @rejected_passenger_requests = 0
+    @total_outgoing_driver_pending = 0
+    @total_outgoing_passenger_pending = 0
   end
 
 end

@@ -8,6 +8,7 @@ gem 'rails', '4.2.0'
 
 #carrierwave for profile picture upload
 gem 'carrierwave'
+gem 'mini_magick'
 # we're using Postgres as both dev and prod database for active record
 gem 'pg'
 #using json columns in Postgres database
