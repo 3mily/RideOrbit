@@ -32,6 +32,7 @@ $(function(){
   });
 
   $("#commute_passenger").on("change", function(){
+    alert("Hello")
     calcInitRoute("passenger");
   });
 
@@ -117,12 +118,13 @@ $(function(){
 
   function getCoordinates(user) {
     if (user==="passenger") {
-      var commuteInfo = document.getElementById('commute_passenger').value;
+      var commuteInfo = $("option:selected").val();
+      debugger;
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(passengerOrigins[commute][0], passengerOrigins[commute][1]); 
       destination = new google.maps.LatLng(passengerDestinations[commute][0], passengerDestinations[commute][1]); 
     } else if (user === "driver"){
-      var commuteInfo = document.getElementById('commute_driver').value;     
+      var commuteInfo = document.getElementById('commute_driver_info').value;     
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(driverOrigins[commute][0], driverOrigins[commute][1]); 
       destination = new google.maps.LatLng(driverDestinations[commute][0], driverDestinations[commute][1]); 
@@ -288,7 +290,7 @@ $(function(){
       "request_receiver": userInfo[currentCommuteIndex]['user_info']
     }
     makeRequest();
-    sendRequestText();
+    // sendRequestText();
   });
 
   function makeRequest(){

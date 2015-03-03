@@ -2,6 +2,7 @@ require 'pry'
 class RequestsController < ApplicationController
   def create
     @request = Request.new
+    binding.pry
     if params["user"]=="driver"
       @request.drivercommute_id = params["user_commute_id"]
       @request.passengercommute_id = params["requested_commute_id"]
@@ -20,7 +21,6 @@ class RequestsController < ApplicationController
   end
 
   def update
-    binding.pry
     @update_request = Request.find(params["id"])
     if params["status"]=="accept"
       @update_request.approved_at = Time.now
