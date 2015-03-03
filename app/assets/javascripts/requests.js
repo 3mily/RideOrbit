@@ -6,7 +6,8 @@ $(function(){
   });
 
   $(".accept").on("click", function(){
-    getInfo();
+    var clicked = $(this);
+    getInfo(clicked);
     updateRequest();
     updateDriverCommute();
     updatePassengerCommute();
@@ -14,21 +15,25 @@ $(function(){
   });
 
   $(".decline").on("click",function(){
-    getInfo();
+    var clicked = $(this).siblings(".accept");
+    getInfo(clicked);
     params["status"]="decline";
     declineRequest();
   });
 
-  $(".disconnect").on("click",function(){
-    
-  })
+  // $(".disconnect").on("click",function(){
+  //   var clicked = this.closest(".accept");
+  //   getInfo(clicked);
+  //   params["status"]="decline";
+  //   declineRequest();
+  // })
 
-  function getInfo(){
-    var driverId = $(".accept").data("driver-id");
-    var requestId = $(".accept").data("request-id");
-    var passengerId = $(".accept").data("passenger-id");
-    var passengercommuteId = $(".accept").data("passenger-commute-id");
-    var drivercommuteId = $(".accept").data("driver-commute-id")
+  function getInfo(clicked){
+    var driverId = $(clicked).data("driver-id");
+    var requestId = $(clicked).data("request-id");
+    var passengerId = $(clicked).data("passenger-id");
+    var passengercommuteId = $(clicked).data("passenger-commute-id");
+    var drivercommuteId = $(clicked).data("driver-commute-id")
     params = {
       "text_type": "accept",
       "request_id": requestId,
