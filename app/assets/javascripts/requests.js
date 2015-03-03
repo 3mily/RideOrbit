@@ -5,31 +5,33 @@ $(function(){
     $("#requests-as-driver").toggle();
   });
 
-  $(".accept").on("click", function(e){
-    alert("hi accept");
-    var driverId = $(".accept").data("driver-id");
-    var requestId = $(".accept").data("request-id");
-    var passengerId = $(".accept").data("passenger-id");
-    var passengercommuteId = $(".accept").data("passenger-commute-id");
-    var drivercommuteId = $(".accept").data("driver-commute-id")
-    params = {
-      "text_type": "accept"
-      "request_id": requestId,
-      "drivercommute_id": drivercommuteId,
-      "passengercommute_id": passengercommuteId,
-      "driver_id": driverId,
-      "passenger_id": passengerId,
-      "status": "accept"
-    }
+  $(".accept").on("click", function(){
+    var clicked = $(this).parent();
+    getInfo(clicked);
     updateRequest();
     updateDriverCommute();
     updatePassengerCommute();
     // sendAcceptText();
   });
 
+  $(".decline").on("click",function(){
+    var clicked = $(this).parent();
+    decline(clicked);
+  });
+
+  $(".disconnect").on("click",function(){
+    var clicked = $(this).parent();
+    decline(clicked);
+  })
+
+  function getInfo(clicked){
+    params = clicked.data("request");
+    params["status"] = "accept";
+  }
+
   function updateRequest(){
     $.ajax({
-      url: "/requests/"+params["request_id"],
+      url: "/requests/"+params["id"],
       type: "PATCH",
       data: params,
       error: function(xhr,status,thrownError){
@@ -83,16 +85,15 @@ $(function(){
     });
   }
 
-
-  $(".decline").on("click",function(){
-    alert("hi decline");
+  function decline(clicked){
+    getInfo(clicked);
     params["status"]="decline";
-    declineRequest();
-  });
+    declineRequest();    
+  }
 
   function declineRequest(){
     $.ajax({
-      url: "/requests/"+params["request_id"],
+      url: "/requests/"+params["id"],
       type: "PATCH",
       data: params,
       error: function(xhr,status,thrownError){
@@ -100,6 +101,7 @@ $(function(){
       },
       success: function(response){
         console.log("decline success")
+        console.log(response)
       }
     });
   }
