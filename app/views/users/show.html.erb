@@ -24,6 +24,9 @@
       <p><b>Reviewer: </b><%= @users.where(id: review.reviewer_id).first.firstname %></p>
       <p><b>Content: </b><%= review.body %></p>
       <p><b>Rating: </b><%= review.rating %>/5</p>
+      <% if review.reviewer_id == current_user.id %>
+        <%= button_to "Delete", "/reviews", {method: :delete, params: {reviewer_id: review.reviewer_id}, class: "btn btn-primary"} %>
+      <% end %>
       <hr>
     <% end %>
   <% end %>
