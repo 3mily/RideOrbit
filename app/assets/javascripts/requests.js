@@ -145,11 +145,19 @@ $(function(){
 
   function getDriverCommute(clicked_button){
     var requestInfo = clicked_button.siblings(".d-request").data("request");
-    //ajax POST requestInfo to Passengercommute(in getpcommute function)
-    //and Drivercommute to get origin and destinations of both from 
-    //finding the right commute with the ids we have here
-    // then I need 
-    debugger;
+
+    $.ajax({
+      url: '/drivercommutes/requestinfo',
+      method: "GET",
+      dataType: "json",
+      data: requestInfo,
+      error: function(xhr,status,thrownError){
+        console.log("failed to get driver commute lat longs")
+      },
+      success: function(response){
+        console.log(response)
+      }
+    }); 
   }
 
   function getPassengerCommute(){
