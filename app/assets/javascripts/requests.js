@@ -27,12 +27,13 @@ $(function(){
   $(".show-route").text("Show Route");
 
   $(".show-route").on("click",function(){
-    var that = $(this)
-    var inside = $(this).text()
+    var clickedButton = $(this)
+    var insideText = clickedButton.text()
     $("#map-canvas").toggleClass("hidden");
-    $(this).text(inside == "Show Route" ? "Hide Route" : "Show Route");
-    if (inside == "Hide Route"}{
-      initialize(that);
+    clickedButton.text(insideText == "Show Route" ? "Hide Route" : "Show Route");
+    if (insideText == "Show Route"){
+      debugger;
+      initialize(clickedButton);
     } 
   })
 
