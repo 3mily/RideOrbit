@@ -17,6 +17,15 @@ $(function(){
     deleteCommute(params,url,that);
   });
 
+  $(".delete_driver_commute").on("click",function(e){
+    var that = this;
+    var params = {
+     "id": that.getAttribute("data-commute-id")
+    }
+    var url = '/drivercommutes/'+params["id"]
+    deleteCommute(params,url,that);
+  })  
+
   function deleteCommute(params,url,clicked){
     $.ajax({
       url: url,
