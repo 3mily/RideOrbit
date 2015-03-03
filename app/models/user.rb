@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  mount_uploader :picture, AvatarUploader
   has_many :drivercommutes
   has_many :passengercommutes
   has_many :places

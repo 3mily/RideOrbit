@@ -6,6 +6,8 @@ gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 
+#carrierwave for profile picture upload
+gem 'carrierwave'
 # we're using Postgres as both dev and prod database for active record
 gem 'pg'
 #using json columns in Postgres database
@@ -57,6 +59,6 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~> 1.3.3'
 end
 
