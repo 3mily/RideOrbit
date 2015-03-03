@@ -8,12 +8,13 @@ $blue-dark: #00AAB0;
 $blue-darker: #040040;
 $grey-light: #eee;
 $grey-dark: #1f1f1f;
+$grey-medium: #555;
 
 
 
 $bg-color: #111;
 $navbar-color: #00BAFF;
-$button-active: #911;
+$button-active: #FC8458;
 $button-inactive: #EFEFEF;
 $commutes-box-border: #fff;
 $commutes-box-bg: #ddd;
@@ -79,11 +80,17 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+
 .btn-consistent {
   width: 200px;
 }
-.btn-clear {
-  clear:both;
+
+.right {
+  float: right;
+}
+
+.panel {
+  color: $grey-medium;
 }
 
 .btn-primary {
