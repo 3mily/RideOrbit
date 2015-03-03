@@ -5,18 +5,20 @@
 <%= form_for @place, url: {action: 'create'} do |f| %>
 
   <div class="col-md-12">
-  <div>
-    <%= f.label "name", "Name" %> <br>
-    <%= f.text_field :name, placeholder: "eg. Home...", class: "form-control" %>
-  </div>
-  <br>
-  <div>
-    <%= f.label "cross_street", "Cross Streets" %><br>
-    <%= text_field_tag :street1, nil, placeholder: "W Hastings...", class: "form-control cut" %> <%= text_field_tag :street2, nil, placeholder: "Abbott...", class: "form-control cut" %>
-    <% f.hidden_field :cross_street_point %>
-  </div>
-  <br>
-<%= f.submit "Add to list", class: "btn btn-warning btn-consistent right" %> 
+    <div>
+      <%= f.label "name", "Name" %> <br>
+      <%= f.text_field :name, placeholder: "eg. Home...", class: "form-control" %>
+    </div>
+    <br>
+    <div>
+      <%= f.label "cross_street", "Cross Streets" %><br>
+      <%= text_field_tag :street1, nil, placeholder: "W Hastings...", class: "form-control cut" %> <%= text_field_tag :street2, nil, placeholder: "Abbott...", class: "form-control cut" %>
+      <% f.hidden_field :cross_street_point %>
+    </div>
+    <br>
+    <div class="row">
+      <%= f.submit "Add to list", class: "btn btn-warning btn-consistent right" %> 
+    </div>
   </div>
 <% end %>
 
