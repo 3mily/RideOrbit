@@ -7,7 +7,8 @@
         Pending Invitations From Drivers: None
       <% else %>
         <% commute.requests.each do |request|%>
-          <div class="request" data-request="<%= request.to_json %>" data-user-id="<%= @user.id %>">
+          <% @total_requests +=1 %>
+          <div class="p-request" data-request="<%= request.to_json %>" data-user-id="<%= @user.id %>">
             <% if request.approved_at.nil? && request.rejected_at.nil? %>
               Pending Invitations From Drivers: 
               <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
@@ -19,11 +20,11 @@
             <% elsif request.rejected_at %>
               <% @rejected_requests+=1 %>
             <% end %>
-            <% if @rejected_requests == commute.requests.length %>
-              Pending Invitations From Drivers: None
-            <% end %>
           </div>
         <% end %> 
+      <% if @rejected_requests == @total_requests %>
+        Pending Invitations From Drivers: None
+      <% end %>
       <% end %>
     </div>
   <% end %>
