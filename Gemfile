@@ -39,6 +39,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'sass'
 
+gem 'font-awesome-sass'
+
 gem 'responders'
 
 

@@ -1,5 +1,4 @@
 <div class="container">
-<div class="well">
   
 <% if !current_user %>
   <div class="warning">
@@ -10,39 +9,52 @@
 <% else %> 
   <img class="center-block prof-pic" src="<%= @user.picture %>">
   <br>
-  <p class="text-center"><b>Name:</b> <%= @user.firstname %> <%=@user.lastname %></p>
-  <p class="text-center"><b>Email:</b> <%= @user.email %></p>
-  <p class="text-center"><b>Phone:</b> <%= @user.phone %></p>
-  <p class="text-center"><b>Bio:</b> <%= @user.bio %></p>
-
-
-  <h3>Reviews</h3>
-  <% if @reviews.empty? %>
-    <p>None yet.</p>
-  <% else %> 
-    <% @reviews.each do |review| %>
-      <p><b>Reviewer: </b><%= @users.where(id: review.reviewer_id).first.firstname %></p>
-      <p><b>Content: </b><%= review.body %></p>
-      <p><b>Rating: </b><%= review.rating %>/5</p>
-      <% if review.reviewer_id == current_user.id %>
-        <%= button_to "Delete", "/reviews", {method: :delete, params: {reviewer_id: review.reviewer_id}, class: "btn btn-primary"} %>
-      <% end %>
-      <hr>
-    <% end %>
-  <% end %>
-
-  <h3>Leave a Review:</h3>
-  <%= form_for @review, url: reviews_path do |f| %>
-  <%= f.text_area :body, class: "form-control" %>
-  <br>
-  <p>Rating (out of 5):</p>
-  <%= f.select :rating, options_for_select([1,2,3,4,5]), {}, class: "form-control" %>
-  <br>
-  <%= f.hidden_field :reviewee_id, :value => params[:id]%>
-  <%= f.hidden_field :reviewer_id, :value => current_user.id %>
-  <br>
-  <%= f.submit "Create", class: "btn btn-primary" %>
-  <% end %>
-<% end %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel well">
+      <p class="text-center"><h1><%= @user.firstname %> <%=@user.lastname %></h1></p>
+      <p class="text-center"><%= @user.bio %></p>
+    </div>
+  </div>
 </div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel well">
+      <h3>Reviews</h3>
+      <% if @reviews.empty? %>
+        <p>None yet.</p>
+      <% else %> 
+
+        <% @reviews.each do |review| %>
+          <p><b>Reviewer: </b><%= @users.where(id: review.reviewer_id).first.firstname %></p>
+          <p><b>Rating: </b><%= review.rating %>/5</p>
+          <p><i class="fa fa-quote-left fa-lg"></i> <%= review.body %> <i class="fa fa-quote-right fa-lg "></i></p>
+          <% if review.reviewer_id == current_user.id %>
+            <%= button_to "Delete", "/reviews", {method: :delete, params: {reviewer_id: review.reviewer_id}, class: "btn btn-primary"} %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+ <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel well">
+      <h3>Leave a Review:</h3>
+      <%= form_for @review, url: reviews_path do |f| %>
+      <%= f.text_area :body, class: "form-control" %>
+      <br>
+      <p>Rating (out of 5):</p>
+      <%= f.select :rating, options_for_select([1,2,3,4,5]), {}, class: "form-control" %>
+      <br>
+      <%= f.hidden_field :reviewee_id, :value => params[:id]%>
+      <%= f.hidden_field :reviewer_id, :value => current_user.id %>
+      <br>
+      <%= f.submit "Create", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
 </div>
