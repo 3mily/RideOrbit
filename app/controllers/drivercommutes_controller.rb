@@ -15,6 +15,13 @@ class DrivercommutesController < ApplicationController
   end
 
   def destroy
+    @destroy = Drivercommute.find(params["id"]).destroy
+    @response = {
+      "status": 200,
+      "message": "successfully deleted",
+      "commute_id": params["id"]
+    }
+    render json: @response
   end
 
   def update

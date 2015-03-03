@@ -7,8 +7,8 @@
 
     <div class="row">
       <% @driver_commutes.each_with_index do |commute,index| %>
-        <div class="col-md-4">
-          <div class="panel panel-primary">
+        <div class="col-md-4 floot">
+          <div class="panel panel-primary commute">
             <div class="panel-heading">
               <h3 class="panel-title"><%= image_tag "icon-driver.png" %>
               Commute No. <%= index += 1 %></h3>
@@ -22,6 +22,15 @@
                 <span class="display-day"><%= day %></span>
               <% end %> 
               <p> Arrival time: <%= commute.arrival_time %></p>
+                <div>
+                <% if commute.passenger %>
+                  <button class="connected"><%= link_to "Connected", "/users/#{commute.passenger}" %>
+                  </button>
+                  <button class="disconnect"><%= link_to "Disconnect", "#", :method=> :delete %></button>
+                <% else %>
+                  <button class="delete_driver_commute" data-commute-id="<%=commute.id%>">Delete Commute</button>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
