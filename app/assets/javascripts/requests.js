@@ -27,10 +27,11 @@ $(function(){
   $(".show-route").text("Show Route");
 
   $(".show-route").on("click",function(){
+    var that = $(this)
     var inside = $(this).text()
     $("#map-canvas").toggleClass("hidden");
     $(this).text(inside == "Show Route" ? "Hide Route" : "Show Route");
-    initialize();
+    initialize(that);
   })
 
   function getInfo(clicked){
@@ -115,13 +116,13 @@ $(function(){
     });
   }
 
-  // google.maps.event.addDomListener(window, 'load', initialize);
+ //maps logic below
 
-  function initialize() {
+  function initialize(clicked_button) {
     initMap();
     initDirections();
-    // getDriverCommutes();
-    // getPassengerCommutes();
+    getDriverCommute(clicked_button);
+    // getPassengerCommute(clicked_button);
   } 
 
   function initMap() {
@@ -139,4 +140,23 @@ $(function(){
     directionsDisplay.setPanel(document.getElementById('directions-panel'));
   }
 
+  function getDriverCommute(clicked_button){
+    var requestInfo = clicked_button.siblings(".d-request").data("request");
+    debugger;
+  }
+
+  function getPassengerCommute(){
+
+  }
+
+
+
+
+
+
 })
+
+
+
+
+
