@@ -117,12 +117,12 @@ $(function(){
 
   function getCoordinates(user) {
     if (user==="passenger") {
-      var commuteInfo = document.getElementById('commute_passenger').value;
+      var commuteInfo = $("option:selected").val();
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(passengerOrigins[commute][0], passengerOrigins[commute][1]); 
       destination = new google.maps.LatLng(passengerDestinations[commute][0], passengerDestinations[commute][1]); 
     } else if (user === "driver"){
-      var commuteInfo = document.getElementById('commute_driver').value;     
+      var commuteInfo = document.getElementById('commute_driver_info').value;     
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(driverOrigins[commute][0], driverOrigins[commute][1]); 
       destination = new google.maps.LatLng(driverDestinations[commute][0], driverDestinations[commute][1]); 
@@ -246,7 +246,7 @@ $(function(){
                     'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
                     '<a href="/users/'+ userInfo[0].id +'">View Profile</a>' + '<br>'+
                     '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
-                    '<button class="request-button">Connect</button>'
+                    '<button class="request-button" data-commute-id="' + userInfo[idx]["id"] +'"data-user-info="' + userInfo[idx]["user_info"] + '">Connect</button>'
                     '</div>';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -278,17 +278,15 @@ $(function(){
 
   $("#map-canvas").on("click", ".request-button", function(){
     var initiator = $("#map-canvas").data("currentuser-id");
-    alert("click worked");
     params = {
       "text_type": "request",
       "initiator": initiator,
       "user": commuter,
       "user_commute_id": commuteId,
-      "requested_commute_id": userInfo[currentCommuteIndex]['id'],
-      "request_receiver": userInfo[currentCommuteIndex]['user_info']
+      "requested_commute_id": $(".request-button").data("commute-id")
     }
     makeRequest();
-    sendRequestText();
+    // sendRequestText();
   });
 
   function makeRequest(){
