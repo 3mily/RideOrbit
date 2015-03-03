@@ -13,7 +13,7 @@ gem 'json', '~> 1.8.2'
 #using twilio api
 gem 'twilio-ruby'
 #environment variables for sensitive information
-gem 'dotenv'
+gem 'dotenv-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

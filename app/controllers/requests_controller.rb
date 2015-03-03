@@ -1,3 +1,4 @@
+require 'pry'
 class RequestsController < ApplicationController
   def create
     @request = Request.new

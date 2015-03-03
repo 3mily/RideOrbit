@@ -13,6 +13,7 @@ $(function(){
     var passengercommuteId = $(".accept").data("passenger-commute-id");
     var drivercommuteId = $(".accept").data("driver-commute-id")
     params = {
+      "text_type": "accept"
       "request_id": requestId,
       "drivercommute_id": drivercommuteId,
       "passengercommute_id": passengercommuteId,
@@ -23,6 +24,7 @@ $(function(){
     updateRequest();
     updateDriverCommute();
     updatePassengerCommute();
+    // sendAcceptText();
   });
 
   function updateRequest(){
@@ -66,6 +68,21 @@ $(function(){
       }
     });    
   }
+
+  function sendAcceptText(){
+    $.ajax({
+      url: "/twilio",
+      type: "POST",
+      data: params,
+      error: function(xhr,status,thrownError){
+        console.log("it didnt save or work or something oh noes", thrownError);
+      },
+      success: function(response){
+        console.log("success - twilio text send")
+      }
+    });
+  }
+
 
   $(".decline").on("click",function(){
     alert("hi decline");

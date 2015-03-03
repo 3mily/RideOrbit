@@ -15,11 +15,11 @@
     <% f.hidden_field :cross_street_point %>
   </div>
   <br>
-<%= f.submit "Add to list", class: "btn btn-default btn-consistent  " %>      
-<%= button_to "Log in", new_session_path, method: "get", class: 'btn btn-default btn-consistent' %>
+<%= f.submit "Add to list", class: "btn btn-default btn-consistent  " %> 
 
 <%= link_to "Make a Commute", newcommute_path %>
 <% end %>
+<%= button_to "Make a commute", newcommute_path, method: "get", class: 'btn btn-default btn-consistent btn-clear' %>
 
 <!-- This is where all current_user's places will list. -->
 <!-- Newly created @place will append to this list. -->
