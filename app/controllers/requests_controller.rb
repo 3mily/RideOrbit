@@ -33,8 +33,12 @@ class RequestsController < ApplicationController
 
   def index
     @user = current_user
-    @total_requests = 0
-    @rejected_requests = 0
+    @total_driver_requests = 0
+    @total_passenger_requests = 0
+    @rejected_driver_requests = 0
+    @rejected_passenger_requests = 0
+    @total_outgoing_driver_pending = 0
+    @total_outgoing_passenger_pending = 0
   end
 
 end
