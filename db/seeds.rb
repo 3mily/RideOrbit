@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 1.upto(10) do |i|
-  User.create(firstname: "firstname#{i}",lastname:"lastname#{i}",phone:"555-555#{i}",password:"pwpwpw",email:"email@email#{i}", bio: "Hi! My name is Emily Craig! I am related to the new James Bond! I have fat cat named Mario. I am from Victoria. I am amazing designing things. Let's go for a ride!!!") 
+  User.create(firstname: "firstname#{i}",lastname:"lastname#{i}",phone:"555-555#{i}",password:"pwpwpw",email:"email@email#{i}",bio:"Hi! My name is Emily Craig! I am related to the new James Bond! I have fat cat named Mario. I am from Victoria. I am amazing designing things. Let's go for a ride!!!") 
 end
 
 

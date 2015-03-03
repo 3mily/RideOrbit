@@ -66,6 +66,8 @@ GEM
       dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.3.0)
+    font-awesome-sass (4.3.1)
+      sass (~> 3.2)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -176,6 +178,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails
   json (~> 1.8.2)
