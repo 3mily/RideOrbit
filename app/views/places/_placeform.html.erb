@@ -4,6 +4,7 @@
 
 <%= form_for @place, url: {action: 'create'} do |f| %>
 
+  <div class="col-md-12">
   <div>
     <%= f.label "name", "Name" %> <br>
     <%= f.text_field :name, placeholder: "eg. Home...", class: "form-control" %>
@@ -15,21 +16,23 @@
     <% f.hidden_field :cross_street_point %>
   </div>
   <br>
-<%= f.submit "Add to list", class: "btn btn-default btn-consistent  " %> 
-
-<%= link_to "Make a Commute", newcommute_path %>
+<%= f.submit "Add to list", class: "btn btn-warning btn-consistent right" %> 
+  </div>
 <% end %>
-<%= button_to "Make a commute", newcommute_path, method: "get", class: 'btn btn-default btn-consistent btn-clear' %>
 
 <!-- This is where all current_user's places will list. -->
 <!-- Newly created @place will append to this list. -->
-<div id="places">
-  <% if @places %>
-    <% @places.each do |place| %>
-      <div>
-      <%= place.name %> - <%= place.cross_street %>
-      </div>
-    <% end %>
+<div class="col-md-12">
+  <div class="panel well" id="places">
+    <% if @places %>
+      <% @places.each do |place| %>
+        <p>
+        <strong><%= place.name %></strong> <span class="glyphicon glyphicon-remove"></span><br>
+        <%= place.cross_street %>
+        </p>
+      <% end %>
+    </div>
+    <%= button_to "Make a commute", newcommute_path, method: "get", class: 'btn btn-default btn-consistent right' %>
   <% end %>
 </div>
 
@@ -93,15 +96,29 @@ $("#new_place").on("submit", function(e){
         success: function(response) {
           console.log('success!');
           console.log(response);
-          $("<div>" + response.name + " - " + response.cross_street + "</div>").appendTo("#places");
+          $("<p><strong>" + response.name + '</strong> <span class="glyphicon glyphicon-remove"></span><br>' + response.cross_street + "</p>").appendTo("#places");
           $(".flash").empty();
-          $("<div>New place added!</div>").appendTo(".flash");
+          $("<span>New place added!</span>").appendTo(".flash");
         }
       });
 
     }
   });
 });
+
+$(".glyphicon glyphicon-remove").on("click",function(){
+  $.ajax({
+    url: "/places",
+    type: "DELETE",
+    error: function(xhr, status, thrownError){
+      console.log("oh noes!", thrownError);
+    },
+    success: function(response){
+      console.log("place deleted!");
+    }
+  })
+});
+
 </script>
 
 

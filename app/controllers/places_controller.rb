@@ -23,4 +23,12 @@ class PlacesController < ApplicationController
     
     respond_with @place
   end
+
+  def destroy
+    @place = Place.find(params[:id])
+    @place.destroy
+    redirect_to places_path
+  end
+
+
 end
