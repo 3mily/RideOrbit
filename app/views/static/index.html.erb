@@ -8,7 +8,7 @@
 
   <% if current_user %>
 
-    <%= button_to "Begin your commute", newcommute_path, method: "get", class: 'btn btn-warning btn-lg' %>
+    <%= link_to(raw('Begin your commute <i class="fa fa-arrow-right"></i>'), places_path, class: 'btn btn-warning btn-lg' )%>
 
   <% else %>
 

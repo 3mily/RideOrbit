@@ -13,7 +13,7 @@
           <div class="d-request" data-request="<%=request.to_json%>" data-user-id="<%=@user.id%>">
             <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id == @user.id %>
               <% @total_outgoing_driver_pending+= 1 %>
-              <% total_driver_requests -= 1%>
+              <% @total_driver_requests -= 1%>
             <% end %>
             <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id!= @user.id%>
               Pending Requests From Passengers: 
