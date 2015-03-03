@@ -20,7 +20,8 @@ class RequestsController < ApplicationController
   end
 
   def update
-    @update_request = Request.find(params["request_id"])
+    binding.pry
+    @update_request = Request.find(params["id"])
     if params["status"]=="accept"
       @update_request.approved_at = Time.now
       @update_request.approved_by_id = current_user.id

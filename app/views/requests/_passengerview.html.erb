@@ -1,30 +1,30 @@
 <div id="pending-drivers">
   <% @user.passengercommutes.each_with_index do |commute,index| %>
-  <div class="panel">
-  <p> Commute Number : <%= index+1 %>
-   <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
-   <% if commute.requests.empty? %>
-     Pending Invitations From Drivers: None
-   <% else %>
-    <% commute.requests.each do |request|%>
-      <% if request.approved_at.nil? && request.rejected_at.nil? %>
-         Pending Invitations From Drivers: 
-        <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
-      <div>
-        <button class="accept" data-driver-id="<%=request.initiated_by_id%>" data-request-id= "<%=request.id%>" data-passenger-id="<%=@user.id%>" data-passenger-commute-id="<%=request.passengercommute_id%>" data-driver-commute-id="<%=request.drivercommute_id%>">Accept</button>
-        <button class="decline">Decline</button>
-      <% elsif request.approved_at %>
-        <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
-      </div>
-        <button class="disconnect">Drop Driver</button>
-      <% elsif request.rejected_at %>
-        <% @rejected_requests+=1 %>
+    <div class="panel">
+      <p> Commute Number : <%= index+1 %>
+      <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
+      <% if commute.requests.empty? %>
+        Pending Invitations From Drivers: None
+      <% else %>
+        <% commute.requests.each do |request|%>
+          <div class="request" data-request="<%= request.to_json %>" data-user-id="<%= @user.id %>">
+            <% if request.approved_at.nil? && request.rejected_at.nil? %>
+              Pending Invitations From Drivers: 
+              <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
+              <button class="accept">Accept</button>
+              <button class="decline">Decline</button>
+            <% elsif request.approved_at && !request.rejected_at %>
+              <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
+              <button class="disconnect">Drop Driver</button>
+            <% elsif request.rejected_at %>
+              <% @rejected_requests+=1 %>
+            <% end %>
+            <% if @rejected_requests == commute.requests.length %>
+              Pending Invitations From Drivers: None
+            <% end %>
+          </div>
+        <% end %> 
       <% end %>
-    <% if @rejected_requests == commute.requests.length %>
-      Pending Invitations From Drivers: None
-    <% end %>
-    <% end %> 
-   <% end %>
-   </div>
+    </div>
   <% end %>
 </div>

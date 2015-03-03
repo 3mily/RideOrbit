@@ -6,7 +6,7 @@ $(function(){
   });
 
   $(".accept").on("click", function(){
-    var clicked = $(this);
+    var clicked = $(this).parent();
     getInfo(clicked);
     updateRequest();
     updateDriverCommute();
@@ -15,39 +15,23 @@ $(function(){
   });
 
   $(".decline").on("click",function(){
-    var clicked = $(this).siblings(".accept");
-    getInfo(clicked);
-    params["status"]="decline";
-    declineRequest();
+    var clicked = $(this).parent();
+    decline(clicked);
   });
 
-  // $(".disconnect").on("click",function(){
-  //   var clicked = this.closest(".accept");
-  //   getInfo(clicked);
-  //   params["status"]="decline";
-  //   declineRequest();
-  // })
+  $(".disconnect").on("click",function(){
+    var clicked = $(this).parent();
+    decline(clicked);
+  })
 
   function getInfo(clicked){
-    var driverId = $(clicked).data("driver-id");
-    var requestId = $(clicked).data("request-id");
-    var passengerId = $(clicked).data("passenger-id");
-    var passengercommuteId = $(clicked).data("passenger-commute-id");
-    var drivercommuteId = $(clicked).data("driver-commute-id")
-    params = {
-      "text_type": "accept",
-      "request_id": requestId,
-      "drivercommute_id": drivercommuteId,
-      "passengercommute_id": passengercommuteId,
-      "driver_id": driverId,
-      "passenger_id": passengerId,
-      "status": "accept"
-    }
+    params = clicked.data("request");
+    params["status"] = "accept";
   }
 
   function updateRequest(){
     $.ajax({
-      url: "/requests/"+params["request_id"],
+      url: "/requests/"+params["id"],
       type: "PATCH",
       data: params,
       error: function(xhr,status,thrownError){
@@ -101,9 +85,15 @@ $(function(){
     });
   }
 
+  function decline(clicked){
+    getInfo(clicked);
+    params["status"]="decline";
+    declineRequest();    
+  }
+
   function declineRequest(){
     $.ajax({
-      url: "/requests/"+params["request_id"],
+      url: "/requests/"+params["id"],
       type: "PATCH",
       data: params,
       error: function(xhr,status,thrownError){
@@ -111,6 +101,7 @@ $(function(){
       },
       success: function(response){
         console.log("decline success")
+        console.log(response)
       }
     });
   }
