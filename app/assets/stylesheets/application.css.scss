@@ -53,7 +53,7 @@ body {
 }
 .other-page-bg {
   background: url('bg2.jpg') no-repeat center center fixed;
-  height: 1020px;
+  height: 100%;
   margin-top: -10px;
 }
 
@@ -78,7 +78,7 @@ body {
 
 
 .btn-consistent {
-  width: 200px;
+  width: 220px;
 }
 
 .right {
@@ -93,6 +93,9 @@ body {
 .btn-primary {
   background-color: $blue-dark;
   border: none;
+  &:hover {
+    background-color: $blue-dark - 30;
+  }
 }
 
 // 3mily's face
