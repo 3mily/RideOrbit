@@ -24,6 +24,15 @@ $(function(){
     decline(clicked);
   })
 
+  $(".show-route").text("Show Route");
+
+  $(".show-route").on("click",function(){
+    var inside = $(this).text()
+    $("#map-canvas").toggleClass("hidden");
+    $(this).text(inside == "Show Route" ? "Hide Route" : "Show Route");
+    initialize();
+  })
+
   function getInfo(clicked){
     params = clicked.data("request");
     params["status"] = "accept";
@@ -104,6 +113,30 @@ $(function(){
         console.log(response)
       }
     });
+  }
+
+  // google.maps.event.addDomListener(window, 'load', initialize);
+
+  function initialize() {
+    initMap();
+    initDirections();
+    // getDriverCommutes();
+    // getPassengerCommutes();
+  } 
+
+  function initMap() {
+    var mapOptions = {
+      center: { lat: 49.282043, lng: -123.108162},
+      zoom: 11
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  }
+
+  function initDirections(){
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('directions-panel'));
   }
 
 })
