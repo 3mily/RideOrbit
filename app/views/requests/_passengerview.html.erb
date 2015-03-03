@@ -1,6 +1,5 @@
 <div id="pending-drivers">
   <% @user.passengercommutes.each_with_index do |commute,index| %>
-  <% binding.pry%>
     <div class="panel">
       <p> Commute Number : <%= index+1 %>
       <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>

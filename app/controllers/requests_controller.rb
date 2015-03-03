@@ -2,7 +2,6 @@ require 'pry'
 class RequestsController < ApplicationController
   def create
     @request = Request.new
-    binding.pry
     if params["user"]=="driver"
       @request.drivercommute_id = params["user_commute_id"]
       @request.passengercommute_id = params["requested_commute_id"]
