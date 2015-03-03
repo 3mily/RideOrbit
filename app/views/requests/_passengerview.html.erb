@@ -12,10 +12,15 @@
         <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
         <button class="accept" data-driver-id="<%=request.initiated_by_id%>" data-request-id= "<%=request.id%>" data-passenger-id="<%=@user.id%>" data-passenger-commute-id="<%=request.passengercommute_id%>" data-driver-commute-id="<%=request.drivercommute_id%>">Accept</button>
         <button class="decline">Decline</button>
-      <% else %>
-        <button><%= link_to "Currently Connected", "/users/#{commute.driver}" %></button>
-        <button class="disconnect">Disconnect</button>
+      <% elsif request.approved_at %>
+        <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
+        <button class="disconnect">Drop Driver</button>
+      <% elsif request.rejected_at %>
+        <% @rejected_requests+=1 %>
       <% end %>
+    <% if @rejected_requests == commute.requests.length %>
+      Pending Invitations From Drivers: None
+    <% end %>
     <% end %> 
    <% end %>
    </div>

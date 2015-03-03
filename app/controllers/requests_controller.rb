@@ -33,6 +33,7 @@ class RequestsController < ApplicationController
 
   def index
     @user = current_user
+    @rejected_requests = 0
   end
 
 end

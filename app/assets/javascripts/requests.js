@@ -5,15 +5,32 @@ $(function(){
     $("#requests-as-driver").toggle();
   });
 
-  $(".accept").on("click", function(e){
-    alert("hi accept");
+  $(".accept").on("click", function(){
+    getInfo();
+    updateRequest();
+    updateDriverCommute();
+    updatePassengerCommute();
+    // sendAcceptText();
+  });
+
+  $(".decline").on("click",function(){
+    getInfo();
+    params["status"]="decline";
+    declineRequest();
+  });
+
+  $(".disconnect").on("click",function(){
+    
+  })
+
+  function getInfo(){
     var driverId = $(".accept").data("driver-id");
     var requestId = $(".accept").data("request-id");
     var passengerId = $(".accept").data("passenger-id");
     var passengercommuteId = $(".accept").data("passenger-commute-id");
     var drivercommuteId = $(".accept").data("driver-commute-id")
     params = {
-      "text_type": "accept"
+      "text_type": "accept",
       "request_id": requestId,
       "drivercommute_id": drivercommuteId,
       "passengercommute_id": passengercommuteId,
@@ -21,11 +38,7 @@ $(function(){
       "passenger_id": passengerId,
       "status": "accept"
     }
-    updateRequest();
-    updateDriverCommute();
-    updatePassengerCommute();
-    // sendAcceptText();
-  });
+  }
 
   function updateRequest(){
     $.ajax({
@@ -82,13 +95,6 @@ $(function(){
       }
     });
   }
-
-
-  $(".decline").on("click",function(){
-    alert("hi decline");
-    params["status"]="decline";
-    declineRequest();
-  });
 
   function declineRequest(){
     $.ajax({
