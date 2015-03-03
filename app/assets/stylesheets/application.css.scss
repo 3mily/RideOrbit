@@ -30,14 +30,7 @@ body {
 //flash message
 .alert {
     background-color: rgba(229, 182, 106, 0.2);
-    color: $orange-dark;
-    text-align: center; 
-    max-width: 600px;
-    margin: 0 auto;
-}
-.notice {
-    background-color: #eee;
-    color: #aaa;
+    color: $button-active;
     text-align: center; 
     max-width: 600px;
     margin: 0 auto;
@@ -89,7 +82,8 @@ body {
 }
 
 .right {
-  float: right;
+  text-align: right;
+  display: inline-block;
 }
 
 .panel {
