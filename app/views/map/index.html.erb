@@ -2,7 +2,8 @@
   <%= javascript_include_tag 'map', 'data-turbolinks-track' => true %>
 <% end %>
 
-<div class="container">
+
+<div id="map-top">
   <div class="switch-light-container">
     <label class="switch-light well" onclick="">
       <input type="checkbox" id="commutes-select-toggle">
@@ -13,18 +14,22 @@
       <a class="btn btn-primary"></a>
     </label>
   </div>
+  <div class="container">
+    <div class="row">
+      <div id="passenger-commute-select" class="col-md-8">
+        <%= render 'passengerselect' %>
+      </div>
+      <div id="driver-commute-select" class="col-md-8" style="display:none">
+        <%= render 'driverselect' %>
+      </div>
+      <div class="col-md-4 pull-right">
+        <label for="search_radius">Radius in kilometres</label>
+        <input type="number" id="search_radius" name="search_radius" class="form-control cut">
+      </div>
+    </div>
+  </div>
 
-  <div id="passenger-commute-select">
-    <%= render 'passengerselect' %>
-  </div>
-  <div id="driver-commute-select" style="display:none">
-    <%= render 'driverselect' %>
-  </div>
-  <br>
-  <div>
-    <label for="search_radius">Radius in kilometres</label>
-    <input type="text" id="search_radius" name="search_radius" class="form-control cut">
-  </div>
+
 </div>
 
 <div id="directions-panel" class="panel"></div>
