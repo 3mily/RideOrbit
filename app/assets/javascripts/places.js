@@ -53,7 +53,7 @@ $("#new_place").on("submit", function(e){
         success: function(response) {
           console.log('success!');
           console.log(response);
-          $('<div class="place"><p><strong>'+response["name"]+'</strong><span class="glyphicon glyphicon-remove" data-place-id="'+response["id"]+'"</span><br>'+response.cross_street+"</p></div>").appendTo("#places");
+          $('<div class="place"><p><strong>' + response.name + '</strong> <span class="glyphicon glyphicon-remove" data-place-id="'+response["id"]+'"></span><br>' + response.cross_street + '</p></div').appendTo("#places");          
           $(".flash").empty();
           $("<span>New place added!</span>").appendTo(".flash");
         }
