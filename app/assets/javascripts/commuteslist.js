@@ -33,11 +33,11 @@ $(function(){
       dataType: 'json',
       data: params,
       error: function(xhr,status,thrownError){
-        console.log("fail")
+        console.log("failed to delete commute")
       },
       success: function(response){
         console.log(response)
-        $(clicked).closest(".commute").hide();
+        $(clicked).closest(".col-md-4").remove();
       }
     });    
   }
