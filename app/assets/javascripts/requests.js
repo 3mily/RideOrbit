@@ -24,17 +24,19 @@ $(function(){
     decline(clicked);
   })
 
-  $(".show-route").text("Show Route");
+  $(".show-route").text("Draw Route");
 
   $(".show-route").on("click",function(){
-    debugger;
     var clickedButton = $(this)
     var insideText = clickedButton.text()
-    $("#map-canvas").toggleClass("hidden");
-    clickedButton.text(insideText == "Show Route" ? "Hide Route" : "Show Route");
-    if (insideText == "Show Route"){
+    if (insideText == "Draw Route"){
+      $("#map-canvas").removeClass("hidden");
       initialize(clickedButton);
-    } 
+      clickedButton.text("Hide Route")
+    } else if (insideText == "Hide Route"){
+      $("#map-canvas").addClass("hidden");
+      clickedButton.text("Draw Route")
+    }
   })
 
   function getInfo(clicked){
@@ -125,7 +127,7 @@ $(function(){
     initMap();
     initDirections();
     getDriverCommute(clicked_button);
-    getPassengerCommute(clicked_button);
+    // getPassengerCommute(clicked_button);
   } 
 
   function initMap() {
