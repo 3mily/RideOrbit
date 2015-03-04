@@ -15,5 +15,3 @@
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-*I WANT THIS TO SHOW MY PROFILE blabla
