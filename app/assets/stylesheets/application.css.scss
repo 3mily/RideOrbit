@@ -231,24 +231,24 @@ body {
 
 // google maps 
 #map-canvas {
-  top: 300px;
-  bottom: 0;
+  height: 700px;
   width: 100%;
-  position: absolute;
 }
 
 #map-top {
   width: 100%;
   padding: 20px;
-  max-height: 330px;
+  max-height: 300px;
   margin-top: -20px;
 }
 
  #directions-panel {
-  width: 230px;
-  max-height: 100%;
-  display: inline-block;
+  width: 500px;
+  max-height: 200px;
   float: right;
+  overflow: auto;
+  margin-right: 10px;
+  position: relative;
  }
 
 .display-day {
