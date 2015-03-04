@@ -6,7 +6,7 @@ $(function(){
   });
 
   $(".accept").on("click", function(){
-    var clicked = $(this).parent();
+    var clicked = $(this).parents(".d-request");
     getInfo(clicked);
     updateRequest();
     updateDriverCommute();
@@ -15,12 +15,12 @@ $(function(){
   });
 
   $(".decline").on("click",function(){
-    var clicked = $(this).parent();
+    var clicked = $(this)
     decline(clicked);
   });
 
   $(".disconnect").on("click",function(){
-    var clicked = $(this).parent();
+    var clicked = $(this).parents(".d-request");
     decline(clicked);
   })
 
@@ -42,7 +42,7 @@ $(function(){
   })
 
   function getInfo(clicked){
-    params = clicked.data("request");
+    params = clicked.parents(".d-request").data("request");
     params["status"] = "accept";
   }
 
@@ -105,10 +105,11 @@ $(function(){
   function decline(clicked){
     getInfo(clicked);
     params["status"]="decline";
-    declineRequest();    
+    declineRequest(clicked);    
   }
 
-  function declineRequest(){
+  function declineRequest(clicked){
+    var clickedButton = clicked
     $.ajax({
       url: "/requests/"+params["id"],
       type: "PATCH",
@@ -118,7 +119,7 @@ $(function(){
       },
       success: function(response){
         console.log("decline success")
-        console.log(response)
+        clickedButton.parents(".pending-request").remove()
       }
     });
   }
