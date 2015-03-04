@@ -53,7 +53,7 @@ $("#new_place").on("submit", function(e){
         success: function(response) {
           console.log('success!');
           console.log(response);
-          $("<p><strong>" + response.name + '</strong> <span class="glyphicon glyphicon-remove"></span><br>' + response.cross_street + "</p>").appendTo("#places");
+          $('<div class="place"><p><strong>'+response["name"]+'</strong><span class="glyphicon glyphicon-remove" data-place-id="'+response["id"]+'"</span><br>'+response.cross_street+"</p></div>").appendTo("#places");
           $(".flash").empty();
           $("<span>New place added!</span>").appendTo(".flash");
         }
@@ -63,7 +63,7 @@ $("#new_place").on("submit", function(e){
   });
 });
 
-$(".glyphicon-remove").on("click",function(){
+$("#places").on("click",".glyphicon-remove",function(){
   var removedPlace = $(this)
   var placeId = $(this).data("place-id");
   $.ajax({
@@ -74,7 +74,7 @@ $(".glyphicon-remove").on("click",function(){
     },
     success: function(response){
       console.log("place deleted!");
-      
+      removedPlace.parents(".place").remove();
     }
   })
 });
