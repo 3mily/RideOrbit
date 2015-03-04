@@ -31,6 +31,10 @@ class DrivercommutesController < ApplicationController
     render json: @driver_commute_update
   end
 
+  def retrieve
+    render json: params
+  end
+
   #helper methods
   def driver_commute_params
     params.require(:drivercommute).permit(

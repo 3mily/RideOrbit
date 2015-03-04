@@ -32,7 +32,9 @@ class PassengercommutesController < ApplicationController
     render json: @passenger_commute_update
   end
 
-
+  def retrieve
+    render json: params
+  end
 
 
   #helper methods

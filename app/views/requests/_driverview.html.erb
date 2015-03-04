@@ -20,6 +20,7 @@
               <%= link_to "Passenger Profile", "/users/#{request.initiated_by_id}" %>
               <button class="accept">Accept</button>
               <button class="decline">Decline</button>
+              <button class="show-route">Show Route</button>
             <% elsif request.approved_at && !request.rejected_at%>
               <button><%= link_to "Passenger", "/users/#{commute.passenger}" %></button>
               <button class="disconnect">Drop Passenger</button>
@@ -36,3 +37,5 @@
     </div>
   <% end %>
 </div>
+<div id="directions-panel"></div>
+<div id="map-canvas" class="hidden"></div>
