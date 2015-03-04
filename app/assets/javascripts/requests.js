@@ -127,7 +127,8 @@ $(function(){
     initMap();
     initDirections();
     getDriverCommute(clicked_button);
-    // getPassengerCommute(clicked_button);
+    getPassengerCommute(clicked_button);
+    renderRoute();
   } 
 
   function initMap() {
@@ -156,9 +157,16 @@ $(function(){
         console.log("failed to get driver commute lat longs")
       },
       success: function(response){
-        console.log(response)
+        console.log(response);
+        var driverInfo = response;
+        function getDriverCoordinates(driverInfo);
       }
     }); 
+  }
+
+  function getDriverCoordinates(driverInfo){
+    origin = driverInfo["origin"]
+    destination = driverInfo["destination"]
   }
 
   function getPassengerCommute(clicked_button){
@@ -173,13 +181,32 @@ $(function(){
       },
       success: function(response){
         console.log(response)
+        var passengerInfo = response;
+        function getPassengerCoordinates(passengerInfo);
       }
     }); 
   }
 
+  function getPassengerCoordinates(passengerInfo){
+    waypoints = []
+    waypoints << passengerInfo["origin"]
+    waypoints << passengerInfo["destination"]
+  }
 
-
-
+  function renderRoute(){
+    var request = {
+      origin:origin,
+      destination:destination,
+      waypoints: waypoints,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
+  }
 
 
 })

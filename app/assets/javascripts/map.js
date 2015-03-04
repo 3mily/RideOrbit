@@ -140,7 +140,6 @@ $(function(){
   }
 
   function renderRoute(){
-    console.log(waypoints);
     var request = {
         origin:origin,
         destination:destination,
