@@ -27,12 +27,12 @@ $(function(){
   $(".show-route").text("Show Route");
 
   $(".show-route").on("click",function(){
+    debugger;
     var clickedButton = $(this)
     var insideText = clickedButton.text()
     $("#map-canvas").toggleClass("hidden");
     clickedButton.text(insideText == "Show Route" ? "Hide Route" : "Show Route");
     if (insideText == "Show Route"){
-      debugger;
       initialize(clickedButton);
     } 
   })
@@ -125,7 +125,7 @@ $(function(){
     initMap();
     initDirections();
     getDriverCommute(clicked_button);
-    // getPassengerCommute(clicked_button);
+    getPassengerCommute(clicked_button);
   } 
 
   function initMap() {
@@ -144,8 +144,7 @@ $(function(){
   }
 
   function getDriverCommute(clicked_button){
-    var requestInfo = clicked_button.siblings(".d-request").data("request");
-
+    var requestInfo = clicked_button.parent(".d-request").data("request");
     $.ajax({
       url: '/drivercommutes/requestinfo',
       method: "GET",
@@ -160,8 +159,20 @@ $(function(){
     }); 
   }
 
-  function getPassengerCommute(){
-
+  function getPassengerCommute(clicked_button){
+    var requestInfo = clicked_button.parent(".d-request").data("request");
+    $.ajax({
+      url: '/passengercommutes/requestinfo',
+      method: "GET",
+      dataType: "json",
+      data: requestInfo,
+      error: function(xhr,status,thrownError){
+        console.log("failed to get passenger commute lat longs")
+      },
+      success: function(response){
+        console.log(response)
+      }
+    }); 
   }
 
 

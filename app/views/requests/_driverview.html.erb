@@ -1,7 +1,6 @@
 <div id="pending-passengers">
   <% @user.drivercommutes.each_with_index do |commute,index| %>
     <div class="panel">
-    <button class="show-route"> Show Route </button>
       <p> Commute Number : <%= index+1 %>
       <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
       <% if commute.requests.empty? %>
