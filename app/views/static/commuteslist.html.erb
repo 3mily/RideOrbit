@@ -9,7 +9,7 @@
     <label class="switch-light well">
       <input type="checkbox" id="commutes-type-toggle">
       <span>
-        <span>Passenger</span>
+        <span>Passenger</span1992A1
         <span>Driver</span>
       </span>
       <a class="btn btn-primary"></a>
@@ -24,7 +24,9 @@
     <%= render 'drivercommutes_list' %>
   </div>
   <div class="row">
-      <%= link_to "View on Map", map_index_path, class: 'btn btn-primary btn-lg btn-consistent center-block' %>
+        
+      <%= link_to(raw('View on Map <i class="fa fa-arrow-right"></i>'), map_index_path, class: 'btn btn-primary btn-lg btn-consistent center-block' )%>
+      
   </div>
 
 </div>

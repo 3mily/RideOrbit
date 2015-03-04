@@ -53,8 +53,13 @@ body {
 }
 .other-page-bg {
   background: url('bg2.jpg') no-repeat center center fixed;
-  height: 100%;
+  min-height: 100%;
   margin-top: -10px;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 .welcome-panel {
