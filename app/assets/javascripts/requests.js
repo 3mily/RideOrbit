@@ -24,6 +24,19 @@ $(function(){
     decline(clicked);
   })
 
+  $(".show-route").text("Show Route");
+
+  $(".show-route").on("click",function(){
+    debugger;
+    var clickedButton = $(this)
+    var insideText = clickedButton.text()
+    $("#map-canvas").toggleClass("hidden");
+    clickedButton.text(insideText == "Show Route" ? "Hide Route" : "Show Route");
+    if (insideText == "Show Route"){
+      initialize(clickedButton);
+    } 
+  })
+
   function getInfo(clicked){
     params = clicked.data("request");
     params["status"] = "accept";
@@ -106,4 +119,70 @@ $(function(){
     });
   }
 
+ //maps logic below
+
+  function initialize(clicked_button) {
+    initMap();
+    initDirections();
+    getDriverCommute(clicked_button);
+    getPassengerCommute(clicked_button);
+  } 
+
+  function initMap() {
+    var mapOptions = {
+      center: { lat: 49.282043, lng: -123.108162},
+      zoom: 11
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  }
+
+  function initDirections(){
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('directions-panel'));
+  }
+
+  function getDriverCommute(clicked_button){
+    var requestInfo = clicked_button.parent(".d-request").data("request");
+    $.ajax({
+      url: '/drivercommutes/requestinfo',
+      method: "GET",
+      dataType: "json",
+      data: requestInfo,
+      error: function(xhr,status,thrownError){
+        console.log("failed to get driver commute lat longs")
+      },
+      success: function(response){
+        console.log(response)
+      }
+    }); 
+  }
+
+  function getPassengerCommute(clicked_button){
+    var requestInfo = clicked_button.parent(".d-request").data("request");
+    $.ajax({
+      url: '/passengercommutes/requestinfo',
+      method: "GET",
+      dataType: "json",
+      data: requestInfo,
+      error: function(xhr,status,thrownError){
+        console.log("failed to get passenger commute lat longs")
+      },
+      success: function(response){
+        console.log(response)
+      }
+    }); 
+  }
+
+
+
+
+
+
 })
+
+
+
+
+

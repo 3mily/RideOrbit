@@ -6,7 +6,6 @@ $(function(){
   var driverDestinations = [];
   var passengerOrigins = [];
   var passengerDestinations = [];
-  var bounds; //grab bounds for map
   var iconImg; //url for custom icon
   var userInfo; //response objects returned from polling our db
   var currentlyBouncing = null; //bounce animation tracker default to null
