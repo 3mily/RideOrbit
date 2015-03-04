@@ -2,19 +2,26 @@
   <%= javascript_include_tag 'requests', 'data-turbolinks-track' => true %>
 <% end %>
 
-<label class="switch-light well" onclick="">
-  <input type="checkbox" id="commutes-select-toggle">
-  <span>
-    <span>Passenger</span>
-    <span>Driver</span>
-  </span>
-  <a class="btn btn-primary"></a>
-</label>
+<div class="container list-center">
 
-<div id="requests-as-passenger">
-  <%=render 'passengerview'%>
-</div>
+  <h1>Requests Sent</h1>
 
-<div id="requests-as-driver" style="display:none">
-  <%=render 'driverview'%>
+  <div class="switch-light-container">
+    <label class="switch-light well" onclick="">
+      <input type="checkbox" id="commutes-select-toggle">
+      <span>
+        <span>As a Passenger</span>
+        <span>As a Driver</span>
+      </span>
+      <a class="btn btn-primary"></a>
+    </label>
+  </div>
+
+  <div id="requests-as-passenger">
+    <%=render 'passengerview'%>
+  </div>
+
+  <div id="requests-as-driver" style="display:none">
+    <%=render 'driverview'%>
+  </div>
 </div>

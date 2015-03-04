@@ -25,6 +25,10 @@ $flash-bg: #ccc;
 
 body {
   background-color: $bg-color;
+  background: url('bg2.jpg') no-repeat center center fixed;
+  width:100%; 
+  height:100%;
+  padding-bottom: 50px;
 }
 
 //flash message
@@ -54,16 +58,6 @@ body {
 
 #container {
   overflow: hidden;
-}
-
-.other-page-bg {
-  background: url('bg2.jpg') no-repeat center center fixed;
-  top: 105px;
-  bottom: 0;
-  width: 100%;
-  position: absolute;
-  opacity: 0.9;
-  z-index: -1;
 }
 
 .welcome-panel {
@@ -231,25 +225,39 @@ body {
 
 // google maps 
 #map-canvas {
-  top: 300px;
-  bottom: 0;
+  min-height: 100%;
   width: 100%;
-  position: absolute;
-}
-
-#map-top {
-  width: 100%;
-  padding: 20px;
-  max-height: 330px;
-  margin-top: -20px;
 }
 
  #directions-panel {
-  width: 230px;
-  max-height: 100%;
-  display: inline-block;
-  float: right;
+  width: 400px;
+  max-height: 600px;
+  overflow: auto;
+  margin: 20px;
+  margin-top: 100px;
+  background-color: rgba(220,220,220,0.8);
  }
+
+#test1 {
+  height: 100vh;
+  width: 70%;
+  margin-top: -20px;
+  float: left; 
+  background-color: red;
+  display: inline;
+}
+#map-right {
+  height: 100vh;
+  max-width: 30%;
+  margin-top: -20px;
+  padding: 30px 20px 20px 20px;
+  float: right;
+  display: inline;
+  background-color: rgba(200,200,200,0.8);
+}
+
+
+
 
 .display-day {
   background-color: $button-active;
