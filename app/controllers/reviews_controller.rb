@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.where(reviewer_id: params[:reviewer_id]).first
     if @review.destroy
-      redirect_to user_path(@review.reviewee_id)    
+      redirect_to reviews_path   
     end
   end
 

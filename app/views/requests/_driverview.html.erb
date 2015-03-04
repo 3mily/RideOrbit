@@ -2,30 +2,40 @@
   <% @user.drivercommutes.each_with_index do |commute,index| %>
     <div class="panel">
       <p> Commute Number : <%= index+1 %>
-     <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
-     <% if commute.requests.empty? %>
-       Pending Requests From Passengers: None
-     <% else %>
-      <% commute.requests.each do |request|%>
-        <% @total_requests +=1 %>
-        <div class="d-request" data-request="<%=request.to_json%>" data-user-id="<%=@user.id%>">
-          <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id!= @user.id%>
-            Pending Requests From Passengers: 
-            <%= link_to "Passenger Profile", "/users/#{request.initiated_by_id}" %>
-            <button class="accept">Accept</button>
-            <button class="decline">Decline</button>
-          <% elsif request.approved_at && !request.rejected_at%>
-            <button><%= link_to "Passenger", "/users/#{commute.passenger}" %></button>
-            <button class="disconnect">Drop Passenger</button>
-          <% elsif request.rejected_at %>
-            <% @rejected_requests+=1 %>
-          <% end %>
-        </div>
+      <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
+      <% if commute.requests.empty? %>
+        <label> Pending Requests From Passengers: None </label>
+        <br>
+        <label> No Pending Offers To Passengers </label>
+      <% else %>
+        <% commute.requests.each do |request|%>
+          <% @total_driver_requests +=1 %>
+          <div class="d-request" data-request="<%=request.to_json%>" data-user-id="<%=@user.id%>">
+            <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id == @user.id %>
+              <% @total_outgoing_driver_pending+= 1 %>
+              <% @total_driver_requests -= 1%>
+            <% end %>
+            <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id!= @user.id%>
+              Pending Requests From Passengers: 
+              <%= link_to "Passenger Profile", "/users/#{request.initiated_by_id}" %>
+              <button class="accept">Accept</button>
+              <button class="decline">Decline</button>
+              <button class="show-route">Show Route</button>
+            <% elsif request.approved_at && !request.rejected_at%>
+              <button><%= link_to "Passenger", "/users/#{commute.passenger}" %></button>
+              <button class="disconnect">Drop Passenger</button>
+            <% elsif request.rejected_at %>
+              <% @rejected_driver_requests+=1 %>
+            <% end %>
+          </div>
       <% end %> 
-      <% if @rejected_requests == @total_requests %>
-        Pending Requests From Passengers: None
+      <% if @rejected_driver_requests == @total_driver_requests %>
+        <label> Pending Requests From Passengers: None </label><br>
       <% end %> 
-     <% end %>
+      <% end %>
+      <label>Pending Offers To Passengers: <%= @total_outgoing_driver_pending %> </label>
     </div>
   <% end %>
 </div>
+<div id="directions-panel"></div>
+<div id="map-canvas"></div>

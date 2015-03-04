@@ -24,7 +24,9 @@
     <%= render 'drivercommutes_list' %>
   </div>
   <div class="row">
-      <%= link_to "View on Map", map_index_path, class: 'btn btn-primary btn-lg btn-consistent center-block' %>
+        
+      <%= link_to(raw('View on Map <i class="fa fa-arrow-right"></i>'), map_index_path, class: 'btn btn-primary btn-lg btn-consistent center-block' )%>
+      
   </div>
 
 </div>

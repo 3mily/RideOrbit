@@ -1,3 +1,6 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 $orange-light1: #FFC553;
 $orange-light2: #FFB247;
 $orange-dark: #E5B66A;
@@ -27,14 +30,7 @@ body {
 //flash message
 .alert {
     background-color: rgba(229, 182, 106, 0.2);
-    color: $orange-dark;
-    text-align: center; 
-    max-width: 600px;
-    margin: 0 auto;
-}
-.notice {
-    background-color: #eee;
-    color: #aaa;
+    color: $button-active;
     text-align: center; 
     max-width: 600px;
     margin: 0 auto;
@@ -55,10 +51,19 @@ body {
   height: 1020px;
   margin-top: -20px;
 }
+
+#container {
+  overflow: hidden;
+}
+
 .other-page-bg {
   background: url('bg2.jpg') no-repeat center center fixed;
-  height: 1020px;
-  margin-top: -10px;
+  top: 105px;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  opacity: 0.9;
+  z-index: -1;
 }
 
 .welcome-panel {
@@ -82,11 +87,12 @@ body {
 
 
 .btn-consistent {
-  width: 200px;
+  width: 220px;
 }
 
 .right {
-  float: right;
+  text-align: right;
+  display: inline-block;
 }
 
 .panel {
@@ -96,6 +102,9 @@ body {
 .btn-primary {
   background-color: $blue-dark;
   border: none;
+  &:hover {
+    background-color: $blue-dark - 30;
+  }
 }
 
 // 3mily's face
@@ -196,16 +205,6 @@ body {
   border-color: $orange-dark;
 }
 
-
-// google maps 
-#map-canvas {
- height: 400px;
- width: 75%;
- border-radius: 10px;
- margin-top: 10px;
-}
-
-
 // button-like check boxes for the days of week
 .day {
   background-color: $button-inactive;
@@ -228,20 +227,28 @@ body {
     background-color: $button-active;
     color:white;
   }
+} 
+
+// google maps 
+#map-canvas {
+  top: 300px;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
 }
 
- #map-canvas {
-   height: 400px;
-   width: 75%;
-   border-radius: 10px;
-   margin-top: 10px;
-   float: left;
- }
+#map-top {
+  width: 100%;
+  padding: 20px;
+  max-height: 330px;
+  margin-top: -20px;
+}
 
  #directions-panel {
-  float: right;
   width: 230px;
-  max-height: 400px;
+  max-height: 100%;
+  display: inline-block;
+  float: right;
  }
 
 .display-day {

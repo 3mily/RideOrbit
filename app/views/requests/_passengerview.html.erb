@@ -1,14 +1,20 @@
-<div id="pending-drivers">
+<div id="pending-drivers" class="container-fluid">
   <% @user.passengercommutes.each_with_index do |commute,index| %>
     <div class="panel">
       <p> Commute Number : <%= index+1 %>
       <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
       <% if commute.requests.empty? %>
-        Pending Invitations From Drivers: None
+        <label> Pending Invitations From Drivers: None </label> 
+        <br>
+        <label> No Pending Requests To Drivers </label>
       <% else %>
         <% commute.requests.each do |request|%>
-          <% @total_requests +=1 %>
+          <% @total_passenger_requests +=1 %>
           <div class="p-request" data-request="<%= request.to_json %>" data-user-id="<%= @user.id %>">
+            <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id == @user.id %>
+              <% @total_outgoing_passenger_pending+= 1 %>
+              <% @total_passenger_requests -= 1%>
+            <% end %>
             <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id != @user.id%>
               Pending Invitations From Drivers: 
               <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
@@ -18,14 +24,15 @@
               <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
               <button class="disconnect">Drop Driver</button>
             <% elsif request.rejected_at %>
-              <% @rejected_requests+=1 %>
+              <% @rejected_passenger_requests+=1 %>
             <% end %>
           </div>
         <% end %> 
-      <% if @rejected_requests == @total_requests %>
-        Pending Invitations From Drivers: None
+      <% if @rejected_passenger_requests == @total_passenger_requests %>
+        <label> Pending Invitations From Drivers: None </label></br>
       <% end %>
       <% end %>
+      <label> Pending Requests To Drivers: <%= @total_outgoing_passenger_pending%> </label>
     </div>
   <% end %>
 </div>

@@ -6,7 +6,6 @@ $(function(){
   var driverDestinations = [];
   var passengerOrigins = [];
   var passengerDestinations = [];
-  var bounds; //grab bounds for map
   var iconImg; //url for custom icon
   var userInfo; //response objects returned from polling our db
   var currentlyBouncing = null; //bounce animation tracker default to null
@@ -25,14 +24,17 @@ $(function(){
   $("#commutes-select-toggle").on("click", function(){
     $("#passenger-commute-select").toggle();
     $("#driver-commute-select").toggle();
+    $("#radius").addClass("hidden");
   });
 
   $("#commute_driver").on("change", function(){
     calcInitRoute("driver");
+    $("#radius").removeClass("hidden");
   });
 
   $("#commute_passenger").on("change", function(){
     calcInitRoute("passenger");
+    $("#radius").removeClass("hidden");
   });
 
   $('#search_radius').on('keyup', function(){
@@ -117,12 +119,12 @@ $(function(){
 
   function getCoordinates(user) {
     if (user==="passenger") {
-      var commuteInfo = $("option:selected").val();
+      var commuteInfo = $("#commute_passenger option:selected").val();
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(passengerOrigins[commute][0], passengerOrigins[commute][1]); 
       destination = new google.maps.LatLng(passengerDestinations[commute][0], passengerDestinations[commute][1]); 
     } else if (user === "driver"){
-      var commuteInfo = document.getElementById('commute_driver_info').value;     
+      var commuteInfo = $("#commute_driver option:selected").val();
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(driverOrigins[commute][0], driverOrigins[commute][1]); 
       destination = new google.maps.LatLng(driverDestinations[commute][0], driverDestinations[commute][1]); 
@@ -138,7 +140,6 @@ $(function(){
   }
 
   function renderRoute(){
-    console.log(waypoints);
     var request = {
         origin:origin,
         destination:destination,
@@ -340,4 +341,5 @@ $(function(){
       stopover:true
     });
   }
+
 });

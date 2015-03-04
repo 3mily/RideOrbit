@@ -24,6 +24,21 @@ $(function(){
     decline(clicked);
   })
 
+  $(".show-route").text("Draw Route");
+
+  $(".show-route").on("click",function(){
+    var clickedButton = $(this)
+    var insideText = clickedButton.text()
+    if (insideText == "Draw Route"){
+      $("#map-canvas").removeClass("hidden");
+      initialize(clickedButton);
+      clickedButton.text("Hide Route")
+    } else if (insideText == "Hide Route"){
+      $("#map-canvas").addClass("hidden");
+      clickedButton.text("Draw Route")
+    }
+  })
+
   function getInfo(clicked){
     params = clicked.data("request");
     params["status"] = "accept";
@@ -106,4 +121,111 @@ $(function(){
     });
   }
 
+ //maps logic below
+
+  function initialize(clicked_button) {
+    initMap();
+    initDirections();
+    getDriverCommute(clicked_button);
+    getPassengerCommute(clicked_button);
+  } 
+
+  function initMap() {
+    var mapOptions = {
+      center: { lat: 49.282043, lng: -123.108162},
+      zoom: 11
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  }
+
+  function initDirections(){
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('directions-panel'));
+  }
+
+  function getDriverCommute(clicked_button){
+    var requestInfo = clicked_button.parent(".d-request").data("request");
+    $.ajax({
+      url: '/drivercommutes/requestinfo',
+      method: "GET",
+      dataType: "json",
+      data: requestInfo,
+      error: function(xhr,status,thrownError){
+        console.log("failed to get driver commute lat longs")
+      },
+      success: function(response){
+        console.log(response);
+        var driverInfo = response;
+        getDriverCoordinates(driverInfo);
+      }
+    }); 
+  }
+
+  function getDriverCoordinates(driverInfo){
+    var driver_origin = driverInfo["origin"];
+    origin = new google.maps.LatLng(driver_origin[0], driver_origin[1]);
+    var driver_destination = driverInfo["destination"];
+    destination = new google.maps.LatLng(driver_destination[0],driver_destination[1]);
+  }
+
+  function getPassengerCommute(clicked_button){
+    var requestInfo = clicked_button.parent(".d-request").data("request");
+    $.ajax({
+      url: '/passengercommutes/requestinfo',
+      method: "GET",
+      dataType: "json",
+      data: requestInfo,
+      error: function(xhr,status,thrownError){
+        console.log("failed to get passenger commute lat longs")
+      },
+      success: function(response){
+        console.log(response)
+        var passengerInfo = response;
+        getPassengerCoordinates(passengerInfo);
+      }
+    }); 
+  }
+
+  function getPassengerCoordinates(passengerInfo){
+    waypoints = []
+    passenger_origin_info = passengerInfo["origin"];
+    passenger_destination_info = passengerInfo["destination"];
+    passenger_origin = new google.maps.LatLng(passenger_origin_info[0],passenger_origin_info[1]);
+    passenger_destination = new google.maps.LatLng(passenger_destination_info[0],passenger_destination_info[1]);
+    pushWayPt(passenger_origin);
+    pushWayPt(passenger_destination);
+    renderRoute();  
+  }
+
+  function pushWayPt(waypoint){
+    waypoints.push({
+    location:waypoint,
+      stopover:true
+    });
+  }
+
+  function renderRoute(){
+    console.log(waypoints);
+    var request = {
+      origin: origin,
+      destination: destination,
+      waypoints: waypoints,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
+  }
+
+
 })
+
+
+
+
+

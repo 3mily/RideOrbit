@@ -31,6 +31,19 @@ class DrivercommutesController < ApplicationController
     render json: @driver_commute_update
   end
 
+  def retrieve
+    commute = Drivercommute.find(params["drivercommute_id"])
+    commute_info = {
+      "origin": commute.origin,
+      "origin_name": commute.origin_name,
+      "destination": commute.destination,
+      "destination_name": commute.destination_name,
+      "arrival_time": commute.arrival_time,
+      "days": commute.days
+    }
+    render json: commute_info
+  end
+
   #helper methods
   def driver_commute_params
     params.require(:drivercommute).permit(
