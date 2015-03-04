@@ -5,13 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-1.upto(10) do |i|
-  User.create(firstname: "firstname#{i}",lastname:"lastname#{i}",phone:"555-555#{i}",password:"pwpwpw",email:"email@email#{i}",bio:"Hi! My name is Emily Craig! I am related to the new James Bond! I have fat cat named Mario. I am from Victoria. I am amazing designing things. Let's go for a ride!!!") 
+1.upto(9) do |i|
+  firstname = Faker::Name.first_name
+  lastname = Faker::Name.last_name
+  industry_array = ["agriculture","energy","entertainment","finance","government","health/medical","hospitality","marketing/communications","non-profit","publishing","science","technology","transportation"]
+  industry = industry_array[rand(0...industry_array.length)]
+  user = User.new(firstname: firstname, lastname: lastname, phone: "604802092#{i}", password:"pwpwpw", email:"email#{i}@email.io", industry: industry, bio:"Hi my name is #{firstname} let's go for a ride!!!") 
+  user.picture = File.open(Rails.root.join('public', 'uploads', 'user', 'picture', '11', 'hyeunny.jpeg'))
+  user.save!
 end
 
 
 Place.create(
-  user_id:1,
+  user_id:1, 
   name: "Home",
   cross_street:"41st and Cambie (Oakridge Area)", 
   cross_street_point: "49.233343, -123.116658"

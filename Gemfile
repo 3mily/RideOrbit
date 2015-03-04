@@ -6,7 +6,9 @@ gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 
-#carrierwave for profile picture upload
+#Faker for seeding data
+gem 'faker'
+#carrierwave for profile picture upload, minimagick for resiszing
 gem 'carrierwave'
 gem 'mini_magick'
 # we're using Postgres as both dev and prod database for active record
