@@ -194,12 +194,20 @@ $(function(){
     passenger_destination_info = passengerInfo["destination"];
     passenger_origin = new google.maps.LatLng(passenger_origin_info[0],passenger_origin_info[1]);
     passenger_destination = new google.maps.LatLng(passenger_destination_info[0],passenger_destination_info[1]);
-    waypoints << passenger_origin;
-    waypoints << passenger_destination;
+    pushWayPt(passenger_origin);
+    pushWayPt(passenger_destination);
     renderRoute();  
   }
 
+  function pushWayPt(waypoint){
+    waypoints.push({
+    location:waypoint,
+      stopover:true
+    });
+  }
+
   function renderRoute(){
+    console.log(waypoints);
     var request = {
       origin: origin,
       destination: destination,
