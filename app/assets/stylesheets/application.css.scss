@@ -51,15 +51,19 @@ body {
   height: 1020px;
   margin-top: -20px;
 }
+
+#container {
+  overflow: hidden;
+}
+
 .other-page-bg {
   background: url('bg2.jpg') no-repeat center center fixed;
-  min-height: 100%;
-  margin-top: -10px;
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  top: 105px;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  opacity: 0.8;
+  z-index: -1;
 }
 
 .welcome-panel {
@@ -201,16 +205,6 @@ body {
   border-color: $orange-dark;
 }
 
-
-// google maps 
-#map-canvas {
- height: 400px;
- width: 75%;
- border-radius: 10px;
- margin-top: 10px;
-}
-
-
 // button-like check boxes for the days of week
 .day {
   background-color: $button-inactive;
@@ -235,18 +229,29 @@ body {
   }
 }
 
- #map-canvas {
-   height: 400px;
-   width: 75%;
-   border-radius: 10px;
-   margin-top: 10px;
-   float: left;
- }
+
+// google maps 
+#map-canvas {
+  top: 20%;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+#map-top {
+  width: 100%;
+  padding: 20px;
+  max-height: 20%;
+  margin-top: -20px;
+  background-color: #eee;
+}
 
  #directions-panel {
-  float: right;
   width: 230px;
-  max-height: 400px;
+  max-height: 100%;
+  display: inline-block;
+  float: right;
  }
 
 .display-day {
