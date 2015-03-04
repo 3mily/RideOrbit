@@ -119,12 +119,12 @@ $(function(){
 
   function getCoordinates(user) {
     if (user==="passenger") {
-      var commuteInfo = $("option:selected").val();
+      var commuteInfo = $("#commute_passenger option:selected").val();
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(passengerOrigins[commute][0], passengerOrigins[commute][1]); 
       destination = new google.maps.LatLng(passengerDestinations[commute][0], passengerDestinations[commute][1]); 
     } else if (user === "driver"){
-      var commuteInfo = $("option:selected").val();   
+      var commuteInfo = $("#commute_driver option:selected").val();
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(driverOrigins[commute][0], driverOrigins[commute][1]); 
       destination = new google.maps.LatLng(driverDestinations[commute][0], driverDestinations[commute][1]); 
