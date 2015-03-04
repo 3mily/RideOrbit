@@ -360,7 +360,21 @@ body {
   }
 }
 
+#map-canvas2 {
+  height: 400px;
+  width: 75%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
 
+#directions-panel2 {
+  float: right;
+  width: 230px;
+  max-height: 600px;
+  margin: 20px;
+  margin-top: 100px;
+  background-color: rgba(220,220,220,0.8);
+}
 //gradient
 .orbit-nav {
   background-color: #444; //fallback color
