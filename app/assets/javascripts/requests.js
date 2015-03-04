@@ -128,7 +128,6 @@ $(function(){
     initDirections();
     getDriverCommute(clicked_button);
     getPassengerCommute(clicked_button);
-    renderRoute();
   } 
 
   function initMap() {
@@ -140,8 +139,8 @@ $(function(){
   }
 
   function initDirections(){
-    var directionsService = new google.maps.DirectionsService();
-    var directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer();
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('directions-panel'));
   }
@@ -159,14 +158,16 @@ $(function(){
       success: function(response){
         console.log(response);
         var driverInfo = response;
-        function getDriverCoordinates(driverInfo);
+        getDriverCoordinates(driverInfo);
       }
     }); 
   }
 
   function getDriverCoordinates(driverInfo){
-    origin = driverInfo["origin"]
-    destination = driverInfo["destination"]
+    var driver_origin = driverInfo["origin"];
+    origin = new google.maps.LatLng(driver_origin[0], driver_origin[1]);
+    var driver_destination = driverInfo["destination"];
+    destination = new google.maps.LatLng(driver_destination[0],driver_destination[1]);
   }
 
   function getPassengerCommute(clicked_button){
@@ -182,21 +183,26 @@ $(function(){
       success: function(response){
         console.log(response)
         var passengerInfo = response;
-        function getPassengerCoordinates(passengerInfo);
+        getPassengerCoordinates(passengerInfo);
       }
     }); 
   }
 
   function getPassengerCoordinates(passengerInfo){
     waypoints = []
-    waypoints << passengerInfo["origin"]
-    waypoints << passengerInfo["destination"]
+    passenger_origin_info = passengerInfo["origin"];
+    passenger_destination_info = passengerInfo["destination"];
+    passenger_origin = new google.maps.LatLng(passenger_origin_info[0],passenger_origin_info[1]);
+    passenger_destination = new google.maps.LatLng(passenger_destination_info[0],passenger_destination_info[1]);
+    waypoints << passenger_origin;
+    waypoints << passenger_destination;
+    renderRoute();  
   }
 
   function renderRoute(){
     var request = {
-      origin:origin,
-      destination:destination,
+      origin: origin,
+      destination: destination,
       waypoints: waypoints,
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING
