@@ -21,15 +21,13 @@
 
 </head>
 <body>
-<div class="other-page-bg">
+  <div class="other-page-bg">
 
-<%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
+    <%= flash_messages %>
+    <%= yield %>
 
-<%= flash_messages %>
-
-<%= yield %>
-
-</div>
+  </div>
 </body>
 
 </html>
