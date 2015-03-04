@@ -62,7 +62,7 @@ body {
   bottom: 0;
   width: 100%;
   position: absolute;
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: -1;
 }
 
@@ -227,24 +227,21 @@ body {
     background-color: $button-active;
     color:white;
   }
-}
-
+} 
 
 // google maps 
 #map-canvas {
-  top: 20%;
+  top: 300px;
   bottom: 0;
   width: 100%;
   position: absolute;
-  z-index: -1;
 }
 
 #map-top {
   width: 100%;
   padding: 20px;
-  max-height: 20%;
+  max-height: 330px;
   margin-top: -20px;
-  background-color: #eee;
 }
 
  #directions-panel {
