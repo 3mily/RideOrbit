@@ -268,6 +268,15 @@ body {
   width: 40px
 }
 
+.display-time {
+  background-color: $button-active;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 4px;
+  width: 80px
+}
+
 // form containers
 #new-passenger-container {
   padding: 5px;

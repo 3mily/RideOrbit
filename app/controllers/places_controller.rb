@@ -25,9 +25,9 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-    @place = Place.find(params[:id])
+    @place = Place.find(params["id"])
     @place.destroy
-    redirect_to places_path
+    render json: @place
   end
 
 
