@@ -33,7 +33,16 @@ class PassengercommutesController < ApplicationController
   end
 
   def retrieve
-    render json: params
+    commute = Passengercommute.find(params["passengercommute_id"])
+    commute_info = {
+      "origin": commute.origin,
+      "origin_name": commute.origin_name,
+      "destination": commute.destination,
+      "destination_name": commute.destination_name,
+      "arrival_time": commute.arrival_time,
+      "days": commute.days
+    }
+    render json: commute_info
   end
 
 

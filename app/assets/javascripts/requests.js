@@ -127,7 +127,7 @@ $(function(){
     initMap();
     initDirections();
     getDriverCommute(clicked_button);
-    // getPassengerCommute(clicked_button);
+    getPassengerCommute(clicked_button);
   } 
 
   function initMap() {
@@ -139,8 +139,8 @@ $(function(){
   }
 
   function initDirections(){
-    var directionsService = new google.maps.DirectionsService();
-    var directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer();
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('directions-panel'));
   }
@@ -156,9 +156,18 @@ $(function(){
         console.log("failed to get driver commute lat longs")
       },
       success: function(response){
-        console.log(response)
+        console.log(response);
+        var driverInfo = response;
+        getDriverCoordinates(driverInfo);
       }
     }); 
+  }
+
+  function getDriverCoordinates(driverInfo){
+    var driver_origin = driverInfo["origin"];
+    origin = new google.maps.LatLng(driver_origin[0], driver_origin[1]);
+    var driver_destination = driverInfo["destination"];
+    destination = new google.maps.LatLng(driver_destination[0],driver_destination[1]);
   }
 
   function getPassengerCommute(clicked_button){
@@ -173,13 +182,45 @@ $(function(){
       },
       success: function(response){
         console.log(response)
+        var passengerInfo = response;
+        getPassengerCoordinates(passengerInfo);
       }
     }); 
   }
 
+  function getPassengerCoordinates(passengerInfo){
+    waypoints = []
+    passenger_origin_info = passengerInfo["origin"];
+    passenger_destination_info = passengerInfo["destination"];
+    passenger_origin = new google.maps.LatLng(passenger_origin_info[0],passenger_origin_info[1]);
+    passenger_destination = new google.maps.LatLng(passenger_destination_info[0],passenger_destination_info[1]);
+    pushWayPt(passenger_origin);
+    pushWayPt(passenger_destination);
+    renderRoute();  
+  }
 
+  function pushWayPt(waypoint){
+    waypoints.push({
+    location:waypoint,
+      stopover:true
+    });
+  }
 
-
+  function renderRoute(){
+    console.log(waypoints);
+    var request = {
+      origin: origin,
+      destination: destination,
+      waypoints: waypoints,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
+  }
 
 
 })
