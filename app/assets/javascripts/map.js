@@ -247,7 +247,7 @@ $(function(){
                     '<a href="/users/'+ userInfo[idx].id +'">View Profile</a>' + '<br>'+
                     '<img class="infowindow-pic" src="' + clickedCommuteInfo['picture']['picture']['url'] + '">' +
                     '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
-                    '<button class="request-button" data-commute-id="' + userInfo[idx]["id"] +'"data-user-info="' + userInfo[idx]["user_info"] + '">Connect</button>'
+                    '<button class="request-button" data-commute-id="' + userInfo[idx]["id"] +'"data-user-info-name="' + userInfo[idx]["user_info"]["name"] + '"data-user-info-phone="' + userInfo[idx]["user_info"]["phone"] + '">Connect</button>'
                     '</div>';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -285,8 +285,10 @@ $(function(){
       "user": commuter,
       "user_commute_id": commuteId,
       "requested_commute_id": $(".request-button").data("commute-id"),
-      "request_receiver": $(".request-button").data('user_info')
+      "request_receiver_name": $(".request-button").data('user-info-name'),
+      "request_receiver_phone": $(".request-button").data('user-info-phone'),
     }
+    debugger;
     makeRequest();
     sendRequestText();
   });
