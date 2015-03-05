@@ -9,12 +9,14 @@ class TwilioController < ApplicationController
     auth_token = ENV['TWILIO_TOKEN']
     @client = Twilio::REST::Client.new account_sid, auth_token
     @from_number = ENV['TWILIO_NUMBER']
-    @recipient1_name = current_user.firstname
-
+    if params["initiated_by_id"]
+      sender = User.find(params["initiated_by_id"])
+      @recipient1_name = sender.firstname
+      @recipient1_number = sender.phone
+    end
     @recipient2_name = params["request_receiver_name"]
-    @recipient1_number = current_user.phone
-    @recipient2_number = params["request_receiver_phone"]
 
+    @recipient2_number = params["request_receiver_phone"]
     if params["status"] == "accept"
 
       @recipient1_number = "+17783231717"
