@@ -7,7 +7,6 @@ $(function(){
 
   $(".accept").on("click", function(){
     var clicked = $(this)
-    debugger;
     getInfo(clicked);
     updateRequest();
     updateDriverCommute();
@@ -17,12 +16,12 @@ $(function(){
 
   $(".decline").on("click",function(){
     var clicked = $(this);
-    decline(clicked);
+    decline(clicked,"decline");
   });
 
   $(".disconnect").on("click",function(){
     var clicked = $(this);
-    decline(clicked);
+    decline(clicked,"disconnect");
   })
 
   $(".show-route").text("Show Route");
@@ -36,15 +35,13 @@ $(function(){
       initialize(clickedButton);
       clickedButton.text("Hide Route")
     } else if (insideText == "Hide Route"){
-      $("#map-canvas2").addClass("hidden");
-      $("#directions-panel2").addClass("hidden");
+      hideMap();
       clickedButton.text("Show Route")
     }
   })
 
   function getInfo(clicked){
     params = clicked.parents(".d-request").data("request");
-    debugger;
     params["status"] = "accept";
   }
 
@@ -86,8 +83,11 @@ $(function(){
         console.log("it didnt save or work or something oh noes", thrownError);
       },
       success: function(response){
-        console.log("success passengerupdate")
-        clickedButton.parents(".pending-request").remove()
+        console.log("success passengerupdate");
+        clickedButton.parents(".pending-title").remove();
+        clickedButton.siblings(".decline").text("Drop Passenger");
+        clickedButton.remove();
+        hideMap();
       }
     });    
   }
@@ -106,13 +106,13 @@ $(function(){
     });
   }
 
-  function decline(clicked){
+  function decline(clicked,task){
     getInfo(clicked);
     params["status"]="decline";
-    declineRequest(clicked);    
+    declineRequest(clicked,task);    
   }
 
-  function declineRequest(clicked){
+  function declineRequest(clicked,task){
     var clickedButton = clicked
     $.ajax({
       url: "/requests/"+params["id"],
@@ -123,9 +123,20 @@ $(function(){
       },
       success: function(response){
         console.log("decline success")
-        clickedButton.parents(".pending-request").remove()
+        if (task=="decline"){
+          clickedButton.parents(".pending-request").remove()
+          hideMap();
+        } else {
+          clickedButton.parents(".drop-passenger").remove()
+          hideMap();
+        }
       }
     });
+  }
+
+  function hideMap(){
+    $("#map-canvas2").addClass("hidden");
+    $("#directions-panel2").addClass("hidden");
   }
 
  //maps logic below
