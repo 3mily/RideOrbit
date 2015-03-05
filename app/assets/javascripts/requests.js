@@ -6,41 +6,45 @@ $(function(){
   });
 
   $(".accept").on("click", function(){
-    var clicked = $(this).parent();
+    var clicked = $(this)
+    debugger;
     getInfo(clicked);
     updateRequest();
     updateDriverCommute();
-    updatePassengerCommute();
+    updatePassengerCommute(clicked);
     // sendAcceptText();
   });
 
   $(".decline").on("click",function(){
-    var clicked = $(this).parent();
+    var clicked = $(this);
     decline(clicked);
   });
 
   $(".disconnect").on("click",function(){
-    var clicked = $(this).parent();
+    var clicked = $(this);
     decline(clicked);
   })
 
-  $(".show-route").text("Draw Route");
+  $(".show-route").text("Show Route");
 
   $(".show-route").on("click",function(){
     var clickedButton = $(this)
     var insideText = clickedButton.text()
-    if (insideText == "Draw Route"){
-      $("#map-canvas").removeClass("hidden");
+    if (insideText == "Show Route"){
+      $("#map-canvas2").removeClass("hidden");
+      $("#directions-panel2").removeClass("hidden");
       initialize(clickedButton);
       clickedButton.text("Hide Route")
     } else if (insideText == "Hide Route"){
-      $("#map-canvas").addClass("hidden");
-      clickedButton.text("Draw Route")
+      $("#map-canvas2").addClass("hidden");
+      $("#directions-panel2").addClass("hidden");
+      clickedButton.text("Show Route")
     }
   })
 
   function getInfo(clicked){
-    params = clicked.data("request");
+    params = clicked.parents(".d-request").data("request");
+    debugger;
     params["status"] = "accept";
   }
 
@@ -72,7 +76,8 @@ $(function(){
     });
   }
 
-  function updatePassengerCommute(){
+  function updatePassengerCommute(clicked){
+    var clickedButton = clicked;
     $.ajax({
       url: "/passengercommutes/"+params["passengercommute_id"],
       type: "PATCH",
@@ -82,6 +87,7 @@ $(function(){
       },
       success: function(response){
         console.log("success passengerupdate")
+        clickedButton.parents(".pending-request").remove()
       }
     });    
   }
@@ -103,10 +109,11 @@ $(function(){
   function decline(clicked){
     getInfo(clicked);
     params["status"]="decline";
-    declineRequest();    
+    declineRequest(clicked);    
   }
 
-  function declineRequest(){
+  function declineRequest(clicked){
+    var clickedButton = clicked
     $.ajax({
       url: "/requests/"+params["id"],
       type: "PATCH",
@@ -116,7 +123,7 @@ $(function(){
       },
       success: function(response){
         console.log("decline success")
-        console.log(response)
+        clickedButton.parents(".pending-request").remove()
       }
     });
   }
@@ -135,18 +142,18 @@ $(function(){
       center: { lat: 49.282043, lng: -123.108162},
       zoom: 11
     };
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map-canvas2'), mapOptions);
   }
 
   function initDirections(){
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
     directionsDisplay.setMap(map);
-    directionsDisplay.setPanel(document.getElementById('directions-panel'));
+    directionsDisplay.setPanel(document.getElementById('directions-panel2'));
   }
 
   function getDriverCommute(clicked_button){
-    var requestInfo = clicked_button.parent(".d-request").data("request");
+    var requestInfo = clicked_button.parents(".d-request").data("request");
     $.ajax({
       url: '/drivercommutes/requestinfo',
       method: "GET",
@@ -171,7 +178,7 @@ $(function(){
   }
 
   function getPassengerCommute(clicked_button){
-    var requestInfo = clicked_button.parent(".d-request").data("request");
+    var requestInfo = clicked_button.parents(".d-request").data("request");
     $.ajax({
       url: '/passengercommutes/requestinfo',
       method: "GET",
