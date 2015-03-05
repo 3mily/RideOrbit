@@ -20,7 +20,10 @@
       <% end %>
       <% if current_user %>
 
-        <%= render 'pendingrequest' %>
+        <% if has_requests %>
+          <%= link_to(raw('<i class="fa fa-user-plus fa-lg"></i>'), requests_path, style: 'margin-top: 15px') %></li>
+        <% end %>
+
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="dropdown-img" src="<%=current_user.picture%>"><span class="caret"></span></a>

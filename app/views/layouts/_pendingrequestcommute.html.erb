@@ -1,7 +1,0 @@
-<% if commute.requests %>
-  <% commute.requests.each do |request| %>
-    <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id != current_user.id %>
-      <% existing_requests += 1 %>     
-    <% end %>
-  <% end %>
-<% end %>

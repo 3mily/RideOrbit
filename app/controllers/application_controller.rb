@@ -12,5 +12,33 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
 
+  def commute_requests(commute)
+    if commute.requests
+      commute.requests.each do |request|
+        if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id != current_user.id
+          @existing_requests += 1     
+        end
+      end
+    end
+  end
+
+
+  def has_requests
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @existing_requests = 0
+    if @current_user.drivercommutes
+      @current_user.drivercommutes.each do |commute|
+        commute_requests(commute)
+      end
+    end
+    if current_user.passengercommutes
+      current_user.drivercommutes.each do |commute|
+        commute_requests(commute)
+      end
+    end
+    @existing_requests > 0
+  end
+  helper_method :has_requests
+
 
 end
