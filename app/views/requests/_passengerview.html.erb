@@ -12,9 +12,9 @@
             <b>To</b> <%= commute.destination_name%> </p>
             <hr>
             <% if commute.requests.empty? %>
-              <label> Pending Invitations From Drivers: None </label> 
+              <label> Pending Invitations from Drivers: None </label> 
               <br>
-              <label> No Pending Requests To Drivers </label>
+              <label> Pending Requests to Drivers: None </label>
             <% else %>
               <% commute.requests.each do |request|%>
                 <% @total_passenger_requests +=1 %>
@@ -24,10 +24,13 @@
                     <% @total_passenger_requests -= 1%>
                   <% end %>
                   <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id != @user.id%>
-                    Pending Invitations From Drivers: 
-                    <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
-                    <button class="accept">Accept</button>
-                    <button class="decline">Decline</button>
+                    <div class="pending-request">
+                      <span class="pending-title"> Pending Request: </span>
+                      </br>
+                      <button> <%= link_to "Driver", "/users/#{request.initiated_by_id}" %></button>
+                      <button class="accept">Accept</button>
+                      <button class="decline">Decline</button>
+                    </div>
                   <% elsif request.approved_at && !request.rejected_at %>
                     <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
                     <button class="disconnect">Drop Driver</button>
@@ -35,13 +38,12 @@
                     <% @rejected_passenger_requests+=1 %>
                   <% end %>
                 </div>
-              <% end %> 
-              <% if @rejected_passenger_requests == @total_passenger_requests %>
-                <label> Pending Invitations From Drivers: None </label></br>
-              <% end %>
-            <% end %>
-            <label> Pending Requests To Drivers: <%= @total_outgoing_passenger_pending%> 
-            </label>          
+                <% end %> 
+                <% if @rejected_passenger_requests == @total_passenger_requests %>
+                  <label> Pending Invitations from Drivers: None </label></br>
+                <% end %>
+                <label> Pending Requests sent to Drivers: <%= @total_outgoing_passenger_pending %></label> 
+            <% end %>         
           </div>
         </div>
       </div>

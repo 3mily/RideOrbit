@@ -1,10 +1,11 @@
-<div class="container-fluid" id="pending-drivers">
+<div id="pending-drivers" class="container-fluid" >
   <div class="row">
     <% @user.drivercommutes.each_with_index do |commute,index| %>
       <div class="col-md-4">
         <div class="panel panel-primary commute">
           <div class="panel-heading">
-            <h3 class="panel-title"><%= image_tag "icon-driver.png" %> Commute No. <%= index += 1 %></h3>
+            <h3 class="panel-title"><%= image_tag "icon-driver.png" %> 
+              Commute No. <%= index += 1 %></h3>
           </div>
           <div class="panel-body">
             <p><b>From</b> <%= commute.origin_name%><br>
@@ -13,7 +14,7 @@
             <% if commute.requests.empty? %>
               <label> Pending Requests From Passengers: None </label>
               <br>
-              <label> No Pending Offers To Passengers </label>
+              <label> Pending Invitations to Passengers: None </label>
             <% else %>
               <% commute.requests.each do |request|%>
                 <% @total_driver_requests +=1 %>
@@ -41,13 +42,12 @@
                     <% @rejected_driver_requests+=1 %>
                   <% end %>
                 </div>
-                <% end %> 
-                <% if @rejected_driver_requests == @total_driver_requests %>
-                  <label> Pending Requests From Passengers: None </label><br>
-                <% end %> 
-              <% end %>
-            <label>Pending Offers To Passengers: <%= @total_outgoing_driver_pending %> </label>
-            </div>
+              <% end %> 
+              <% if @rejected_driver_requests == @total_driver_requests %>
+                <label> Pending Requests From Passengers: None </label><br>
+              <% end %> 
+              <label>Pending Invitations sent to Passengers: <%= @total_outgoing_driver_pending %> </label>
+            <% end %>
           </div>
         </div>
       </div>
