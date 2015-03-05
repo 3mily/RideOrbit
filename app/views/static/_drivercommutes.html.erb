@@ -25,21 +25,24 @@
       <%= f.label "driver_arrival_time", "Arrive by:"%><%= f.time_select :arrival_time, {minute_step: 15, ampm: true, prompt: true} %>
     </div>
 
-    Days of the week: <br>
-    <div class="day"><%= check_box_tag "d-sun" %><span>
-      <%= label_tag "d-sun", "sun" %></span></div>
-    <div class="day"><%= check_box_tag "d-mon" %><span>
-      <%= label_tag "d-mon", "mon" %></span></div>
-    <div class="day"><%= check_box_tag "d-tue" %><span>
-      <%= label_tag "d-tue", "tue" %></span></div>
-    <div class="day"><%= check_box_tag "d-wed" %><span>
-      <%= label_tag "d-wed", "wed" %></span></div>
-    <div class="day"><%= check_box_tag "d-thu" %><span>
-      <%= label_tag "d-thu", "thu" %></span></div>
-    <div class="day"><%= check_box_tag "d-fri" %><span>
-      <%= label_tag "d-fri", "fri" %></span></div>
-    <div class="day"><%= check_box_tag "d-sat" %><span>
-      <%= label_tag "d-sat", "sat" %></span></div>
+<div>
+      <%= label_tag "Days of the week:"%><br>
+      <div class="day"><%= check_box_tag "d-sun" %><span>
+        <%= label_tag "d-sun", "sun" %></span></div>
+      <div class="day"><%= check_box_tag "d-mon" %><span>
+        <%= label_tag "d-mon", "mon" %></span></div>
+      <div class="day"><%= check_box_tag "d-tue" %><span>
+        <%= label_tag "d-tue", "tue" %></span></div>
+      <div class="day"><%= check_box_tag "d-wed" %><span>
+        <%= label_tag "d-wed", "wed" %></span></div>
+      <div class="day"><%= check_box_tag "d-thu" %><span>
+        <%= label_tag "d-thu", "thu" %></span></div>
+      <div class="day"><%= check_box_tag "d-fri" %><span>
+        <%= label_tag "d-fri", "fri" %></span></div>
+      <div class="day"><%= check_box_tag "d-sat" %><span>
+        <%= label_tag "d-sat", "sat" %></span></div>
+    </div>
+
 
       <%= f.submit "Submit", class: "btn btn-default" %> 
 
