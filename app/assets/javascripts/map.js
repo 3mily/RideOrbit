@@ -244,7 +244,7 @@ $(function(){
     var coordinates = userInfo[idx][place];
     var contentString = '<div>'+'<b>Name: </b>' + clickedCommuteInfo['name'] +'<br>'+
                     '<b>Industry: </b>' + clickedCommuteInfo['industry'] + '<br>'+
-                    '<a href="/users/'+ userInfo[0].id +'" target="_blank">View Profile</a>' + '<br>'+
+                    '<a href="/users/'+ userInfo[0].id +'">View Profile</a>' + '<br>'+
                     '<img class="infowindow-pic" src="' + clickedCommuteInfo['picture']['picture']['url'] + '">' +
                     '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
                     '<button class="request-button" data-commute-id="' + userInfo[idx]["id"] +'"data-user-info="' + userInfo[idx]["user_info"] + '">Connect</button>'

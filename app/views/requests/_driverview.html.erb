@@ -1,12 +1,10 @@
 <div class="container-fluid" id="pending-drivers">
-
   <div class="row">
     <% @user.drivercommutes.each_with_index do |commute,index| %>
       <div class="col-md-4">
         <div class="panel panel-primary commute">
           <div class="panel-heading">
-            <h3 class="panel-title"><%= image_tag "icon-driver.png" %>
-            Commute No. <%= index += 1 %></h3>
+            <h3 class="panel-title"><%= image_tag "icon-driver.png" %> Commute No. <%= index += 1 %></h3>
           </div>
           <div class="panel-body">
             <p> From <%= commute.origin_name%><br>To <%= commute.destination_name%> </p>
@@ -23,34 +21,35 @@
                     <% @total_driver_requests -= 1%>
                   <% end %>
                   <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id!= @user.id%>
-                  <div class="pending-request">
-                    Pending Request: 
-                    <%= link_to "Passenger Profile", "/users/#{request.initiated_by_id}" %>
-                    <br>
-                    <button class="accept">Accept</button>
-                    <button class="decline">Decline</button>
-                    <button class="show-route">Show Route</button>
-                  </div>
+                    <div class="pending-request">
+                      <span class="pending-title"> Pending Request: </span>
+                      </br>
+                      <button> <%= link_to "Passenger", "/users/#{request.initiated_by_id}" %></button>
+                      <button class="accept">Accept</button>
+                      <button class="decline">Decline</button>
+                      <button class="show-route">Show Route</button>
+                    </div>
                   <% elsif request.approved_at && !request.rejected_at%>
                     <div class="drop-passenger">
                       <button><%= link_to "Passenger", "/users/#{commute.passenger}" %></button>
                       <button class="disconnect">Drop Passenger</button>
+                      <button class="show-route">Show Route</button>
                     </div>
                   <% elsif request.rejected_at %>
                     <% @rejected_driver_requests+=1 %>
                   <% end %>
                 </div>
-              <% end %> 
-              <% if @rejected_driver_requests == @total_driver_requests %>
-                <label> Pending Requests From Passengers: None </label><br>
-              <% end %> 
-            <% end %>
+                <% end %> 
+                <% if @rejected_driver_requests == @total_driver_requests %>
+                  <label> Pending Requests From Passengers: None </label><br>
+                <% end %> 
+              <% end %>
             <label>Pending Offers To Passengers: <%= @total_outgoing_driver_pending %> </label>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 <div id="directions-panel2" class="hidden"></div>
