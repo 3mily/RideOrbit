@@ -20,4 +20,8 @@ class StaticController < ApplicationController
     @passenger_commutes = Passengercommute.where(user_id: current_user.id)
   end
 
+  def exit
+    
+  end
+
 end
