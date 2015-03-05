@@ -63,7 +63,7 @@ $("#new_place").on("submit", function(e){
   });
 });
 
-$("#places").on("click",".glyphicon-remove",function(){
+$("#places").on("click",".fa-close",function(){
   var removedPlace = $(this)
   var placeId = $(this).data("place-id");
   $.ajax({
