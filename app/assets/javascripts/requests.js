@@ -83,8 +83,10 @@ $(function(){
         console.log("it didnt save or work or something oh noes", thrownError);
       },
       success: function(response){
-        console.log("success passengerupdate")
-        clickedButton.parents(".pending-request").remove()
+        console.log("success passengerupdate");
+        clickedButton.parents(".pending-title").remove();
+        clickedButton.siblings(".decline").text("Drop Passenger");
+        clickedButton.remove();
         hideMap();
       }
     });    
