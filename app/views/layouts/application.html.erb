@@ -12,7 +12,11 @@
   
   <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=#{ENV["GOOGLE_MAPS_KEY"]}'%>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+
+  <%= javascript_include_tag 'nav', 'data-turbolinks-track' => true %>
+
   <%= yield :head_section %>
 
   <%= csrf_meta_tags %>
