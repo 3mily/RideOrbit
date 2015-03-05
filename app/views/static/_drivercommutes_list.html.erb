@@ -10,26 +10,29 @@
         <div class="col-md-4">
           <div class="panel panel-primary commute">
             <div class="panel-heading">
-              <h3 class="panel-title"><%= image_tag "icon-driver.png" %>
+              <h3 class="panel-title"> <%= image_tag "icon-driver.png" %>
               Commute No. <%= index += 1 %></h3>
             </div>
             <div class="panel-body">
-              <p> Car Type : <%= commute.car_type%> </p>
-              <p> From : <%= commute.origin_name %> </p>
-              <p> To: <%= commute.destination_name %> </p>
-              <p> Days of Commute: </p>
+              <p><h4>Car Type:<br></h4><%= commute.car_type%> </p>
+              <p><h4>From:<br></h4><%= commute.origin_name %> </p>
+              <p><h4> To: </h4><%= commute.destination_name %> </p>
+              <p>
               <% commute.days.each do |day| %>
                 <span class="display-day"><%= day %></span>
               <% end %> 
-              <p> Arrival time: <%= commute.arrival_time %></p>
-                <div>
+              <span class="display-time"><%= commute.arrival_time.strftime("%I:%M %p") %></span>
+              <div>
                 <% if commute.passenger %>
                   <button class="connected"><%= link_to "Connected", "/users/#{commute.passenger}" %>
                   </button>
                   <button class="disconnect"><%= link_to "Disconnect", "#", :method=> :delete %></button>
                 <% else %>
-                  <button class="delete_driver_commute" data-commute-id="<%=commute.id%>">Delete Commute</button>
+                  <div>
+                    <button class="delete_driver_commute pull-right" data-commute-id="<%=commute.id%>">Delete Commute</button>
+                  </div>
                 <% end %>
+              </p>
               </div>
             </div>
           </div>
