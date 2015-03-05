@@ -16,6 +16,7 @@ class TwilioController < ApplicationController
     @recipient2_number = params["request_receiver_phone"]
 
     if params["status"] == "accept"
+
       @recipient1_number = "+17783231717"
       @recipient2_number = "+17789776806"
       recipient1_body = "Hi #{@recipient1_name}, your RideOrbit commute has been finalized! You'll be commuting with #{@recipient2_name}, who can be reached at #{@recipient2_number}. Happy networking!"

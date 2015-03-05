@@ -8,41 +8,42 @@
             Commute No. <%= index += 1 %></h3>
           </div>
           <div class="panel-body">
-            <div class="panel">
-              <p> Commute Number : <%= index+1 %>
-              <p> From <%= commute.origin_name%> To <%= commute.destination_name%> </p>
-              <% if commute.requests.empty? %>
-                <label> Pending Invitations From Drivers: None </label> 
-                <br>
-                <label> No Pending Requests To Drivers </label>
-              <% else %>
-                <% commute.requests.each do |request|%>
-                  <% @total_passenger_requests +=1 %>
-                  <div class="p-request" data-request="<%= request.to_json %>" data-user-id="<%= @user.id %>">
-                    <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id == @user.id %>
-                      <% @total_outgoing_passenger_pending+= 1 %>
-                      <% @total_passenger_requests -= 1%>
-                    <% end %>
-                    <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id != @user.id%>
-                      Pending Invitations From Drivers: 
-                      <%= link_to "Driver Profile", "/users/#{request.initiated_by_id}" %>
+            <p><b>From</b> <%= commute.origin_name%><br>
+            <b>To</b> <%= commute.destination_name%> </p>
+            <hr>
+            <% if commute.requests.empty? %>
+              <label> Pending Invitations from Drivers: None </label> 
+              <br>
+              <label> Pending Requests to Drivers: None </label>
+            <% else %>
+              <% commute.requests.each do |request|%>
+                <% @total_passenger_requests +=1 %>
+                <div class="p-request" data-request="<%= request.to_json %>" data-user-id="<%= @user.id %>">
+                  <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id == @user.id %>
+                    <% @total_outgoing_passenger_pending+= 1 %>
+                    <% @total_passenger_requests -= 1%>
+                  <% end %>
+                  <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id != @user.id%>
+                    <div class="pending-request">
+                      <span class="pending-title"> Pending Request: </span>
+                      </br>
+                      <button> <%= link_to "Driver", "/users/#{request.initiated_by_id}" %></button>
                       <button class="accept">Accept</button>
                       <button class="decline">Decline</button>
-                    <% elsif request.approved_at && !request.rejected_at %>
-                      <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
-                      <button class="disconnect">Drop Driver</button>
-                    <% elsif request.rejected_at %>
-                      <% @rejected_passenger_requests+=1 %>
-                    <% end %>
-                  </div>
+                    </div>
+                  <% elsif request.approved_at && !request.rejected_at %>
+                    <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
+                    <button class="disconnect">Drop Driver</button>
+                  <% elsif request.rejected_at %>
+                    <% @rejected_passenger_requests+=1 %>
+                  <% end %>
+                </div>
                 <% end %> 
                 <% if @rejected_passenger_requests == @total_passenger_requests %>
-                  <label> Pending Invitations From Drivers: None </label></br>
+                  <label> Pending Invitations from Drivers: None </label></br>
                 <% end %>
-              <% end %>
-              <label> Pending Requests To Drivers: <%= @total_outgoing_passenger_pending%> 
-              </label>
-            </div>
+                <label> Pending Requests sent to Drivers: <%= @total_outgoing_passenger_pending %></label> 
+            <% end %>         
           </div>
         </div>
       </div>

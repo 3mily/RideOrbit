@@ -31,7 +31,7 @@
       <% @places.each do |place| %>
         <div class="place">
           <p>
-          <strong><%= place.name %></strong> <span class="glyphicon glyphicon-remove" data-place-id="<%=place.id%>"></span><br>
+          <strong><%= place.name %> </strong> <i class="fa fa-close glyphicon-remove" data-place-id="<%=place.id%>"></i><br>
           <%= place.cross_street %>
           </p>
         </div>

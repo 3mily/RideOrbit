@@ -20,7 +20,6 @@ class PlacesController < ApplicationController
     @place.cross_street = cross_street
     @place.cross_street_point = "#{lat},#{lng}"
     @place.save
-    flash[:alert] = "#{@place.name} added to your list of Places!"
     respond_with @place
   end
 

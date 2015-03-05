@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      flash[:alert] = "Welcome aboard, #{@user.firstname}!"
       redirect_to places_path
     else
       render :new
