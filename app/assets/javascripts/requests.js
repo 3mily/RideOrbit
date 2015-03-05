@@ -6,21 +6,22 @@ $(function(){
   });
 
   $(".accept").on("click", function(){
-    var clicked = $(this).parents(".d-request");
+    var clicked = $(this)
+    debugger;
     getInfo(clicked);
     updateRequest();
     updateDriverCommute();
-    updatePassengerCommute();
+    updatePassengerCommute(clicked);
     // sendAcceptText();
   });
 
   $(".decline").on("click",function(){
-    var clicked = $(this)
+    var clicked = $(this);
     decline(clicked);
   });
 
   $(".disconnect").on("click",function(){
-    var clicked = $(this).parents(".d-request");
+    var clicked = $(this);
     decline(clicked);
   })
 
@@ -43,6 +44,7 @@ $(function(){
 
   function getInfo(clicked){
     params = clicked.parents(".d-request").data("request");
+    debugger;
     params["status"] = "accept";
   }
 
@@ -74,7 +76,8 @@ $(function(){
     });
   }
 
-  function updatePassengerCommute(){
+  function updatePassengerCommute(clicked){
+    var clickedButton = clicked;
     $.ajax({
       url: "/passengercommutes/"+params["passengercommute_id"],
       type: "PATCH",
@@ -84,6 +87,7 @@ $(function(){
       },
       success: function(response){
         console.log("success passengerupdate")
+        clickedButton.parents(".pending-request").remove()
       }
     });    
   }
@@ -149,7 +153,7 @@ $(function(){
   }
 
   function getDriverCommute(clicked_button){
-    var requestInfo = clicked_button.parent(".d-request").data("request");
+    var requestInfo = clicked_button.parents(".d-request").data("request");
     $.ajax({
       url: '/drivercommutes/requestinfo',
       method: "GET",
@@ -174,7 +178,7 @@ $(function(){
   }
 
   function getPassengerCommute(clicked_button){
-    var requestInfo = clicked_button.parent(".d-request").data("request");
+    var requestInfo = clicked_button.parents(".d-request").data("request");
     $.ajax({
       url: '/passengercommutes/requestinfo',
       method: "GET",

@@ -32,8 +32,10 @@
                     <button class="show-route">Show Route</button>
                   </div>
                   <% elsif request.approved_at && !request.rejected_at%>
-                    <button><%= link_to "Passenger", "/users/#{commute.passenger}" %></button>
-                    <button class="disconnect">Drop Passenger</button>
+                    <div class="drop-passenger">
+                      <button><%= link_to "Passenger", "/users/#{commute.passenger}" %></button>
+                      <button class="disconnect">Drop Passenger</button>
+                    </div>
                   <% elsif request.rejected_at %>
                     <% @rejected_driver_requests+=1 %>
                   <% end %>
