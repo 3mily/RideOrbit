@@ -14,7 +14,8 @@ $grey-light: #eee;
 $grey-dark: #1f1f1f;
 $grey-medium: #555;
 
-
+$blue-gradient1: #5FD6B0;
+$blue-gradient2: #4EB8A7;
 
 $bg-color: #111;
 $navbar-color: #00BAFF;
@@ -177,15 +178,15 @@ a:hover {
 .panel-primary>.panel-heading {
   padding-left: 20px;
   color: #fff;
-  background-color: $blue-light2; //fallback color
-  background-image: -moz-linear-gradient(top, $blue-light1, $blue-light2);
-  background-image: -ms-linear-gradient(top, $blue-light1, $blue-light2);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($blue-light1), to($blue-light2));
-  background-image: -webkit-linear-gradient(top, $blue-light1, $blue-light2);
-  background-image: -o-linear-gradient(top, $blue-light1, $blue-light2);
-  background-image: linear-gradient(top, $blue-light1, $blue-light2);
+  background-color: $blue-gradient2; //fallback color
+  background-image: -moz-linear-gradient(top, $blue-gradient1, $blue-gradient2);
+  background-image: -ms-linear-gradient(top, $blue-gradient1, $blue-gradient2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($blue-gradient1), to($blue-gradient2));
+  background-image: -webkit-linear-gradient(top, $blue-gradient1, $blue-gradient2);
+  background-image: -o-linear-gradient(top, $blue-gradient1, $blue-gradient2);
+  background-image: linear-gradient(top, $blue-gradient1, $blue-gradient2);
   background-repeat: repeat-x;
-  border-color: $blue-light1;
+  border-color: $blue-gradient1;
 }
 
 //default panel gradient
@@ -231,7 +232,7 @@ a:hover {
 }
 
 #directions-panel {
-  height: 100%;
+  max-height: 500px;
   overflow: auto;
   display: inline-block;
   margin-top: 10px;
@@ -241,7 +242,7 @@ a:hover {
 #map-right {
   min-height: 800px;
   overflow: auto;
-  padding: 20px 30px 20px 20px;
+  padding: 20px 40px 20px 20px;
   background-color: rgba(200,200,200,0.8);
 }
 
