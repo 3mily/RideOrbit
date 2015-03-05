@@ -29,10 +29,11 @@ class ApplicationController < ActionController::Base
     if @current_user.drivercommutes
       @current_user.drivercommutes.each do |commute|
         commute_requests(commute)
+        @existing_requests/2
       end
     end
-    if current_user.passengercommutes
-      current_user.drivercommutes.each do |commute|
+    if @current_user.passengercommutes
+      @current_user.passengercommutes.each do |commute|
         commute_requests(commute)
       end
     end
@@ -41,8 +42,9 @@ class ApplicationController < ActionController::Base
   helper_method :has_requests
 
   def existing_requests
-    @existing_requests/2
+    @existing_requests
   end
+
   helper_method :existing_requests
 
 

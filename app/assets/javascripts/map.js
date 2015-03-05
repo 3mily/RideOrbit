@@ -290,7 +290,7 @@ $(function(){
       "request_receiver_phone": $(".request-button").data('user-info-phone'),
     }
     makeRequest();
-    // sendRequestText();
+    sendRequestText();
   });
 
   function makeRequest(){
