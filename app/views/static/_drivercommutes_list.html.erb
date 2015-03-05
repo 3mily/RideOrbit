@@ -14,7 +14,9 @@
               Commute No. <%= index += 1 %></h3>
             </div>
             <div class="panel-body">
-              <p><h4>Car Type:<br></h4><%= commute.car_type%> </p>
+              <% if commute.car_type %>
+                <p><h4>Car Type:<br></h4><%= commute.car_type%> </p>
+              <% end %>
               <p><h4>From:<br></h4><%= commute.origin_name %> </p>
               <p><h4> To: </h4><%= commute.destination_name %> </p>
               <p>
