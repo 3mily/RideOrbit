@@ -40,5 +40,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :has_requests
 
+  def existing_requests
+    @existing_requests
+  end
+  helper_method :existing_requests
+
 
 end

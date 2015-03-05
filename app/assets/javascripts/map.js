@@ -290,7 +290,7 @@ $(function(){
     }
     debugger;
     makeRequest();
-    sendRequestText();
+    // sendRequestText();
   });
 
   function makeRequest(){

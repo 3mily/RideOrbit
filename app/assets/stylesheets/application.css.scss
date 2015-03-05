@@ -34,6 +34,10 @@ a:hover {
   text-decoration: none;
 }
 
+.notice-color-change {
+  background-color: red;
+}
+
 //flash message
 .alert {
     background-color: rgba(229, 182, 106, 0.2);
@@ -408,3 +412,18 @@ a:hover {
    background-color: $blue-dark;  /*change color of links in drop down here*/
 }
 
+.red-badge {
+  margin-right: -17px;
+  min-width: 10px;
+  padding: 3.5px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 3;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 3px;
+  background-color: orange;
+  transition: all 0.05s linear;
+}
