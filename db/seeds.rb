@@ -38,7 +38,7 @@ Passengercommute.create(
   destination_name: "Work - Abbott and W Hastings (Downtown)",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(1).firstname, picture: User.find(1).picture, industry: User.find(1).industry}
   )
 
 Drivercommute.create(
@@ -51,7 +51,7 @@ Drivercommute.create(
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 3,
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 D Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(1).firstname, picture: User.find(1).picture, industry: User.find(1).industry}
   )
 
 Place.create(
@@ -76,7 +76,7 @@ Passengercommute.create(
   destination_name: "Howe and Drake",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(2).firstname, picture: User.find(2).picture, industry: User.find(2).industry}
   )
 
 Drivercommute.create(
@@ -87,10 +87,10 @@ Drivercommute.create(
   destination_name: "Howe and Drake",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(2).firstname, picture: User.find(2).picture, industry: User.find(2).industry}
   )
 
-Place.create(
+  Place.create(
   user_id:3, 
   name: "Home",
   cross_street:"Bute and Harwood", 
@@ -112,7 +112,7 @@ Passengercommute.create(
   destination_name: "Burrard and Pender",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(3).firstname, picture: User.find(3).picture, industry: User.find(3).industry}
   )
 
 Drivercommute.create(
@@ -123,7 +123,7 @@ Drivercommute.create(
   destination_name: "Burrard and Pender",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(3).firstname, picture: User.find(3).picture, industry: User.find(3).industry}
   )
 
 
@@ -149,7 +149,7 @@ Passengercommute.create(
   destination_name: "Quebec and 8th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(4).firstname, picture: User.find(4).picture, industry: User.find(4).industry}
   )
 
 Drivercommute.create(
@@ -160,7 +160,7 @@ Drivercommute.create(
   destination_name: "Quebec and 8th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(4).firstname, picture: User.find(4).picture, industry: User.find(4).industry}
   )
 
 Place.create(
@@ -185,7 +185,7 @@ Passengercommute.create(
   destination_name: "Curtis and Sperling",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(5).firstname, picture: User.find(5).picture, industry: User.find(5).industry}
   )
 
 Drivercommute.create(
@@ -196,7 +196,7 @@ Drivercommute.create(
   destination_name: "Curtis and Sperling",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(5).firstname, picture: User.find(5).picture, industry: User.find(5).industry}
   )
 
 Place.create(
@@ -221,7 +221,7 @@ Passengercommute.create(
   destination_name: "McKay and Central",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(6).firstname, picture: User.find(6).picture, industry: User.find(6).industry}
   )
 
 Drivercommute.create(
@@ -232,7 +232,7 @@ Drivercommute.create(
   destination_name: "McKay and Central",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(6).firstname, picture: User.find(6).picture, industry: User.find(6).industry}
   )
 
 Place.create(
@@ -257,7 +257,7 @@ Passengercommute.create(
   destination_name: "No 3 and Cook",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(7).firstname, picture: User.find(7).picture, industry: User.find(7).industry}
   )
 
 Drivercommute.create(
@@ -268,7 +268,7 @@ Drivercommute.create(
   destination_name: "No 3 and Cook",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(7).firstname, picture: User.find(7).picture, industry: User.find(7).industry}
   )
 
 Place.create(
@@ -293,7 +293,7 @@ Passengercommute.create(
   destination_name: "152nd and 60th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(8).firstname, picture: User.find(8).picture, industry: User.find(8).industry}
   )
 
 Drivercommute.create(
@@ -304,7 +304,7 @@ Drivercommute.create(
   destination_name: "152nd and 60th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(8).firstname, picture: User.find(8).picture, industry: User.find(8).industry}
   )
 
 Place.create(
@@ -329,9 +329,19 @@ Passengercommute.create(
   destination_name: "Victoria and 49th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: "User 1 P Commute", email:"test@test.ca", phone: "604-802-1234"}
+  user_info: {name: User.find(9).firstname, picture: User.find(9).picture, industry: User.find(9).industry}
   )
 
+Drivercommute.create(
+  user_id: 9,
+  origin: "49.243125, -123.003309",
+  origin_name: "Willingdon and Deer Lake",
+  destination: "49.225337, -123.065704",
+  destination_name: "Victoria and 49th",
+  arrival_time: "2000-01-01 02:30:00",
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: User.find(9).firstname, picture: User.find(9).picture, industry: User.find(9).industry}
+  )
 
 
 # I won't put in a drivercommute id in yet because that association

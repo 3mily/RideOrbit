@@ -385,3 +385,11 @@ body {
   background-image: linear-gradient(top, #555, #444);
   background-repeat: repeat-x;
 }
+
+.infowindow-pic {
+  max-height: 70px;
+  max-width: 70px;
+  display: block;
+  border-radius: 100%;
+  margin-bottom: 10px;
+}
