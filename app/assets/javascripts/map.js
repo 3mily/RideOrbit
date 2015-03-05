@@ -227,7 +227,7 @@ $(function(){
     allMarkers.push(commuteCoordinates.marker)
   }
 
-  function addBounceToMarker(idx,place) {
+  function addBounceToMashorker(idx,place) {
     google.maps.event.addListener(commuteCoordinates.marker, 'click', function () {
       if (currentlyBouncing) {
         currentlyBouncing.origin.marker.setAnimation(null);
