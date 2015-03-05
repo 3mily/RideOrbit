@@ -11,7 +11,7 @@ $(function(){
     updateRequest();
     updateDriverCommute();
     updatePassengerCommute(clicked);
-    sendAcceptText();
+    // sendAcceptText();
   });
 
   $(".decline").on("click",function(){
