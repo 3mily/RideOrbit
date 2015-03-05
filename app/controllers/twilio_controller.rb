@@ -1,30 +1,23 @@
 require 'pry'
 class TwilioController < ApplicationController
 
+  def index
+  end
+
   def create
     account_sid = ENV['TWILIO_SID']
     auth_token = ENV['TWILIO_TOKEN']
     @client = Twilio::REST::Client.new account_sid, auth_token
-
     @from_number = ENV['TWILIO_NUMBER']
-
-    def send_text(to_number,body)
-      @client.account.messages.create(
-        :from => @from_number, 
-        :to => to_number, 
-        :body => body
-      )
-    end
-
     @recepient1_name = current_user.firstname
-    @recepient2_name = params["request_receiver"]["name"]
 
+    @recepient2_name = params["request_receiver"]["name"]
     @recepient1_number = current_user.phone
     @recepient2_number = params["request_receiver"]["phone"]
 
-
     if params["status"] == "accept"
-
+      @recepient1_number = "+17783231717"
+      @recepient2_number = "+17789776806"
       recepient1_body = "Hi #{@recepient1_name}, your RideOrbit commute has been finalized! You'll be commuting with #{@recepient2_name}, who can be reached at #{@recepient2_number}. Happy networking!"
       recepient2_body = "Hi #{@recepient2_name}, your RideOrbit commute has been finalized! You'll be commuting with #{@recepient1_name}, who can be reached at #{@recepient1_number}. Happy networking!"
 
@@ -39,9 +32,17 @@ class TwilioController < ApplicationController
     end
 
     render json: {
-      status: 200,
-      message: "text sent!"
+      "status": 200,
+      "message": "text sent!"
     }
-
   end
+
+  def send_text(to_number,body)
+    @client.account.messages.create(
+      :from => @from_number, 
+      :to => to_number, 
+      :body => body
+    )
+  end
+
 end

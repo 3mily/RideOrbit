@@ -186,7 +186,7 @@ $(function(){
           userInfo = response;
           initCommutes();
           console.log(response);
-      },
+      }
     });
   }
 
@@ -284,10 +284,11 @@ $(function(){
       "initiator": initiator,
       "user": commuter,
       "user_commute_id": commuteId,
-      "requested_commute_id": $(".request-button").data("commute-id")
+      "requested_commute_id": $(".request-button").data("commute-id"),
+      "request_receiver": $(".request-button").data('user_info')
     }
     makeRequest();
-    // sendRequestText();
+    sendRequestText();
   });
 
   function makeRequest(){
