@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20150302064935) do
     t.integer  "initiated_by_id"
     t.integer  "approved_by_id"
     t.boolean  "initiated_by_driver"
+    t.string   "request_receiver_name"
+    t.string   "request_receiver_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

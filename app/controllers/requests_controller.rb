@@ -1,6 +1,7 @@
 require 'pry'
 class RequestsController < ApplicationController
   def create
+    binding.pry
     @request = Request.new
     if params["user"]=="driver"
       @request.drivercommute_id = params["user_commute_id"]
@@ -12,6 +13,8 @@ class RequestsController < ApplicationController
       @request.initiated_by_driver = false
     end
     @request.initiated_by_id = params["initiator"]
+    @request.request_receiver_name = params["request_receiver_name"]
+    @request.request_receiver_phone = params["request_receiver_phone"]
     @request.save
     render json: @request
   end
