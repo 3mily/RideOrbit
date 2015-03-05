@@ -13,8 +13,8 @@
               <h3 class="panel-title"><%= image_tag "icon-passenger.png" %>Commute No. <%= index += 1 %></h3>
             </div>
             <div class="panel-body">
-              <p><h4>From:<br></h4><%= commute.origin_name %></p>
-              <p><h4> To: </h4><%= commute.destination_name %> </p>
+              <p><h4>From: </h4><%= commute.origin_name %></p>
+              <p><h4>To: </h4><%= commute.destination_name %></p>
               <p>
               <% commute.days.each do |day| %>
                 <span class="display-day"><%= day %></span> 
