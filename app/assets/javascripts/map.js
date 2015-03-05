@@ -211,10 +211,10 @@ $(function(){
 
   function selectIconImg(place) {
     if (place === 'origin'){
-      iconImg = 'http://ecir.mit.edu/templates/rt_clarion/images/icons/icon-person.png'
+      iconImg = '/origin-driver.png'
     }
     else{
-      iconImg = 'http://www.wholeperson-counseling.org/gif/point-l.gif'
+      iconImg = '/destination-driver.png'
     }
   }
 
