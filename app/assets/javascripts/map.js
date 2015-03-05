@@ -302,12 +302,12 @@ $(function(){
       error: function(xhr,status,thrownError){
         console.log("it didnt save or work or something oh noes", thrownError);
         $('.request-button').attr("disabled", true);
-        $('.request-button').text("Sent Request");
+        $('.request-button').text("Request Sent");
       },
       success: function(response){
         console.log(response);
         $('.request-button').attr("disabled", true);
-        $('.request-button').text("Sent Request");
+        $('.request-button').text("Request Sent");
       }
     });
   }

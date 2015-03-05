@@ -443,6 +443,9 @@ a:hover {
   float: right;
   text-align: center;
 }
+.request-button:hover {
+  color: #23527c;
+}
 
 .redraw {
   background-color: $button-active;
@@ -454,6 +457,9 @@ a:hover {
   margin: 10px; 
   float: right;
   text-align: center;  
+}
+.redraw:hover {
+  color: #23527c;
 }
 
 .gm-style-iw {
