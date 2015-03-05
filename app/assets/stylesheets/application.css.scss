@@ -388,11 +388,66 @@ a:hover {
 
 
 .infowindow-pic {
-  max-height: 70px;
-  max-width: 70px;
+  max-height: 85px;
+  max-width: 85px;
   display: block;
   border-radius: 100%;
-  margin-bottom: 10px;
+  padding: 10px;
+  float: left;
+}
+
+.infowindow-profile{
+  background-color: $button-active;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 4px;
+  width: 70px;
+  margin: 10px; 
+  float: left;
+  clear: left;
+}
+
+.infowindow-name{
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.infowindow-industry{
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.infowindow-user{
+  margin-top: 15px;
+}
+
+.request-button {
+  background-color: $button-active;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 4px;
+  width: 110px;
+  margin: 10px; 
+  float: right;
+  text-align: center;
+}
+
+.redraw {
+  background-color: $button-active;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 2px 4px;
+  width: 110px;
+  margin: 10px; 
+  float: right;
+  text-align: center;  
+}
+
+.gm-style-iw {
+  width: 300px; 
 }
 
 .orbit-nav {
@@ -427,3 +482,5 @@ a:hover {
   background-color: orange;
   transition: all 0.05s linear;
 }
+
+
