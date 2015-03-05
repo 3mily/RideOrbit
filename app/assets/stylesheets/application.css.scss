@@ -1,5 +1,6 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "bootstrap.min";
 
 $orange-light1: #FFC553;
 $orange-light2: #FFB247;
@@ -13,7 +14,8 @@ $grey-light: #eee;
 $grey-dark: #1f1f1f;
 $grey-medium: #555;
 
-
+$blue-gradient1: #5FD6B0;
+$blue-gradient2: #4EB8A7;
 
 $bg-color: #111;
 $navbar-color: #00BAFF;
@@ -24,6 +26,7 @@ $commutes-box-bg: #ddd;
 $flash-bg: #ccc;
 
 body {
+  font-family: 'Lato', sans-serif;
   background-color: $bg-color;
   background: url('bg2copy.jpg') no-repeat center center fixed;
   width:100%; 
@@ -62,6 +65,7 @@ a:hover {
     h1 {
     color: $blue-light-text;
     font-size: 9em;
+    font-family: "Helvetica Neue"
   }
     h2 {
       color: white;
@@ -174,15 +178,15 @@ a:hover {
 .panel-primary>.panel-heading {
   padding-left: 20px;
   color: #fff;
-  background-color: $blue-light2; //fallback color
-  background-image: -moz-linear-gradient(top, $blue-light1, $blue-light2);
-  background-image: -ms-linear-gradient(top, $blue-light1, $blue-light2);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($blue-light1), to($blue-light2));
-  background-image: -webkit-linear-gradient(top, $blue-light1, $blue-light2);
-  background-image: -o-linear-gradient(top, $blue-light1, $blue-light2);
-  background-image: linear-gradient(top, $blue-light1, $blue-light2);
+  background-color: $blue-gradient2; //fallback color
+  background-image: -moz-linear-gradient(top, $blue-gradient1, $blue-gradient2);
+  background-image: -ms-linear-gradient(top, $blue-gradient1, $blue-gradient2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($blue-gradient1), to($blue-gradient2));
+  background-image: -webkit-linear-gradient(top, $blue-gradient1, $blue-gradient2);
+  background-image: -o-linear-gradient(top, $blue-gradient1, $blue-gradient2);
+  background-image: linear-gradient(top, $blue-gradient1, $blue-gradient2);
   background-repeat: repeat-x;
-  border-color: $blue-light1;
+  border-color: $blue-gradient1;
 }
 
 //default panel gradient
@@ -218,39 +222,29 @@ a:hover {
 } 
 
 // google maps 
-#map-canvas {
-  min-height: 100%;
-  width: 100%;
+
+#map .row .col-md-8 {
+  padding: 0;
 }
 
- #directions-panel {
-  width: 400px;
-  max-height: 600px;
+#map-canvas {
+  min-height: 800px;
+}
+
+#directions-panel {
+  max-height: 500px;
   overflow: auto;
-  margin: 20px;
-  margin-top: 100px;
+  display: inline-block;
+  margin-top: 10px;
   background-color: rgba(220,220,220,0.8);
  }
 
-#map-left {
-  height: 100vh;
-  width: 70%;
-  margin-top: -20px;
-  float: left; 
-  background-color: rgba(200,200,200,0.8);
-  display: inline;
-}
 #map-right {
-  height: 100vh;
-  max-width: 30%;
-  margin-top: -20px;
-  padding: 30px 20px 20px 20px;
-  float: right;
-  display: inline;
+  min-height: 800px;
+  overflow: auto;
+  padding: 20px 40px 20px 20px;
   background-color: rgba(200,200,200,0.8);
 }
-
-
 
 
 .display-day {
@@ -268,6 +262,7 @@ a:hover {
   text-align: center;
   display: inline-block;
   padding: 2px 4px;
+  margin-top: 5px;
   width: 80px
 }
 
@@ -356,22 +351,33 @@ a:hover {
 
 
 #map-canvas2 {
-  height: 400px;
-  width: 75%;
-  border-radius: 10px;
-  margin-top: 10px;
+  height: 500px;
+  width: 100%;
+  border-radius: 5px;
+  margin: 10px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
 }
 
 #directions-panel2 {
-  float: right;
-  width: 230px;
-  max-height: 600px;
-  margin: 20px;
+  width: 100%;
+  max-height: 500px;
+  overflow: auto;
+  border-radius: 5px;
+  margin: 10px;
   background-color: rgba(220,220,220,0.8);
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
 }
 
 //gradient
 .orbit-nav {
+  padding: 5px;
+  border: none;
+  border-radius: 0;
+  li {
+    margin-top: 15px;
+    font-size: 1.2em;
+  }
+
   background-color: #444; //fallback color
   background-image: -moz-linear-gradient(top, #555, #444);
   background-image: -ms-linear-gradient(top, #555, #444);
@@ -382,6 +388,10 @@ a:hover {
   background-repeat: repeat-x;
 }
 
+.navbar {
+  margin-bottom: 0px;
+}
+
 
 .infowindow-pic {
   max-height: 70px;
@@ -389,16 +399,6 @@ a:hover {
   display: block;
   border-radius: 100%;
   margin-bottom: 10px;
-}
-
-.orbit-nav {
-  padding: 5px;
-  border: none;
-  border-radius: 0;
-  li {
-    margin-top: 15px;
-    font-size: 1.2em;
-  }
 }
 
 .dropdown-menu > li > a:hover,
