@@ -5,15 +5,26 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-phone_array = ["+6048020926", "+7783231717", "+7789776806"]
+phone_array = ["+6048020926", "+7783231717", "+7789776806", "+6048020926", "+7783231717", "+7789776806", "+6048020926", "+7783231717", "+7789776806"]
+firstname_array = ["David", "Phil", "Justin", "Hora", "Brandi", "Don", "Murat", "John", "Wandrew"]
+lastname_array = ["VanDusen", "Jama", "Vaillancourt", "H.", "Candi", "Burks", "Someguy", "Chan", "Gardhouse"]
+bio_array = [ "David is a sort of web dev Don Quixote, helping out wherever he's in need. He has grappled with his share of technological windmills yet continues his chivalrous fight for clean, beautiful code. That said, David is a renaissance man and pursues fine arts and music in his leisure.",
+              "Philip Jama has mastered land, sea and sky, and lived in world-class cities including London, New York, Munich, and Buenos Aires. When he's not biking, drinking coffee, coding, or winning hackathons, Phil works as a software professional. His home is Vancouver, but he would rather be living on a boat or sailing across the Pacific Ocean.",
+              "Justin loves software, loves travel, and is smart enough to use one love to help the other. He’s competed in numerous coding competitions with Skills Canada, medaling in Moncton, Caraquet, Fundy, and Charlottetown. He’s travelled to other places too, but how many people get to travel to PEI to code?",
+              "Hora loves front-end development. But he really loves donairs. He loves them so much, in fact, that he made a page for them. And frankly, we don’t blame him.",
+              "Brandi is one of the longest-tenured TAs @ Lighthouse, and his deep voice lends a special cadence to his code reviews. He’s also a full-stack developer who has worked with everything from ORM portals to branding agencies.",
+              "Co-founder and CIO of Nickler Technologies, Don brings 17 years of software development and teaching experience. He has worked at MetroLyrics.com and Microsoft, and taught at VFS and Ladies Learning Code.",
+              "Nobody knows what Murat thinks about when he strokes his beard, but it is usually followed by a burst of maniacal laughter. Coder, UNIX system administrator, product designer. Currently is the lead systems engineer at Quietly, and has previously worked at Invoke and A Thinking Ape.",
+              "John founded Dayboard, a daily task management app that helps people overcome guilt and procrastination. He was previously a designer at 37signals and lead UX design at UBC Library. He competed internationally in taekwondo and represented Team Canada twice at the World University Games.",
+              "Wandrew is a former Whistler ski bum and graduate of the October Cohort. Now he is our resident Web Janitor, making sure our website remains spic and span. That title doesn’t do him justice though – he builds us killer back-end features, and does it with infectious enthusiasm."]
 
 1.upto(9) do |i|
-  firstname = Faker::Name.first_name
-  lastname = Faker::Name.last_name
+  firstname = firstname_array[i-1]
+  lastname = lastname_array[i-1]
   industry_array = ["agriculture","energy","entertainment","finance","government","health/medical","hospitality","marketing/communications","non-profit","publishing","science","technology","transportation"]
   industry = industry_array[rand(0...industry_array.length)]
-  user = User.new(firstname: firstname, lastname: lastname, phone: "604802092#{i}", password:"pwpwpw", email:"email#{i}@email.io", industry: industry, bio:"Hi my name is #{firstname} let's go for a ride!!!") 
-  user.picture = File.open(Rails.root.join('public', 'uploads', 'user', 'picture', '11', 'hyeunny.jpeg'))
+  user = User.new(firstname: firstname, lastname: lastname, phone: phone_array[i-1], password:"pwpwpw", email:"email#{i}@email.io", industry: industry, bio: bio_array[i-1]) 
+  user.picture = File.open(Rails.root.join('public', "#{i}.jpg"))
   user.save!
 end
 
@@ -40,7 +51,7 @@ Passengercommute.create(
   destination_name: "Work - Abbott and W Hastings (Downtown)",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(1).firstname, picture: User.find(1).picture, industry: User.find(1).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(1).firstname, picture: User.find(1).picture, industry: User.find(1).industry, phone: phone_array[0]}
   )
 
 Drivercommute.create(
@@ -53,7 +64,7 @@ Drivercommute.create(
   arrival_time: "2000-01-01 02:30:00",
   seats_available: 3,
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(1).firstname, picture: User.find(1).picture, industry: User.find(1).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(1).firstname, picture: User.find(1).picture, industry: User.find(1).industry, phone: phone_array[0]}
   )
 
 Place.create(
@@ -78,7 +89,7 @@ Passengercommute.create(
   destination_name: "Howe and Drake",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(2).firstname, picture: User.find(2).picture, industry: User.find(2).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(2).firstname, picture: User.find(2).picture, industry: User.find(2).industry, phone: phone_array[1]}
   )
 
 Drivercommute.create(
@@ -89,7 +100,7 @@ Drivercommute.create(
   destination_name: "Howe and Drake",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(2).firstname, picture: User.find(2).picture, industry: User.find(2).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(2).firstname, picture: User.find(2).picture, industry: User.find(2).industry, phone: phone_array[1]}
   )
 
   Place.create(
@@ -114,7 +125,7 @@ Passengercommute.create(
   destination_name: "Burrard and Pender",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(3).firstname, picture: User.find(3).picture, industry: User.find(3).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(3).firstname, picture: User.find(3).picture, industry: User.find(3).industry, phone: phone_array[2]}
   )
 
 Drivercommute.create(
@@ -125,7 +136,7 @@ Drivercommute.create(
   destination_name: "Burrard and Pender",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(3).firstname, picture: User.find(3).picture, industry: User.find(3).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(3).firstname, picture: User.find(3).picture, industry: User.find(3).industry, phone: phone_array[2]}
   )
 
 
@@ -151,7 +162,7 @@ Passengercommute.create(
   destination_name: "Quebec and 8th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(4).firstname, picture: User.find(4).picture, industry: User.find(4).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(4).firstname, picture: User.find(4).picture, industry: User.find(4).industry, phone: phone_array[3]}
   )
 
 Drivercommute.create(
@@ -162,7 +173,7 @@ Drivercommute.create(
   destination_name: "Quebec and 8th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(4).firstname, picture: User.find(4).picture, industry: User.find(4).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(4).firstname, picture: User.find(4).picture, industry: User.find(4).industry, phone: phone_array[3]}
   )
 
 Place.create(
@@ -187,7 +198,7 @@ Passengercommute.create(
   destination_name: "Curtis and Sperling",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(5).firstname, picture: User.find(5).picture, industry: User.find(5).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(5).firstname, picture: User.find(5).picture, industry: User.find(5).industry, phone: phone_array[4]}
   )
 
 Drivercommute.create(
@@ -198,7 +209,7 @@ Drivercommute.create(
   destination_name: "Curtis and Sperling",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(5).firstname, picture: User.find(5).picture, industry: User.find(5).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(5).firstname, picture: User.find(5).picture, industry: User.find(5).industry, phone: phone_array[4]}
   )
 
 Place.create(
@@ -223,7 +234,7 @@ Passengercommute.create(
   destination_name: "McKay and Central",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(6).firstname, picture: User.find(6).picture, industry: User.find(6).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(6).firstname, picture: User.find(6).picture, industry: User.find(6).industry, phone: phone_array[5]}
   )
 
 Drivercommute.create(
@@ -234,7 +245,7 @@ Drivercommute.create(
   destination_name: "McKay and Central",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(6).firstname, picture: User.find(6).picture, industry: User.find(6).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(6).firstname, picture: User.find(6).picture, industry: User.find(6).industry, phone: phone_array[5]}
   )
 
 Place.create(
@@ -259,7 +270,7 @@ Passengercommute.create(
   destination_name: "No 3 and Cook",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(7).firstname, picture: User.find(7).picture, industry: User.find(7).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(7).firstname, picture: User.find(7).picture, industry: User.find(7).industry, phone: phone_array[6]}
   )
 
 Drivercommute.create(
@@ -270,7 +281,7 @@ Drivercommute.create(
   destination_name: "No 3 and Cook",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(7).firstname, picture: User.find(7).picture, industry: User.find(7).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(7).firstname, picture: User.find(7).picture, industry: User.find(7).industry, phone: phone_array[6]}
   )
 
 Place.create(
@@ -295,7 +306,7 @@ Passengercommute.create(
   destination_name: "152nd and 60th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(8).firstname, picture: User.find(8).picture, industry: User.find(8).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(8).firstname, picture: User.find(8).picture, industry: User.find(8).industry, phone: phone_array[7]}
   )
 
 Drivercommute.create(
@@ -306,7 +317,7 @@ Drivercommute.create(
   destination_name: "152nd and 60th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(8).firstname, picture: User.find(8).picture, industry: User.find(8).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(8).firstname, picture: User.find(8).picture, industry: User.find(8).industry, phone: phone_array[7]}
   )
 
 Place.create(
@@ -331,7 +342,7 @@ Passengercommute.create(
   destination_name: "Victoria and 49th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(9).firstname, picture: User.find(9).picture, industry: User.find(9).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(9).firstname, picture: User.find(9).picture, industry: User.find(9).industry, phone: phone_array[8]}
   )
 
 Drivercommute.create(
@@ -342,7 +353,7 @@ Drivercommute.create(
   destination_name: "Victoria and 49th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(9).firstname, picture: User.find(9).picture, industry: User.find(9).industry, phone: phone_array[rand(0..2)]}
+  user_info: {name: User.find(9).firstname, picture: User.find(9).picture, industry: User.find(9).industry, phone: phone_array[8]}
   )
 
 
