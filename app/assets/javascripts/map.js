@@ -287,7 +287,7 @@ $(function(){
       "requested_commute_id": $(".request-button").data("commute-id")
     }
     makeRequest();
-    // sendRequestText();
+    sendRequestText();
   });
 
   function makeRequest(){

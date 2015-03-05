@@ -7,7 +7,9 @@
             <h3 class="panel-title"><%= image_tag "icon-driver.png" %> Commute No. <%= index += 1 %></h3>
           </div>
           <div class="panel-body">
-            <p> From <%= commute.origin_name%><br>To <%= commute.destination_name%> </p>
+            <p><b>From</b> <%= commute.origin_name%><br>
+            <b>To</b> <%= commute.destination_name%> </p>
+            <hr>
             <% if commute.requests.empty? %>
               <label> Pending Requests From Passengers: None </label>
               <br>

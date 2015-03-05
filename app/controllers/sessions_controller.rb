@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash[:alert] = "Log in failed :("
       render :new
     end
     # user = User.first
