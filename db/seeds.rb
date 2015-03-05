@@ -89,16 +89,7 @@ Place.create(
   cross_street_point: "49.278860, -123.115923"
   )
 
-Passengercommute.create(
-  user_id: 3,
-  origin: "49.233343, -123.116658",
-  origin_name: "Home - 41st and Cambie (Oakridge Area)",
-  destination: "49.282251, -123.107195",
-  destination_name: "Work - Abbott and W Hastings (Downtown)",
-  arrival_time: "2000-01-01 02:30:00",
-  days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(3).firstname, picture: User.find(3).picture, industry: User.find(3).industry, phone: User.find(3).phone, id: 3}
-  )
+
 
 Drivercommute.create(
   user_id: 1,
@@ -108,7 +99,18 @@ Drivercommute.create(
   destination_name: "Work - Hamilton and Robson St",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(1).firstname, picture: User.find(1).picture, industry: User.find(1).industry, phone: User.find(1).phone, id: 1}
+  user_info: {name: User.find(1).firstname, picture: User.find(1).picture, industry: User.find(1).industry, phone: User.find(1).phone}
+  )
+
+Passengercommute.create(
+  user_id: 3,
+  origin: "49.233343, -123.116658",
+  origin_name: "Home - 41st and Cambie (Oakridge Area)",
+  destination: "49.282251, -123.107195",
+  destination_name: "Work - Abbott and W Hastings (Downtown)",
+  arrival_time: "2000-01-01 02:30:00",
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: User.find(3).firstname, picture: User.find(3).picture, industry: User.find(3).industry, phone: User.find(3).phone}
   )
 
 Drivercommute.create(
@@ -119,7 +121,7 @@ Drivercommute.create(
   destination_name: "Work - Howe and Drake",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
-  user_info: {name: User.find(2).firstname, picture: User.find(2).picture, industry: User.find(2).industry, phone: User.find(2).phone, id: 2}
+  user_info: {name: User.find(2).firstname, picture: User.find(2).picture, industry: User.find(2).industry, phone: User.find(2).phone}
   )
 
 
