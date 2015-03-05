@@ -28,12 +28,14 @@
                       <span class="pending-title"> Pending Request: </span>
                       </br>
                       <button> <%= link_to "Driver", "/users/#{request.initiated_by_id}" %></button>
-                      <button class="accept">Accept</button>
-                      <button class="decline">Decline</button>
+                      <button class="p-accept">Accept</button>
+                      <button class="p-decline">Decline</button>
                     </div>
                   <% elsif request.approved_at && !request.rejected_at %>
-                    <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
-                    <button class="disconnect">Drop Driver</button>
+                    <div class="drop-driver">
+                      <button><%= link_to "Driver", "/users/#{commute.driver}" %></button>
+                      <button class="p-disconnect">Drop Driver</button>
+                    </div>
                   <% elsif request.rejected_at %>
                     <% @rejected_passenger_requests+=1 %>
                   <% end %>

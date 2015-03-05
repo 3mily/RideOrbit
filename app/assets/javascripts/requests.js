@@ -14,14 +14,33 @@ $(function(){
     // sendAcceptText();
   });
 
+  $(".p-accept").on("click", function(){
+    var clicked = $(this)
+    getPInfo(clicked);
+    updateRequest();
+    updateDriverCommute();
+    updatePassengerCommute(clicked);
+    // sendAcceptText();
+  });
+
   $(".decline").on("click",function(){
     var clicked = $(this);
     decline(clicked,"decline");
   });
 
+  $(".p-decline").on("click",function(){
+    var clicked = $(this);
+    decline(clicked,"p-decline");
+  });
+
   $(".disconnect").on("click",function(){
     var clicked = $(this);
     decline(clicked,"disconnect");
+  })
+
+  $(".p-disconnect").on("click",function(){
+    var clicked = $(this);
+    decline(clicked,"p-disconnect");
   })
 
   $(".show-route").text("Show Route");
@@ -42,6 +61,11 @@ $(function(){
 
   function getInfo(clicked){
     params = clicked.parents(".d-request").data("request");
+    params["status"] = "accept";
+  }
+
+  function getPInfo(clicked){
+    params = clicked.parents(".p-request").data("request");
     params["status"] = "accept";
   }
 
@@ -107,7 +131,7 @@ $(function(){
   }
 
   function decline(clicked,task){
-    getInfo(clicked);
+    getPInfo(clicked);
     params["status"]="decline";
     declineRequest(clicked,task);    
   }
@@ -126,9 +150,13 @@ $(function(){
         if (task=="decline"){
           clickedButton.parents(".pending-request").remove()
           hideMap();
-        } else {
+        } else if (task=="p-decline"){
+          clickedButton.parents(".pending-request").remove()
+        } else if(task=="disconnect") {
           clickedButton.parents(".drop-passenger").remove()
           hideMap();
+        } else {
+          clickedButton.parents(".drop-driver").remove()
         }
       }
     });
