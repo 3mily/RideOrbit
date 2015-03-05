@@ -16,12 +16,12 @@ $(function(){
 
   $(".decline").on("click",function(){
     var clicked = $(this);
-    decline(clicked);
+    decline(clicked,"decline");
   });
 
   $(".disconnect").on("click",function(){
     var clicked = $(this);
-    decline(clicked);
+    decline(clicked,"disconnect");
   })
 
   $(".show-route").text("Show Route");
@@ -106,13 +106,13 @@ $(function(){
     });
   }
 
-  function decline(clicked){
+  function decline(clicked,task){
     getInfo(clicked);
     params["status"]="decline";
-    declineRequest(clicked);    
+    declineRequest(clicked,task);    
   }
 
-  function declineRequest(clicked){
+  function declineRequest(clicked,task){
     var clickedButton = clicked
     $.ajax({
       url: "/requests/"+params["id"],
@@ -123,8 +123,13 @@ $(function(){
       },
       success: function(response){
         console.log("decline success")
-        clickedButton.parents(".pending-request").remove()
-        hideMap();
+        if (task=="decline"){
+          clickedButton.parents(".pending-request").remove()
+          hideMap();
+        } else {
+          clickedButton.parents(".drop-passenger").remove()
+          hideMap();
+        }
       }
     });
   }
