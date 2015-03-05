@@ -7,7 +7,6 @@ $(function(){
 
   $(".accept").on("click", function(){
     var clicked = $(this)
-    debugger;
     getInfo(clicked);
     updateRequest();
     updateDriverCommute();
@@ -36,15 +35,13 @@ $(function(){
       initialize(clickedButton);
       clickedButton.text("Hide Route")
     } else if (insideText == "Hide Route"){
-      $("#map-canvas2").addClass("hidden");
-      $("#directions-panel2").addClass("hidden");
+      hideMap();
       clickedButton.text("Show Route")
     }
   })
 
   function getInfo(clicked){
     params = clicked.parents(".d-request").data("request");
-    debugger;
     params["status"] = "accept";
   }
 
@@ -88,6 +85,7 @@ $(function(){
       success: function(response){
         console.log("success passengerupdate")
         clickedButton.parents(".pending-request").remove()
+        hideMap();
       }
     });    
   }
@@ -124,8 +122,14 @@ $(function(){
       success: function(response){
         console.log("decline success")
         clickedButton.parents(".pending-request").remove()
+        hideMap();
       }
     });
+  }
+
+  function hideMap(){
+    $("#map-canvas2").addClass("hidden");
+    $("#directions-panel2").addClass("hidden");
   }
 
  //maps logic below
