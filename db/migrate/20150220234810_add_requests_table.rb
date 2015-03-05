@@ -8,6 +8,8 @@ class AddRequestsTable < ActiveRecord::Migration
       t.integer :initiated_by_id # from current user
       t.integer :approved_by_id # from current user
       t.boolean :initiated_by_driver
+      t.string :request_receiver_name
+      t.string :request_receiver_phone
 
       t.timestamps
     end
