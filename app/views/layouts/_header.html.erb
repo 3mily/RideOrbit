@@ -11,8 +11,7 @@
      <br><%= link_to image_tag('rideorbit.png'), '/', class: 'logo' %>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
       
       <ul class="nav navbar-nav navbar-right">
       <% if current_user.nil? %>
@@ -20,6 +19,12 @@
           <li><%= link_to "Log in", new_session_path %></li>
       <% end %>
       <% if current_user %>
+
+        <% if has_requests %>
+          <%= link_to(raw('<i class="fa fa-rocket fa-lg"></i>'), requests_path, style: 'margin-top: 15px') %></li>
+        <% end %>
+
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="dropdown-img" src="<%=current_user.picture%>"><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -37,3 +42,16 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+
+
+
+<script type="text/javascript">
+
+$("#commutes-type-toggle").on("click", function(e){
+  $("#new-passenger-container").toggleClass("hidden");
+  $("#new-driver-container").toggleClass("hidden");
+})
+
+
+</script>
