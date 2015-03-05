@@ -1,0 +1,64 @@
+<div id="pending-drivers" class="container-fluid" >
+  <div class="row">
+    <% @user.drivercommutes.each_with_index do |commute,index| %>
+      <div class="col-md-4">
+        <div class="panel panel-primary commute">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= image_tag "icon-driver.png" %> 
+              Commute No. <%= index += 1 %></h3>
+          </div>
+          <div class="panel-body">
+            <p><b>From</b> <%= commute.origin_name%><br>
+            <b>To</b> <%= commute.destination_name%> </p>
+            <hr>
+            <% if commute.requests.empty? %>
+              <label> Pending Requests From Passengers: None </label>
+              <br>
+              <label> Pending Invitations to Passengers: None </label>
+            <% else %>
+              <% commute.requests.each do |request|%>
+                <% @total_driver_requests +=1 %>
+                <div class="d-request" data-request="<%=request.to_json%>" data-user-id="<%=@user.id%>">
+                  <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id == @user.id %>
+                    <% @total_outgoing_driver_pending+= 1 %>
+                    <% @total_driver_requests -= 1%>
+                  <% end %>
+                  <% if request.approved_at.nil? && request.rejected_at.nil? && request.initiated_by_id!= @user.id%>
+                    <div class="pending-request">
+                      <span class="pending-title"> Pending Request: </span>
+                      </br>
+                      <button> <%= link_to "Passenger", "/users/#{request.initiated_by_id}" %></button>
+                      <button class="accept">Accept</button>
+                      <button class="decline">Decline</button>
+                      <button class="show-route">Show Route</button>
+                    </div>
+                  <% elsif request.approved_at && !request.rejected_at%>
+                    <div class="drop-passenger">
+                      <button><%= link_to "Passenger", "/users/#{commute.passenger}" %></button>
+                      <button class="disconnect">Drop Passenger</button>
+                      <button class="show-route">Show Route</button>
+                    </div>
+                  <% elsif request.rejected_at %>
+                    <% @rejected_driver_requests+=1 %>
+                  <% end %>
+                </div>
+              <% end %> 
+              <% if @rejected_driver_requests == @total_driver_requests %>
+                <label> Pending Requests From Passengers: None </label><br>
+              <% end %> 
+              <label>Pending Invitations sent to Passengers: <%= @total_outgoing_driver_pending %> </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div id="map-canvas2" class="hidden"></div>
+  </div>
+  <div class="col-md-4">
+    <div id="directions-panel2" class="hidden"></div>
+  </div>
+</div>

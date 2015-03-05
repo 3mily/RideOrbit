@@ -11,62 +11,78 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220234810) do
+ActiveRecord::Schema.define(version: 20150302064935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "commutes", force: :cascade do |t|
-    t.integer  "users_id"
+  create_table "drivercommutes", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "car_type"
-    t.string   "driver_origin"
-    t.string   "driver_destination"
-    t.time     "driver_arrival_time"
-    t.json     "days"
+    t.point    "origin"
+    t.string   "origin_name"
+    t.point    "destination"
+    t.string   "destination_name"
+    t.time     "arrival_time"
+    t.text     "days",             default: [], array: true
+    t.json     "user_info"
+    t.integer  "seats_available"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "passenger"
   end
 
-  add_index "commutes", ["users_id"], name: "index_commutes_on_users_id", using: :btree
+  add_index "drivercommutes", ["user_id"], name: "index_drivercommutes_on_user_id", using: :btree
 
-  create_table "passengers", force: :cascade do |t|
-    t.integer  "users_id"
-    t.integer  "commutes_id"
-    t.point    "pickup"
-    t.point    "dropoff"
-    t.time     "passenger_arrival_time"
+  create_table "passengercommutes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "drivercommute_id"
+    t.point    "origin"
+    t.string   "origin_name"
+    t.point    "destination"
+    t.string   "destination_name"
+    t.time     "arrival_time"
+    t.text     "days",             default: [], array: true
+    t.json     "user_info"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "driver"
   end
 
-  add_index "passengers", ["commutes_id"], name: "index_passengers_on_commutes_id", using: :btree
-  add_index "passengers", ["users_id"], name: "index_passengers_on_users_id", using: :btree
+  add_index "passengercommutes", ["drivercommute_id"], name: "index_passengercommutes_on_drivercommute_id", using: :btree
+  add_index "passengercommutes", ["user_id"], name: "index_passengercommutes_on_user_id", using: :btree
 
   create_table "places", force: :cascade do |t|
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.string   "cross_street"
     t.point    "cross_street_point"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "places", ["users_id"], name: "index_places_on_users_id", using: :btree
+  add_index "places", ["user_id"], name: "index_places_on_user_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "commutes_id"
+    t.integer  "drivercommute_id"
+    t.integer  "passengercommute_id"
     t.datetime "approved_at"
     t.datetime "rejected_at"
     t.integer  "initiated_by_id"
     t.integer  "approved_by_id"
     t.boolean  "initiated_by_driver"
+    t.string   "request_receiver_name"
+    t.string   "request_receiver_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "requests", ["commutes_id"], name: "index_requests_on_commutes_id", using: :btree
+  add_index "requests", ["drivercommute_id"], name: "index_requests_on_drivercommute_id", using: :btree
+  add_index "requests", ["passengercommute_id"], name: "index_requests_on_passengercommute_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "commutes_id"
+    t.integer  "drivercommute_id"
+    t.integer  "passengercommute_id"
     t.integer  "reviewee_id"
     t.integer  "reviewer_id"
     t.integer  "rating"
@@ -75,7 +91,8 @@ ActiveRecord::Schema.define(version: 20150220234810) do
     t.datetime "updated_at"
   end
 
-  add_index "reviews", ["commutes_id"], name: "index_reviews_on_commutes_id", using: :btree
+  add_index "reviews", ["drivercommute_id"], name: "index_reviews_on_drivercommute_id", using: :btree
+  add_index "reviews", ["passengercommute_id"], name: "index_reviews_on_passengercommute_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "firstname"
@@ -83,11 +100,13 @@ ActiveRecord::Schema.define(version: 20150220234810) do
     t.string   "email"
     t.string   "phone"
     t.string   "password_digest"
-    t.boolean  "is_driver"
     t.string   "linkedin"
     t.float    "rating"
+    t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "industry"
+    t.text     "bio"
   end
 
 end

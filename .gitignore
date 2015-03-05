@@ -16,3 +16,16 @@
 !/log/.keep
 /tmp
 /config/database.yml
+/config/secrets.yml
+
+#ignore environment variables
+
+.env
+
+#ignore HJ's notes
+
+notes.txt
+
+#ignore ds store 
+
+.DS_Store

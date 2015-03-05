@@ -1,0 +1,13 @@
+<div class="container">
+  
+  <% if !current_user %>
+    <div class="warning">
+      <h1>You don't have a profile! <br>
+      Sign up for RideOrbit <%= link_to "here", new_user_path %>.</h1>
+    </div>
+
+  <% else %> 
+    <%= render 'userprofile' %>
+  <% end %>
+
+</div>

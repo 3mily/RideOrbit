@@ -1,0 +1,32 @@
+<% content_for :head_section do %>
+  <%= javascript_include_tag 'commuteslist', 'data-turbolinks-track' => true %>
+<% end %>
+<div class="container list-center">
+
+  <h1>Current Commutes</h1>
+
+  <div class="switch-light-container">
+    <label class="switch-light well">
+      <input type="checkbox" id="commutes-type-toggle">
+      <span>
+        <span>Passenger</span>
+        <span>Driver</span>
+      </span>
+      <a class="btn btn-primary"></a>
+    </label>
+  </div>
+
+
+  <div id="passengers-commutes-list">
+    <%= render 'passengercommutes_list' %>
+  </div>
+  <div id="drivers-commutes-list" class="hidden">
+    <%= render 'drivercommutes_list' %>
+  </div>
+  <div class="row">
+        
+      <%= link_to(raw('View on Map <i class="fa fa-arrow-right"></i>'), map_index_path, class: 'btn btn-primary btn-lg btn-consistent center-block' )%>
+      
+  </div>
+
+</div>

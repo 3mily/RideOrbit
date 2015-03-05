@@ -1,0 +1,52 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="title"><%= image_tag "icon-driver.png" %> New commute as a Driver</h3>
+  </div>
+
+    <%= form_for @driver_commute do |f| %>
+    <div class="panel-body">
+
+    <div>
+      <%= f.label "car_type", "Car Type" %>
+      <%= f.text_field "car_type", placeholder: "eg. Honda Civic...", class: "form-control" %>
+    </div>
+
+    <div>
+      <%= label_tag "driver_origin", "Origin:"%> 
+      <%= select_tag "driver_origin", options_for_select(places_options(@current_user.places)), class: "form-control" %>
+    </div>
+
+    <div>
+      <%= label_tag "driver_destination", "Destination:"%>
+      <%= select_tag "driver_destination", options_for_select(places_options(@current_user.places)), class: "form-control" %>
+    </div>
+
+    <div>
+      <%= f.label "driver_arrival_time", "Arrive by:"%><%= f.time_select :arrival_time, {minute_step: 15, ampm: true, prompt: true} %>
+    </div>
+
+<div>
+      <%= label_tag "Days of the week:"%><br>
+      <div class="day"><%= check_box_tag "d-sun" %><span>
+        <%= label_tag "d-sun", "sun" %></span></div>
+      <div class="day"><%= check_box_tag "d-mon" %><span>
+        <%= label_tag "d-mon", "mon" %></span></div>
+      <div class="day"><%= check_box_tag "d-tue" %><span>
+        <%= label_tag "d-tue", "tue" %></span></div>
+      <div class="day"><%= check_box_tag "d-wed" %><span>
+        <%= label_tag "d-wed", "wed" %></span></div>
+      <div class="day"><%= check_box_tag "d-thu" %><span>
+        <%= label_tag "d-thu", "thu" %></span></div>
+      <div class="day"><%= check_box_tag "d-fri" %><span>
+        <%= label_tag "d-fri", "fri" %></span></div>
+      <div class="day"><%= check_box_tag "d-sat" %><span>
+        <%= label_tag "d-sat", "sat" %></span></div>
+    </div>
+
+
+      <%= f.submit "Submit", class: "btn btn-default" %> 
+
+  <% end %>
+
+  </div>
+</div>

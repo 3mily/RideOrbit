@@ -1,0 +1,46 @@
+<% content_for :head_section do %>
+  <%= javascript_include_tag 'places', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=#{ENV["GOOGLE_MAPS_KEY"]}'%> 
+<% end %>
+
+<%= form_for @place, url: {action: 'create'} do |f| %>
+
+  <div class="col-md-12">
+    <div>
+      <%= f.label "name", "Name" %> <br>
+      <%= f.text_field :name, placeholder: "eg. Home...", class: "form-control" %>
+    </div>
+    <br>
+    <div>
+      <%= f.label "cross_street", "Cross Streets" %><br>
+      <%= text_field_tag :street1, nil, placeholder: "W Hastings...", class: "form-control cut" %> <%= text_field_tag :street2, nil, placeholder: "Abbott...", class: "form-control cut" %>
+      <% f.hidden_field :cross_street_point %>
+    </div>
+    <br>
+    <div class="row">
+      <%= f.submit "Add to list", class: "btn btn-warning btn-consistent center-block" %> 
+    </div>
+  </div>
+<% end %>
+
+<!-- This is where all current_user's places will list. -->
+<!-- Newly created @place will append to this list. -->
+<div class="col-md-12">
+  <div class="panel well" id="places">
+    <% if @places %>
+      <% @places.each do |place| %>
+        <div class="place">
+          <p>
+          <strong><%= place.name %> </strong> <i class="fa fa-close" data-place-id="<%=place.id%>"></i><br>
+          <%= place.cross_street %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+

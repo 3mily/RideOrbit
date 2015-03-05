@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <% if !@passenger_commutes%>
+    <h2>You have made no commutes as a Passenger!<br>
+      Please make one <%= link_to "here", newcommute_path %>.</h2>
+
+  <% else %>
+
+    <div class="row">
+      <% @passenger_commutes.each_with_index do |commute,index| %>
+        <div class="col-md-4">
+          <div class="panel panel-warning commute">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= image_tag "icon-passenger.png" %>Commute No. <%= index += 1 %></h3>
+            </div>
+            <div class="panel-body">
+              <p><h4>From:<br></h4><%= commute.origin_name %></p>
+              <p><h4> To: </h4><%= commute.destination_name %> </p>
+              <p>
+              <% commute.days.each do |day| %>
+                <span class="display-day"><%= day %></span> 
+              <% end %>    
+              <span class="display-time"><%= commute.arrival_time.strftime("%I:%M %p") %></span>
+              <div>
+              <% if commute.driver %>
+                <button class="connected"><%= link_to "Connected", "/users/#{commute.driver}" %></button>
+                <button class="disconnect"><%= link_to "Disconnect", "#", :method=> :delete %></button>
+              <% else %>
+                <div>
+                  <button class="delete_passenger_commute pull-right" data-commute-id="<%=commute.id%>">Delete Commute</button>
+                </div>
+              <% end %>
+              </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<!-- if index % 3 == 0 then close div start new row -->
