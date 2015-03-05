@@ -246,7 +246,7 @@ $(function(){
                     '<img class="infowindow-pic" src="' + clickedCommuteInfo['picture']['picture']['url'] + '">' +
                     '<div class="infowindow-user"> <div><span class="infowindow-name"> Name: </span>' + clickedCommuteInfo['name'] +  '</div></br>' +
                     '<span class="infowindow-industry">Industry: </span>' + clickedCommuteInfo['industry'] + '</div><br>'+
-                    '<a class="infowindow-profile" href="/users/'+ userInfo[idx].id +'">Profile</a>' +
+                    '<a class="infowindow-profile" href="/users/'+ userInfo[idx].user_id +'">Profile</a>' +
                     '<span class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</span>' +
                     '<span class="request-button" data-commute-id="' + userInfo[idx]["id"] +'"data-user-info-name="' + userInfo[idx]["user_info"]["name"] + '"data-user-info-phone="' + userInfo[idx]["user_info"]["phone"] + '">Connect</span>'
                     ;
@@ -289,7 +289,6 @@ $(function(){
       "request_receiver_name": $(".request-button").data('user-info-name'),
       "request_receiver_phone": $(".request-button").data('user-info-phone'),
     }
-    debugger;
     makeRequest();
     // sendRequestText();
   });
