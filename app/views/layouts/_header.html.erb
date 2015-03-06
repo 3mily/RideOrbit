@@ -19,14 +19,13 @@
           <li><%= link_to "Log in", new_session_path %></li>
       <% end %>
       <% if current_user %>
+          <% if has_requests %>
+            <li><span class="red-badge"><%=existing_requests%></span></li>
+          <% end %>
+          <li><%= link_to(raw('<i class="fa fa-rocket fa-2x" class="rocket"></i>'), requests_path, style: 'margin-top: 10px', class: 'rocket') %></li>
+        <li><%= link_to(raw('<i class="fa fa-globe fa-2x" id="globe" ></i>'), map_index_path, style: 'margin-top: 10px') %></li>
 
-        <% if has_requests %>
-          <li><%= link_to(raw('<i class="fa fa-rocket fa-2x"></i>'), requests_path, style: 'margin-top: 10px') %></li>
-        <% end %>
-
-        <li><%= link_to(raw('<i class="fa fa-globe fa-2x"></i>'), map_index_path, style: 'margin-top: 10px') %></li>
-
-        <li><%= link_to(raw('<i class="fa fa-car fa-2x"></i>'), commuteslist_path, style: 'margin-top: 10px') %></li>
+        <li><%= link_to(raw('<i class="fa fa-car fa-2x" id="car" ></i>'), commuteslist_path, style: 'margin-top: 10px') %></li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="dropdown-img" src="<%=current_user.picture%>"><span class="caret"></span></a>

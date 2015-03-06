@@ -242,15 +242,16 @@ $(function(){
   function createInfoWindow(idx,place) {
     var clickedCommuteInfo = userInfo[idx]['user_info'];
     var coordinates = userInfo[idx][place];
-    var contentString = '<div>'+'<b>Name: </b>' + clickedCommuteInfo['name'] +'<br>'+
-                    '<b>Industry: </b>' + clickedCommuteInfo['industry'] + '<br>'+
-                    '<a href="/users/'+ userInfo[idx].id +'">View Profile</a>' + '<br>'+
+    var contentString = 
                     '<img class="infowindow-pic" src="' + clickedCommuteInfo['picture']['picture']['url'] + '">' +
-                    '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
-                    '<button class="request-button" data-commute-id="' + userInfo[idx]["id"] +'"data-user-info-name="' + userInfo[idx]["user_info"]["name"] + '"data-user-info-phone="' + userInfo[idx]["user_info"]["phone"] + '">Connect</button>'
-                    '</div>';
+                    '<div class="infowindow-user"> <div><span class="infowindow-name"> Name: </span>' + clickedCommuteInfo['name'] +  '</div></br>' +
+                    '<span class="infowindow-industry">Industry: </span>' + clickedCommuteInfo['industry'] + '</div><br>'+
+                    '<a class="infowindow-profile" href="/users/'+ userInfo[idx].user_id +'">Profile</a>' +
+                    '<span class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</span>' +
+                    '<span class="request-button" data-commute-id="' + userInfo[idx]["id"] +'"data-user-info-name="' + userInfo[idx]["user_info"]["name"] + '"data-user-info-phone="' + userInfo[idx]["user_info"]["phone"] + '">Connect</span>'
+                    ;
     var infowindow = new google.maps.InfoWindow({
-      content: contentString
+      content: contentString,
     });
     allInfoWindows.push(infowindow);
     currentCommuteIndex = idx;
@@ -288,9 +289,8 @@ $(function(){
       "request_receiver_name": $(".request-button").data('user-info-name'),
       "request_receiver_phone": $(".request-button").data('user-info-phone'),
     }
-    debugger;
     makeRequest();
-    sendRequestText();
+    // sendRequestText();
   });
 
   function makeRequest(){
@@ -301,12 +301,12 @@ $(function(){
       error: function(xhr,status,thrownError){
         console.log("it didnt save or work or something oh noes", thrownError);
         $('.request-button').attr("disabled", true);
-        $('.request-button').text("Sent Request");
+        $('.request-button').text("Request Sent");
       },
       success: function(response){
         console.log(response);
         $('.request-button').attr("disabled", true);
-        $('.request-button').text("Sent Request");
+        $('.request-button').text("Request Sent");
       }
     });
   }
