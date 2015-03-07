@@ -1,7 +1,9 @@
+<% content_for :head_section do %>
+  <%= javascript_include_tag 'commuteslist', 'data-turbolinks-track' => true %>
+<% end %>
 <div class="container list-center">
 
   <h1>Current Commutes</h1>
-
 
   <div class="switch-light-container">
     <label class="switch-light well">
@@ -21,19 +23,10 @@
   <div id="drivers-commutes-list" class="hidden">
     <%= render 'drivercommutes_list' %>
   </div>
+  <div class="row">
+        
+      <%= link_to(raw('View on Map <i class="fa fa-arrow-right"></i>'), map_index_path, class: 'btn btn-primary btn-lg btn-consistent center-block' )%>
+      
+  </div>
 
 </div>
-
-
-
-
-
-<script type="text/javascript">
-
-$("#commutes-type-toggle").on("click", function(){
-  $("#passengers-commutes-list").toggleClass("hidden");
-  $("#drivers-commutes-list").toggleClass("hidden");
-})
-
-
-</script>

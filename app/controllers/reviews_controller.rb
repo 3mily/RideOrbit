@@ -1,12 +1,17 @@
 class ReviewsController < ApplicationController
-  def show
-  end
 
   def create
     @review = Review.new(review_params)
     if @review.save
-      redirect_to users_path
+      redirect_to user_path(@review.reviewee_id)
     else
+    end
+  end
+
+  def destroy
+    @review = Review.where(reviewer_id: params[:reviewer_id]).first
+    if @review.destroy
+      redirect_to reviews_path   
     end
   end
 

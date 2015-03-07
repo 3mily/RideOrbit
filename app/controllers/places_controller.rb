@@ -20,7 +20,14 @@ class PlacesController < ApplicationController
     @place.cross_street = cross_street
     @place.cross_street_point = "#{lat},#{lng}"
     @place.save
-    
     respond_with @place
   end
+
+  def destroy
+    @place = Place.find(params["id"])
+    @place.destroy
+    render json: @place
+  end
+
+
 end

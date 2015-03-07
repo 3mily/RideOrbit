@@ -1,11 +1,15 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 
+#Faker for seeding data
+gem 'faker'
+#carrierwave for profile picture upload, minimagick for resiszing
+gem 'carrierwave'
+gem 'mini_magick'
 # we're using Postgres as both dev and prod database for active record
 gem 'pg'
 #using json columns in Postgres database
@@ -13,7 +17,7 @@ gem 'json', '~> 1.8.2'
 #using twilio api
 gem 'twilio-ruby'
 #environment variables for sensitive information
-gem 'dotenv'
+gem 'dotenv-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -37,7 +41,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'sass'
 
+gem 'font-awesome-sass'
+
 gem 'responders'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

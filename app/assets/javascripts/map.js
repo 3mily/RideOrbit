@@ -6,7 +6,6 @@ $(function(){
   var driverDestinations = [];
   var passengerOrigins = [];
   var passengerDestinations = [];
-  var bounds; //grab bounds for map
   var iconImg; //url for custom icon
   var userInfo; //response objects returned from polling our db
   var currentlyBouncing = null; //bounce animation tracker default to null
@@ -25,14 +24,17 @@ $(function(){
   $("#commutes-select-toggle").on("click", function(){
     $("#passenger-commute-select").toggle();
     $("#driver-commute-select").toggle();
+    $("#radius").addClass("hidden");
   });
 
   $("#commute_driver").on("change", function(){
     calcInitRoute("driver");
+    $("#radius").removeClass("hidden");
   });
 
   $("#commute_passenger").on("change", function(){
     calcInitRoute("passenger");
+    $("#radius").removeClass("hidden");
   });
 
   $('#search_radius').on('keyup', function(){
@@ -117,12 +119,12 @@ $(function(){
 
   function getCoordinates(user) {
     if (user==="passenger") {
-      var commuteInfo = document.getElementById('commute_passenger').value;
+      var commuteInfo = $("#commute_passenger option:selected").val();
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(passengerOrigins[commute][0], passengerOrigins[commute][1]); 
       destination = new google.maps.LatLng(passengerDestinations[commute][0], passengerDestinations[commute][1]); 
     } else if (user === "driver"){
-      var commuteInfo = document.getElementById('commute_driver').value;     
+      var commuteInfo = $("#commute_driver option:selected").val();
       getCommuteInfo(commuteInfo);
       origin = new google.maps.LatLng(driverOrigins[commute][0], driverOrigins[commute][1]); 
       destination = new google.maps.LatLng(driverDestinations[commute][0], driverDestinations[commute][1]); 
@@ -138,7 +140,6 @@ $(function(){
   }
 
   function renderRoute(){
-    console.log(waypoints);
     var request = {
         origin:origin,
         destination:destination,
@@ -185,7 +186,7 @@ $(function(){
           userInfo = response;
           initCommutes();
           console.log(response);
-      },
+      }
     });
   }
 
@@ -210,10 +211,10 @@ $(function(){
 
   function selectIconImg(place) {
     if (place === 'origin'){
-      iconImg = 'http://ecir.mit.edu/templates/rt_clarion/images/icons/icon-person.png'
+      iconImg = '/origin-driver.png'
     }
     else{
-      iconImg = 'http://www.wholeperson-counseling.org/gif/point-l.gif'
+      iconImg = '/destination-driver.png'
     }
   }
 
@@ -241,15 +242,16 @@ $(function(){
   function createInfoWindow(idx,place) {
     var clickedCommuteInfo = userInfo[idx]['user_info'];
     var coordinates = userInfo[idx][place];
-    var contentString = '<div>'+'Name: ' + clickedCommuteInfo['name'] +'<br>'+
-                    'Email: ' + clickedCommuteInfo['email'] +'<br>'+
-                    'Phone: ' + clickedCommuteInfo['name'] +'<br>'+
-                    '<a href="#">View Profile</a>'+'<br>'+
-                    '<button class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</button>' +
-                    '<button class="request-button">Connect</button>'
-                    '</div>';
+    var contentString = 
+                    '<img class="infowindow-pic" src="' + clickedCommuteInfo['picture']['picture']['url'] + '">' +
+                    '<div class="infowindow-user"> <div><span class="infowindow-name"> Name: </span>' + clickedCommuteInfo['name'] +  '</div></br>' +
+                    '<span class="infowindow-industry">Industry: </span>' + clickedCommuteInfo['industry'] + '</div><br>'+
+                    '<a class="infowindow-profile" href="/users/'+ userInfo[idx].user_id +'">Profile</a>' +
+                    '<span class="redraw" origin-data-lat="' + userInfo[idx]['origin'][0] + '"origin-data-lng="' + userInfo[idx]['origin'][1] + '"destination-data-lat="' + userInfo[idx]['destination'][0] + '"destination-data-lng="' + userInfo[idx]['destination'][1] + '">Redraw Route</span>' +
+                    '<span class="request-button" data-commute-id="' + userInfo[idx]["id"] +'"data-user-info-name="' + userInfo[idx]["user_info"]["name"] + '"data-user-info-phone="' + userInfo[idx]["user_info"]["phone"] + '">Connect</span>'
+                    ;
     var infowindow = new google.maps.InfoWindow({
-      content: contentString
+      content: contentString,
     });
     allInfoWindows.push(infowindow);
     currentCommuteIndex = idx;
@@ -278,13 +280,20 @@ $(function(){
 
   $("#map-canvas").on("click", ".request-button", function(){
     var initiator = $("#map-canvas").data("currentuser-id");
-    alert("click worked");
-    var params = {
+    params = {
+      "text_type": "request",
       "initiator": initiator,
       "user": commuter,
       "user_commute_id": commuteId,
-      "requested_commute_id": userInfo[currentCommuteIndex]['id']
-    };
+      "requested_commute_id": $(".request-button").data("commute-id"),
+      "request_receiver_name": $(".request-button").data('user-info-name'),
+      "request_receiver_phone": $(".request-button").data('user-info-phone'),
+    }
+    makeRequest();
+    sendRequestText();
+  });
+
+  function makeRequest(){
     $.ajax({
       url: "/requests",
       type: "POST",
@@ -292,15 +301,29 @@ $(function(){
       error: function(xhr,status,thrownError){
         console.log("it didnt save or work or something oh noes", thrownError);
         $('.request-button').attr("disabled", true);
-        $('.request-button').text("Sent Request");
+        $('.request-button').text("Request Sent");
       },
       success: function(response){
         console.log(response);
         $('.request-button').attr("disabled", true);
-        $('.request-button').text("Sent Request");
+        $('.request-button').text("Request Sent");
       }
     });
-  });
+  }
+
+  function sendRequestText(){
+    $.ajax({
+      url: "/twilio",
+      type: "POST",
+      data: params,
+      error: function(xhr,status,thrownError){
+        console.log("it didnt save or work or something oh noes", thrownError);
+      },
+      success: function(response){
+        console.log("success - twilio text send")
+      }
+    });
+  }
 
   $("#map-canvas").on("click", ".redraw", function(e){
     closeInfoWindow();
@@ -321,4 +344,5 @@ $(function(){
       stopover:true
     });
   }
+
 });

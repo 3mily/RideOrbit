@@ -1,11 +1,11 @@
 require 'pry'
 
 class StaticController < ApplicationController
-  def index #landing page
+  def index
     render :index
   end
 
-  def newcommute #for new commutes 
+  def newcommute
     @passenger_commute = Passengercommute.new
     @passenger_commute.user_id = current_user.id
 
@@ -14,10 +14,14 @@ class StaticController < ApplicationController
   end
 
 
-  def commuteslist #page that shows all commutes
+  def commuteslist
     @places = Place.where(user_id: current_user.id)
     @driver_commutes = Drivercommute.where(user_id: current_user.id)
     @passenger_commutes = Passengercommute.where(user_id: current_user.id)
+  end
+
+  def exit
+    
   end
 
 end

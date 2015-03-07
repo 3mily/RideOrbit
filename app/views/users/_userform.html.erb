@@ -25,8 +25,10 @@
   </div>
   <div>
     <%= f.label "phone", "Phone" %><br>
-    <%= f.text_field "phone", class:"form-control" %>
-  </div>
+    <%= text_field_tag :phone1, nil, placeholder: "604", size: 4 %>
+    <%= text_field_tag :phone2, nil, placeholder: "555", size: 5 %>
+    <%= text_field_tag :phone3, nil, placeholder: "5555", size:5 %>
+  </div><br>
   <div>
     <%= f.label :picture, "Profile Picture" %><br>
     <%= f.file_field :picture %> <br>
@@ -39,9 +41,15 @@
   </div>
 
   <div>
-    <%= f.label "linkedin", "LinkedIn (optional)" %><br>
-    <%= f.text_field "linkedin", class:"form-control" %>
+    <%= f.label "bio", "Bio" %><br>
+    <%= f.text_area "bio", placeholder: "Tell other users a bit about yourself!", class:"form-control" %>
   </div>
+
+  <div>
+    <%= f.label "linkedin", "LinkedIn (optional)" %><br>
+    <%= f.text_field "linkedin", placeholder: "http://", class:"form-control" %>
+  </div>
+
   <div>
     <%= f.label "password" %><br>
     <%= f.password_field "password", class:"form-control" %>
@@ -51,6 +59,6 @@
     <%= f.password_field "password_confirmation", class:"form-control" %>
   </div>
   <br>
-  <div><%= f.submit "Submit", class: "btn btn-primary" %></div>
+  <div><%= f.submit "Submit", class: "btn btn-primary right" %></div>
   
 <% end %>
