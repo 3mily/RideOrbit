@@ -270,28 +270,132 @@ Drivercommute.create(
   )
 
 Place.create(
-  user_id:9, 
+  user_id:10, 
   name: "Home",
   cross_street:"Willingdon and Deer Lake", 
   cross_street_point: "49.243125, -123.003309"
   )
 
 Place.create(
-  user_id:9, 
+  user_id:10, 
   name: "Work",
   cross_street:"Victoria and 49th", 
   cross_street_point: "49.225337, -123.065704"
   )
 
 Drivercommute.create(
-  user_id: 9,
+  user_id: 10,
   origin: "49.243125, -123.003309",
   origin_name: "Home - Willingdon and Deer Lake",
   destination: "49.225337, -123.065704",
   destination_name: "Work - Victoria and 49th",
   arrival_time: "2000-01-01 02:30:00",
   days: ["Mon","Tues","Wed"],
+  user_info: {name: User.find(10).firstname, picture: User.find(10).picture, industry: User.find(10).industry, phone: phone_array[8]}
+  )
+
+
+Place.create(
+  user_id:9, 
+  name: "Home",
+  cross_street:"W 49th Ave & Tisdall S", 
+  cross_street_point: "49.226519, -123.120782"
+  )
+
+Place.create(
+  user_id:9, 
+  name: "Work",
+  cross_street:"Seymour and West Pender", 
+  cross_street_point: "49.284238, -123.113944"
+  )
+
+Drivercommute.create(
+  user_id: 9,
+  origin: "49.226519, -123.120782",
+  origin_name: "Home - W 49th Ave & Tisdall S",
+  destination: "49.284238, -123.113944",
+  destination_name: "Work - Seymour and West Pender",
+  arrival_time: "2000-01-01 02:30:00",
+  days: ["Mon","Tues","Wed"],
   user_info: {name: User.find(9).firstname, picture: User.find(9).picture, industry: User.find(9).industry, phone: phone_array[8]}
+  )
+
+
+Place.create(
+  user_id:7, 
+  name: "Home",
+  cross_street:"E 42nd and Quebec", 
+  cross_street_point: "49.231944, -123.103694"
+  )
+
+Place.create(
+  user_id:7, 
+  name: "Work",
+  cross_street:"Howe and Robson", 
+  cross_street_point: "49.282209, -123.120839"
+  )
+
+Drivercommute.create(
+  user_id: 7,
+  origin: "49.231944, -123.103694",
+  origin_name: "Home - E 42nd and Quebec",
+  destination: "49.282209, -123.120839",
+  destination_name: "Work - Howe and Robson",
+  arrival_time: "2000-01-01 02:30:00",
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: User.find(7).firstname, picture: User.find(7).picture, industry: User.find(7).industry, phone: phone_array[8]}
+  )
+
+
+Place.create(
+  user_id:4, 
+  name: "Home",
+  cross_street:"E 49th and Main", 
+  cross_street_point: "49.225808, -123.101590"
+  )
+
+Place.create(
+  user_id:4, 
+  name: "Work",
+  cross_street:"Main and Terminal", 
+  cross_street_point: "49.272929, -123.099961"
+  )
+
+Drivercommute.create(
+  user_id: 4,
+  origin: "49.225808, -123.101590",
+  origin_name: "Home - E 49th and Main",
+  destination: "49.272929, -123.099961",
+  destination_name: "Work - Main and Terminal",
+  arrival_time: "2000-01-01 02:30:00",
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: User.find(4).firstname, picture: User.find(4).picture, industry: User.find(4).industry, phone: phone_array[8]}
+  )
+
+
+Place.create(
+  user_id:8, 
+  name: "Home",
+  cross_street:"33rd and Oak", 
+  cross_street_point: "49.241538, -123.127787"
+  )
+
+Place.create(
+  user_id:8, 
+  name: "Work",
+  cross_street:"Prior and Gore", 
+  cross_street_point: "49.276801, -123.096819"
+  )
+
+Drivercommute.create(
+  user_id: 8,
+  origin: "49.241538, -123.127787",
+  origin_name: "Home - 33rd and Oak",
+  destination: "49.276801, -123.096819",
+  destination_name: "Work - Prior and Gore",
+  arrival_time: "2000-01-01 02:30:00",
+  days: ["Mon","Tues","Wed"],
+  user_info: {name: User.find(8).firstname, picture: User.find(8).picture, industry: User.find(8).industry, phone: phone_array[8]}
   )
 
 
